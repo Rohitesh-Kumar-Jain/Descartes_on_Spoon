@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+<body>
+
+
+<h1>NamedElementFilter.java</h1>
+
+<table class="src">
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@73be33f9_1'/>
+1
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@73be33f9_1'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>/**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@73be33f9_2'/>
+2
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@73be33f9_2'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * SPDX-License-Identifier: (MIT OR CECILL-C)</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@73be33f9_3'/>
+3
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@73be33f9_3'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@73be33f9_4'/>
+4
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@73be33f9_4'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * Copyright (C) 2006-2019 INRIA and contributors</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@73be33f9_5'/>
+5
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@73be33f9_5'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@73be33f9_6'/>
+6
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@73be33f9_6'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * Spoon is available either under the terms of the MIT License (see LICENSE-MIT.txt) of the Cecill-C License (see LICENSE-CECILL-C.txt). You as the user are entitled to choose the terms under which to adopt Spoon.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@73be33f9_7'/>
+7
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@73be33f9_7'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@73be33f9_8'/>
+8
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@73be33f9_8'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>package spoon.reflect.visitor.filter;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@73be33f9_9'/>
+9
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@73be33f9_9'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@73be33f9_10'/>
+10
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@73be33f9_10'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import spoon.reflect.declaration.CtNamedElement;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@73be33f9_11'/>
+11
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@73be33f9_11'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import spoon.reflect.visitor.Filter;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@73be33f9_12'/>
+12
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@73be33f9_12'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@73be33f9_13'/>
+13
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@73be33f9_13'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>/**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@73be33f9_14'/>
+14
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@73be33f9_14'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * Filters elements by name and by type (for instance to find a method). Example:</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@73be33f9_15'/>
+15
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@73be33f9_15'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@73be33f9_16'/>
+16
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@73be33f9_16'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * &#60;pre&#62;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@73be33f9_17'/>
+17
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@73be33f9_17'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * CtMethod&#38;lt;?&#38;gt; normalFor = type.getElements(</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@73be33f9_18'/>
+18
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@73be33f9_18'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * &#9;&#9;new NamedElementFilter&#38;lt;CtMethod&#38;lt;?&#38;gt;&#38;gt;(CtMethod.class, &#38;quot;normalFor&#38;quot;)).get(0);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@73be33f9_19'/>
+19
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@73be33f9_19'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * &#60;/pre&#62;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@73be33f9_20'/>
+20
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@73be33f9_20'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@73be33f9_21'/>
+21
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@73be33f9_21'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>public class NamedElementFilter&#60;T extends CtNamedElement&#62; implements Filter&#60;T&#62; {</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@73be33f9_22'/>
+22
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@73be33f9_22'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;private final String name;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@73be33f9_23'/>
+23
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@73be33f9_23'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;private Class&#60;T&#62; acceptedClass;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@73be33f9_24'/>
+24
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@73be33f9_24'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@73be33f9_25'/>
+25
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@73be33f9_25'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;/**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@73be33f9_26'/>
+26
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@73be33f9_26'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9; *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@73be33f9_27'/>
+27
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@73be33f9_27'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9; * @param name Name of the expected element</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@73be33f9_28'/>
+28
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@73be33f9_28'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9; * @param acceptedClass Expected class of the results</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@73be33f9_29'/>
+29
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@73be33f9_29'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9; */</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@73be33f9_30'/>
+30
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@73be33f9_30'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;public NamedElementFilter(Class&#60;T&#62; acceptedClass, String name) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@73be33f9_31'/>
+31
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@73be33f9_31'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;if (name == null || acceptedClass == null) {</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@73be33f9_32'/>
+32
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@73be33f9_32'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class=''>&#9;&#9;&#9;throw new IllegalArgumentException();</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@73be33f9_33'/>
+33
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@73be33f9_33'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;&#9;}</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@73be33f9_34'/>
+34
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@73be33f9_34'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;this.name = name;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@73be33f9_35'/>
+35
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@73be33f9_35'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;this.acceptedClass = acceptedClass;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@73be33f9_36'/>
+36
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@73be33f9_36'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;}</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@73be33f9_37'/>
+37
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@73be33f9_37'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@73be33f9_38'/>
+38
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@73be33f9_38'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;@Override</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@73be33f9_39'/>
+39
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@73be33f9_39'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;public boolean matches(T element) {</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@73be33f9_40'/>
+40
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@73be33f9_40'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;&#9;try {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@73be33f9_41'/>
+41
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@73be33f9_41'>2</a>
+<span>
+1. matches : All method instructions replaced by: return false &rarr; KILLED<br/>
+2. matches : All method instructions replaced by: return true &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>&#9;&#9;&#9;return acceptedClass.isAssignableFrom(element.getClass()) &#38;&#38; name.equals(element.getSimpleName());</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@73be33f9_42'/>
+42
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@73be33f9_42'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class=''>&#9;&#9;} catch (UnsupportedOperationException e) {</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@73be33f9_43'/>
+43
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@73be33f9_43'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class=''>&#9;&#9;&#9;return false;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@73be33f9_44'/>
+44
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@73be33f9_44'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;&#9;}</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@73be33f9_45'/>
+45
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@73be33f9_45'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;}</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@73be33f9_46'/>
+46
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@73be33f9_46'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@73be33f9_47'/>
+47
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@73be33f9_47'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;@SuppressWarnings(&#34;unchecked&#34;)</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@73be33f9_48'/>
+48
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@73be33f9_48'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;public Class&#60;T&#62; getType() {</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@73be33f9_49'/>
+49
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@73be33f9_49'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class=''>&#9;&#9;return acceptedClass;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@73be33f9_50'/>
+50
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@73be33f9_50'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;}</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@73be33f9_51'/>
+51
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@73be33f9_51'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>}</span></pre></td></tr>
+
+
+
+<tr><td></td><td></td><td><h2>Mutations</h2></td></tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@73be33f9_41'>41</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@73be33f9_41'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>matches<br/><b>Killed by : </b>spoon.test.secondaryclasses.ClassesTest.testClassWithInternalPublicClassOrInterf(spoon.test.secondaryclasses.ClassesTest)</span></span> All method instructions replaced by: return false &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>matches<br/><b>Killed by : </b>spoon.test.secondaryclasses.ClassesTest.testClassWithInternalPublicClassOrInterf(spoon.test.secondaryclasses.ClassesTest)</span></span> All method instructions replaced by: return true &rarr; KILLED</p> 
+</td>
+</tr>
+
+</table>
+
+
+<h2>Active mutators</h2>
+<ul>
+<li class='mutator'>""</li>
+<li class='mutator'>"A"</li>
+<li class='mutator'>'A'</li>
+<li class='mutator'>'\40'</li>
+<li class='mutator'>(byte)0</li>
+<li class='mutator'>(byte)1</li>
+<li class='mutator'>(short)0</li>
+<li class='mutator'>(short)1</li>
+<li class='mutator'>0</li>
+<li class='mutator'>0.0</li>
+<li class='mutator'>0.0f</li>
+<li class='mutator'>0L</li>
+<li class='mutator'>1</li>
+<li class='mutator'>1.0</li>
+<li class='mutator'>1.0f</li>
+<li class='mutator'>1L</li>
+<li class='mutator'>empty</li>
+<li class='mutator'>false</li>
+<li class='mutator'>null</li>
+<li class='mutator'>true</li>
+<li class='mutator'>void</li>
+
+</ul>
+
+<h2>Tests examined</h2>
+<ul>
+<li>spoon.test.prettyprinter.DefaultPrettyPrinterTest.testIssue2130(spoon.test.prettyprinter.DefaultPrettyPrinterTest) (161 ms)</li><li>spoon.test.annotation.AnnotationTest.testAnnotationParameterTypes(spoon.test.annotation.AnnotationTest) (88 ms)</li><li>spoon.test.template.PatternTest.testMatchSample1(spoon.test.template.PatternTest) (139 ms)</li><li>spoon.test.control.ControlTest.testModelBuildingFor(spoon.test.control.ControlTest) (52 ms)</li><li>spoon.reflect.ast.CloneTest.testCopyType(spoon.reflect.ast.CloneTest) (1194 ms)</li><li>spoon.test.fieldaccesses.FieldAccessTest.testModelBuildingFieldAccesses(spoon.test.fieldaccesses.FieldAccessTest) (51 ms)</li><li>spoon.test.template.PatternTest.testMatchForeach(spoon.test.template.PatternTest) (81 ms)</li><li>spoon.test.generics.GenericsTest.testCtTypeReference_getSuperclass(spoon.test.generics.GenericsTest) (147 ms)</li><li>spoon.test.annotation.AnnotationTest.testCatchExpressionAnnotation(spoon.test.annotation.AnnotationTest) (63 ms)</li><li>spoon.test.ctType.CtTypeParameterTest.testTypeSame(spoon.test.ctType.CtTypeParameterTest) (252 ms)</li><li>spoon.test.targeted.TargetedExpressionTest.testCtSuperAccess(spoon.test.targeted.TargetedExpressionTest) (57 ms)</li><li>spoon.test.imports.ImportTest.testImportOfAnInnerClassInASuperClassPackageFullQualified(spoon.test.imports.ImportTest) (175 ms)</li><li>spoon.test.parameters.ParameterTest.testParameterInNoClasspath(spoon.test.parameters.ParameterTest) (142 ms)</li><li>spoon.test.generics.GenericsTest.testBugCommonCollection(spoon.test.generics.GenericsTest) (125 ms)</li><li>spoon.test.generics.GenericsTest.testMethodTypingContextAdaptMethod(spoon.test.generics.GenericsTest) (301 ms)</li><li>spoon.test.eval.EvalTest.testVisitorPartialEvaluatorScanner(spoon.test.eval.EvalTest) (255 ms)</li><li>spoon.test.annotation.AnnotationTest.testUsageOfTypeAnnotationInExtendsImplementsOfAClass(spoon.test.annotation.AnnotationTest) (68 ms)</li><li>spoon.test.pkg.PackageTest.testRenamePackageAndPrettyPrintNoclasspath(spoon.test.pkg.PackageTest) (57 ms)</li><li>spoon.test.secondaryclasses.ClassesTest.testClassWithInternalPublicClassOrInterf(spoon.test.secondaryclasses.ClassesTest) (27 ms)</li><li>spoon.test.generics.GenericsTest.testisGeneric(spoon.test.generics.GenericsTest) (301 ms)</li><li>spoon.test.template.TemplateTest.testTemplateInvocationSubstitution(spoon.test.template.TemplateTest) (87 ms)</li><li>spoon.test.reference.VariableAccessTest.testReferenceToLocalVariableDeclaredInLoop(spoon.test.reference.VariableAccessTest) (56 ms)</li><li>spoon.test.ctType.CtTypeParameterTest.testTypeErasure(spoon.test.ctType.CtTypeParameterTest) (154 ms)</li><li>spoon.test.template.TemplateTest.testTemplateMatcher(spoon.test.template.TemplateTest) (420 ms)</li><li>spoon.test.initializers.InitializerTest.testModelBuildingInitializer(spoon.test.initializers.InitializerTest) (81 ms)</li><li>spoon.test.factory.FactoryTest.testCtModel(spoon.test.factory.FactoryTest) (44 ms)</li><li>spoon.test.reference.VariableAccessTest.testGetDeclarationAfterClone(spoon.test.reference.VariableAccessTest) (56 ms)</li><li>spoon.test.generics.GenericsTest.testClassTypingContext(spoon.test.generics.GenericsTest) (206 ms)</li><li>spoon.test.generics.GenericsTest.testModelBuildingSimilarSignatureMethods(spoon.test.generics.GenericsTest) (29 ms)</li><li>spoon.test.annotation.AnnotationTest.testCatchAnnotation(spoon.test.annotation.AnnotationTest) (64 ms)</li><li>spoon.test.ctType.CtTypeTest.testIsSubTypeOfonTypeReferences(spoon.test.ctType.CtTypeTest) (499 ms)</li><li>spoon.test.model.TypeTest.testGetDeclaredOrIheritedFieldOnTypeRef(spoon.test.model.TypeTest) (31 ms)</li><li>spoon.test.secondaryclasses.ClassesTest.testTopLevel(spoon.test.secondaryclasses.ClassesTest) (114 ms)</li><li>spoon.test.intercession.insertBefore.InsertMethodsTest.testInsertAfterWithBrace(spoon.test.intercession.insertBefore.InsertMethodsTest) (50 ms)</li><li>spoon.test.refactoring.CtRenameLocalVariableRefactoringTest.testRenameAllLocalVariablesOfRenameTestSubject(spoon.test.refactoring.CtRenameLocalVariableRefactoringTest) (22685 ms)</li><li>spoon.test.signature.SignatureTest.testBugSignature(spoon.test.signature.SignatureTest) (136 ms)</li><li>spoon.test.filters.FilterTest.classCastExceptionIsNotThrown(spoon.test.filters.FilterTest) (103 ms)</li><li>spoon.test.query_function.VariableReferencesTest.testLocalVariableReferenceFunction(spoon.test.query_function.VariableReferencesTest) (172 ms)</li><li>spoon.test.template.PatternTest.testPatternToStringNoComments(spoon.test.template.PatternTest) (143 ms)</li><li>spoon.test.template.TemplateTest.testTemplateInheritance(spoon.test.template.TemplateTest) (262 ms)</li><li>spoon.test.intercession.insertBefore.InsertMethodsTest.testInsertAfterSwitchCase(spoon.test.intercession.insertBefore.InsertMethodsTest) (56 ms)</li><li>spoon.test.reference.TypeReferenceTest.testEqualityTypeReference(spoon.test.reference.TypeReferenceTest) (32 ms)</li><li>spoon.test.template.TemplateTest.testMethodCast(spoon.test.template.TemplateTest) (97 ms)</li><li>spoon.test.template.PatternTest.testMatchParameterValueType(spoon.test.template.PatternTest) (55 ms)</li><li>spoon.test.replace.ReplaceTest.testReplaceBlock(spoon.test.replace.ReplaceTest) (39 ms)</li><li>spoon.test.annotation.AnnotationTest.testReplaceAnnotationValue(spoon.test.annotation.AnnotationTest) (46 ms)</li><li>spoon.test.casts.CastTest.testCast3(spoon.test.casts.CastTest) (60 ms)</li><li>spoon.test.annotation.AnnotationTest.testAnnotationAndShadowRuntimeRetentionPolicy(spoon.test.annotation.AnnotationTest) (47 ms)</li><li>spoon.test.template.PatternTest.testMatchParameterCondition(spoon.test.template.PatternTest) (50 ms)</li><li>spoon.test.initializers.InitializerTest.testModelBuildingInitializerNoclasspath(spoon.test.initializers.InitializerTest) (103 ms)</li><li>spoon.test.template.PatternTest.testPatternToString(spoon.test.template.PatternTest) (188 ms)</li><li>spoon.test.generics.GenericsTest.testIsParameterized(spoon.test.generics.GenericsTest) (51 ms)</li><li>spoon.test.ctBlock.TestCtBlock.testRemoveStatement(spoon.test.ctBlock.TestCtBlock) (80 ms)</li><li>spoon.test.query_function.VariableReferencesTest.testVariableReferenceFunction(spoon.test.query_function.VariableReferencesTest) (165 ms)</li><li>spoon.test.filters.FilterTest.testFieldAccessFilter(spoon.test.filters.FilterTest) (234 ms)</li><li>spoon.test.pkg.PackageTest.testRenamePackageAndPrettyPrint(spoon.test.pkg.PackageTest) (72 ms)</li><li>spoon.test.generics.GenericsTest.testClassTypingContextMethodSignature(spoon.test.generics.GenericsTest) (145 ms)</li><li>spoon.test.generics.GenericsTest.testMethodTypingContext(spoon.test.generics.GenericsTest) (226 ms)</li><li>spoon.test.template.PatternTest.testMatchPossesiveMultiValueMinCount2(spoon.test.template.PatternTest) (116 ms)</li><li>spoon.test.control.ControlTest.testModelBuildingDoWhile(spoon.test.control.ControlTest) (41 ms)</li><li>spoon.test.filters.FilterTest.testNameFilterWithGenericType(spoon.test.filters.FilterTest) (119 ms)</li><li>spoon.test.generics.GenericsTest.testTypeAdapted(spoon.test.generics.GenericsTest) (62 ms)</li><li>spoon.test.annotation.AnnotationTest.testUsageOfTypeAnnotationWithGenericTypesInClassDeclaration(spoon.test.annotation.AnnotationTest) (122 ms)</li><li>spoon.test.template.TemplateTest.testTemplateMatcherWithWholePackage(spoon.test.template.TemplateTest) (122 ms)</li><li>spoon.test.model.TypeTest.testGetDeclaredOrIheritedFieldByReflection(spoon.test.model.TypeTest) (42 ms)</li><li>spoon.test.intercession.insertBefore.InsertMethodsTest.testInsertBeforeSwitchCase(spoon.test.intercession.insertBefore.InsertMethodsTest) (51 ms)</li><li>spoon.test.intercession.insertBefore.InsertMethodsTest.testInsertAfterWithoutBrace(spoon.test.intercession.insertBefore.InsertMethodsTest) (49 ms)</li><li>spoon.test.template.PatternTest.testMatchIfElse(spoon.test.template.PatternTest) (62 ms)</li><li>spoon.test.labels.TestLabels.testLabelsAreDetected(spoon.test.labels.TestLabels) (41 ms)</li><li>spoon.test.annotation.AnnotationTest.testAnnotationArray(spoon.test.annotation.AnnotationTest) (65 ms)</li><li>spoon.test.generics.GenericsTest.testGenericsOverriding(spoon.test.generics.GenericsTest) (38 ms)</li><li>spoon.test.filters.FilterTest.testParentFunction(spoon.test.filters.FilterTest) (110 ms)</li><li>spoon.test.generics.GenericsTest.testModelBuildingTree(spoon.test.generics.GenericsTest) (69 ms)</li><li>spoon.test.reference.ExecutableReferenceGenericTest.testExecutableReferences(spoon.test.reference.ExecutableReferenceGenericTest) (34 ms)</li><li>spoon.test.lambda.LambdaTest.testLambdaExpressionInIfConditional(spoon.test.lambda.LambdaTest) (295 ms)</li><li>spoon.test.annotation.AnnotationTest.testSpoonSpoonResult(spoon.test.annotation.AnnotationTest) (83 ms)</li><li>spoon.test.imports.ImportScannerTest.testMultiCatchImport(spoon.test.imports.ImportScannerTest) (31 ms)</li><li>spoon.test.annotation.AnnotationTest.testAnnotationAndShadowDefaultRetentionPolicy(spoon.test.annotation.AnnotationTest) (50 ms)</li><li>spoon.test.template.PatternTest.testGenerateIfElse(spoon.test.template.PatternTest) (35 ms)</li><li>spoon.test.path.PathTest.testPathFromString(spoon.test.path.PathTest) (158 ms)</li><li>spoon.test.parameters.ParameterTest.testMultiParameterLambdaTypeReference(spoon.test.parameters.ParameterTest) (108 ms)</li><li>spoon.test.query_function.VariableReferencesTest.testLocalVariableReferenceDeclarationFunction(spoon.test.query_function.VariableReferencesTest) (111 ms)</li><li>spoon.test.template.TemplateTest.testTemplateC1(spoon.test.template.TemplateTest) (146 ms)</li><li>spoon.test.method.MethodTest.testGetAllMethodsAdaptingType(spoon.test.method.MethodTest) (311 ms)</li><li>spoon.test.targeted.TargetedExpressionTest.testCtThisAccess(spoon.test.targeted.TargetedExpressionTest) (103 ms)</li><li>spoon.test.template.TemplateTest.testTemplateMatcherMatchTwoSnippets(spoon.test.template.TemplateTest) (96 ms)</li><li>spoon.test.annotation.AnnotationTest.testAnnotationAndShadowClassRetentionPolicy(spoon.test.annotation.AnnotationTest) (47 ms)</li><li>spoon.test.reference.VariableAccessTest.testMultipleDeclarationsOfLocalVariable(spoon.test.reference.VariableAccessTest) (33 ms)</li><li>spoon.test.limits.utils.InternalTest.testStaticFinalFieldInAnonymousClass(spoon.test.limits.utils.InternalTest) (18 ms)</li><li>spoon.test.prettyprinter.LinesTest.testCompileWhenUsingLinesArgument(spoon.test.prettyprinter.LinesTest) (528 ms)</li><li>spoon.test.annotation.AnnotationTest.annotationAddValue(spoon.test.annotation.AnnotationTest) (40 ms)</li><li>spoon.test.replace.ReplaceTest.testReplaceReplace(spoon.test.replace.ReplaceTest) (32 ms)</li><li>spoon.test.imports.ImportTest.testAnotherMissingImport(spoon.test.imports.ImportTest) (30 ms)</li><li>spoon.test.imports.ImportTest.testImportOfAnInnerClassInASuperClassPackageAutoImport(spoon.test.imports.ImportTest) (211 ms)</li><li>spoon.test.ctType.CtTypeTest.testIsSubTypeOfonTypeParameters(spoon.test.ctType.CtTypeTest) (202 ms)</li><li>spoon.test.template.PatternTest.testMatchParameterValue(spoon.test.template.PatternTest) (76 ms)</li><li>spoon.test.field.FieldTest.testgetDeclaredFields(spoon.test.field.FieldTest) (56 ms)</li><li>spoon.test.reference.VariableAccessTest.testDeclarationArray(spoon.test.reference.VariableAccessTest) (37 ms)</li><li>spoon.test.intercession.insertBefore.InsertMethodsTest.testInsertBeforeWithBrace(spoon.test.intercession.insertBefore.InsertMethodsTest) (44 ms)</li><li>spoon.test.model.TypeTest.testGetDeclaredOrIheritedFieldOnType(spoon.test.model.TypeTest) (33 ms)</li><li>spoon.test.generics.GenericsTest.testGetDeclarationOfTypeParameterReference(spoon.test.generics.GenericsTest) (66 ms)</li><li>spoon.test.annotation.AnnotationTest.testGetAnnotationFromParameter(spoon.test.annotation.AnnotationTest) (101 ms)</li><li>spoon.test.template.PatternTest.testPatternParameters(spoon.test.template.PatternTest) (204 ms)</li><li>spoon.test.reference.CloneReferenceTest.testGetDeclarationAfterClone(spoon.test.reference.CloneReferenceTest) (53 ms)</li><li>spoon.test.generics.GenericsTest.testDeepGenericsInExecutableReference(spoon.test.generics.GenericsTest) (46 ms)</li><li>spoon.test.query_function.VariableReferencesTest.testCheckModelConsistency(spoon.test.query_function.VariableReferencesTest) (190 ms)</li><li>spoon.test.intercession.insertBefore.InsertMethodsTest.testInsertBeforeWithoutBrace(spoon.test.intercession.insertBefore.InsertMethodsTest) (39 ms)</li><li>spoon.test.template.PatternTest.testMatchForeachWithOuterSubstitution(spoon.test.template.PatternTest) (61 ms)</li><li>spoon.test.template.PatternTest.testMatchGreedyMultiValueMinCount2(spoon.test.template.PatternTest) (214 ms)</li><li>spoon.test.methodreference.MethodReferenceTest.testNoClasspathSuperExecutable(spoon.test.methodreference.MethodReferenceTest) (388 ms)</li><li>spoon.test.refactoring.MethodsRefactoringTest.testExecutableReferenceFilter(spoon.test.refactoring.MethodsRefactoringTest) (143 ms)</li>
+</ul>
+
+<br/>
+
+Report generated by <a href='http://pitest.org'>PIT</a> 1.6.4
+
+</body>
+</html>

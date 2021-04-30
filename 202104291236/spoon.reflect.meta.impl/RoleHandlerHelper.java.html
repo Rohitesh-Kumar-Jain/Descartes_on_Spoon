@@ -1,0 +1,1991 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+<body>
+
+
+<h1>RoleHandlerHelper.java</h1>
+
+<table class="src">
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_1'/>
+1
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_1'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>/**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_2'/>
+2
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_2'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * SPDX-License-Identifier: (MIT OR CECILL-C)</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_3'/>
+3
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_3'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_4'/>
+4
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_4'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * Copyright (C) 2006-2019 INRIA and contributors</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_5'/>
+5
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_5'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_6'/>
+6
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_6'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * Spoon is available either under the terms of the MIT License (see LICENSE-MIT.txt) of the Cecill-C License (see LICENSE-CECILL-C.txt). You as the user are entitled to choose the terms under which to adopt Spoon.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_7'/>
+7
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_7'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_8'/>
+8
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_8'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>package spoon.reflect.meta.impl;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_9'/>
+9
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_9'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_10'/>
+10
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_10'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.util.ArrayList;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_11'/>
+11
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_11'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.util.Collections;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_12'/>
+12
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_12'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.util.Comparator;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_13'/>
+13
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_13'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.util.HashMap;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_14'/>
+14
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_14'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.util.List;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_15'/>
+15
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_15'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.util.Map;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_16'/>
+16
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_16'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.util.function.Consumer;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_17'/>
+17
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_17'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_18'/>
+18
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_18'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import spoon.SpoonException;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_19'/>
+19
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_19'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import spoon.reflect.declaration.CtElement;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_20'/>
+20
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_20'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import spoon.reflect.meta.RoleHandler;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_21'/>
+21
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_21'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import spoon.reflect.path.CtRole;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_22'/>
+22
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_22'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_23'/>
+23
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_23'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>/**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_24'/>
+24
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_24'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * Provides a {@link RoleHandler} implementation for the pair of {@link CtElement} implementation and {@link CtRole}</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_25'/>
+25
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_25'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * The returned {@link RoleHandler} can be then used to manipulate value of attribute represented by {@link CtRole} on the {@link CtElement} instance</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_26'/>
+26
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_26'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_27'/>
+27
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_27'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>public class RoleHandlerHelper {</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_28'/>
+28
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_28'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class=''>&#9;private RoleHandlerHelper() {</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_29'/>
+29
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_29'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class=''>&#9;}</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_30'/>
+30
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_30'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_31'/>
+31
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_31'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;private static Map&#60;Class&#60;?&#62;, List&#60;RoleHandler&#62;&#62; roleHandlersByClass = new HashMap&#60;&#62;();</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_32'/>
+32
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_32'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_33'/>
+33
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_33'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;@SuppressWarnings(&#34;unchecked&#34;)</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_34'/>
+34
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_34'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;private static final List&#60;RoleHandler&#62;[] roleHandlers = new List[CtRole.values().length];</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_35'/>
+35
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_35'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;static {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_36'/>
+36
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_36'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;for (int i = 0; i &#60; roleHandlers.length; i++) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_37'/>
+37
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_37'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;&#9;roleHandlers[i] = new ArrayList&#60;&#62;();</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_38'/>
+38
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_38'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;&#9;}</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_39'/>
+39
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_39'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;for (RoleHandler rh : ModelRoleHandlers.roleHandlers) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_40'/>
+40
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_40'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;&#9;roleHandlers[rh.getRole().ordinal()].add(rh);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_41'/>
+41
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_41'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;&#9;}</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_42'/>
+42
+</td>
+<td class='uncertain'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_42'>2</a>
+<span>
+1. lambda$static$0 : All method instructions replaced by: return 0 &rarr; TIMED_OUT<br/>
+2. lambda$static$0 : All method instructions replaced by: return 1 &rarr; TIMED_OUT<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='uncertain'>&#9;&#9;Comparator&#60;RoleHandler&#62; cmp = (a, b) -&#62; a.getTargetType().isAssignableFrom(b.getTargetType()) ? 1 : -1;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_43'/>
+43
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_43'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;for (RoleHandler rh : ModelRoleHandlers.roleHandlers) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_44'/>
+44
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_44'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;&#9;roleHandlers[rh.getRole().ordinal()].sort(cmp);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_45'/>
+45
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_45'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;&#9;}</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_46'/>
+46
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_46'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;}</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_47'/>
+47
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_47'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_48'/>
+48
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_48'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;/**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_49'/>
+49
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_49'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9; * @param targetClass the class of the to be manipulated node</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_50'/>
+50
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_50'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9; * @param role defines the to be manipulated attribute</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_51'/>
+51
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_51'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9; * @return {@link RoleHandler} implementation which knows how to manipulate the attribute of {@link CtRole} on `targetClass`</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_52'/>
+52
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_52'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9; * or throws exception if such role doesn&#39;t exist on the `targetClass`</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_53'/>
+53
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_53'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9; */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_54'/>
+54
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_54'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;public static RoleHandler getRoleHandler(Class&#60;? extends CtElement&#62; targetClass, CtRole role) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_55'/>
+55
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_55'>1</a>
+<span>
+1. getRoleHandler : All method instructions replaced by: return null; &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>&#9;&#9;RoleHandler rh = getOptionalRoleHandler(targetClass, role);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_56'/>
+56
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_56'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;if (rh == null) {</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_57'/>
+57
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_57'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class=''>&#9;&#9;&#9;throw new SpoonException(&#34;The element of class &#34; + targetClass + &#34; does not have CtRole.&#34; + role.name());</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_58'/>
+58
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_58'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;&#9;}</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_59'/>
+59
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_59'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;return rh;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_60'/>
+60
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_60'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;}</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_61'/>
+61
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_61'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_62'/>
+62
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_62'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;/**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_63'/>
+63
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_63'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9; * @param targetClass the Class of the to be manipulated node</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_64'/>
+64
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_64'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9; * @param role defines the to be manipulated attribute</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_65'/>
+65
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_65'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9; * @return {@link RoleHandler} implementation, which knows how to manipulate the attribute of {@link CtRole} on `targetClass`</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_66'/>
+66
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_66'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9; * or returns null if such role doesn&#39;t exist on the `targetClass`</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_67'/>
+67
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_67'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9; */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_68'/>
+68
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_68'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;public static RoleHandler getOptionalRoleHandler(Class&#60;? extends CtElement&#62; targetClass, CtRole role) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_69'/>
+69
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_69'>1</a>
+<span>
+1. getOptionalRoleHandler : All method instructions replaced by: return null; &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>&#9;&#9;List&#60;RoleHandler&#62; handlers = roleHandlers[role.ordinal()];</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_70'/>
+70
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_70'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;for (RoleHandler ctRoleHandler : handlers) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_71'/>
+71
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_71'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;&#9;if (ctRoleHandler.getTargetType().isAssignableFrom(targetClass)) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_72'/>
+72
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_72'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;&#9;&#9;return ctRoleHandler;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_73'/>
+73
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_73'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;&#9;&#9;}</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_74'/>
+74
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_74'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;}</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_75'/>
+75
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_75'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;return null;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_76'/>
+76
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_76'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;}</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_77'/>
+77
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_77'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_78'/>
+78
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_78'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;/**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_79'/>
+79
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_79'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9; * @param targetClass a Class whose handlers we are looking for</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_80'/>
+80
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_80'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9; * @return all {@link RoleHandler}s available for the `targetClass`</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_81'/>
+81
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_81'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9; */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_82'/>
+82
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_82'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;public static List&#60;RoleHandler&#62; getRoleHandlers(Class&#60;? extends CtElement&#62; targetClass) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_83'/>
+83
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_83'>1</a>
+<span>
+1. getRoleHandlers : All method instructions replaced by: return null; &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>&#9;&#9;List&#60;RoleHandler&#62; handlers = roleHandlersByClass.get(targetClass);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_84'/>
+84
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_84'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;if (handlers == null) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_85'/>
+85
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_85'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;&#9;List&#60;RoleHandler&#62; modifiableHandlers = new ArrayList&#60;&#62;();</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_86'/>
+86
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_86'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;&#9;for (CtRole role : CtRole.values()) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_87'/>
+87
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_87'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;&#9;&#9;RoleHandler roleHandler = getOptionalRoleHandler(targetClass, role);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_88'/>
+88
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_88'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;&#9;&#9;if (roleHandler != null) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_89'/>
+89
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_89'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;&#9;&#9;&#9;modifiableHandlers.add(roleHandler);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_90'/>
+90
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_90'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;&#9;&#9;&#9;}</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_91'/>
+91
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_91'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;&#9;&#9;}</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_92'/>
+92
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_92'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;&#9;handlers = Collections.unmodifiableList(modifiableHandlers);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_93'/>
+93
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_93'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;&#9;roleHandlersByClass.put(targetClass, handlers);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_94'/>
+94
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_94'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;&#9;}</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_95'/>
+95
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_95'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;return handlers;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_96'/>
+96
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_96'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;}</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_97'/>
+97
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_97'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_98'/>
+98
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_98'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;/**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_99'/>
+99
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_99'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9; * @param consumer is called for each {@link RoleHandler} of SpoonModel</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_100'/>
+100
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_100'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9; */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_101'/>
+101
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_101'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;public static void forEachRoleHandler(Consumer&#60;RoleHandler&#62; consumer) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_102'/>
+102
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_102'>1</a>
+<span>
+1. forEachRoleHandler : Removed all instructions in the method &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>&#9;&#9;for (List&#60;RoleHandler&#62; list : roleHandlers) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_103'/>
+103
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_103'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;&#9;for (RoleHandler roleHandler : list) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_104'/>
+104
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_104'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;&#9;&#9;consumer.accept(roleHandler);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_105'/>
+105
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_105'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;&#9;}</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_106'/>
+106
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_106'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;&#9;}</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_107'/>
+107
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_107'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;}</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_108'/>
+108
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_108'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_109'/>
+109
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_109'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;/**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_110'/>
+110
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_110'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9; * @param element the {@link CtElement} whose relation from `element.getParent()` to `element` is needed.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_111'/>
+111
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_111'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9; * @return {@link RoleHandler} handling relation from `element.getParent()` to `element`</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_112'/>
+112
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_112'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9; */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_113'/>
+113
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_113'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;public static RoleHandler getRoleHandlerWrtParent(CtElement element) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_114'/>
+114
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_114'>1</a>
+<span>
+1. getRoleHandlerWrtParent : All method instructions replaced by: return null; &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>&#9;&#9;if (element.isParentInitialized() == false) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_115'/>
+115
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_115'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;&#9;return null;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_116'/>
+116
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_116'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;&#9;}</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_117'/>
+117
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_117'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;CtElement parent = element.getParent();</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_118'/>
+118
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_118'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;CtRole roleInParent = element.getRoleInParent();</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_119'/>
+119
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_119'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;if (roleInParent == null) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_120'/>
+120
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_120'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;&#9;return null;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_121'/>
+121
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_121'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;&#9;}</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_122'/>
+122
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_122'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;return getRoleHandler(parent.getClass(), roleInParent);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_123'/>
+123
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_123'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;}</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_124'/>
+124
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_124'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>}</span></pre></td></tr>
+
+
+
+<tr><td></td><td></td><td><h2>Mutations</h2></td></tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_42'>42</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_42'/> 
+
+<p class='TIMED_OUT'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>lambda$static$0<br/><b>Killed by : </b>none</span></span> All method instructions replaced by: return 0 &rarr; TIMED_OUT</p> <p class='TIMED_OUT'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>lambda$static$0<br/><b>Killed by : </b>none</span></span> All method instructions replaced by: return 1 &rarr; TIMED_OUT</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_55'>55</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_55'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getRoleHandler<br/><b>Killed by : </b>spoon.test.api.MetamodelTest.singleValueRoleAddSetRemove(spoon.test.api.MetamodelTest)</span></span> All method instructions replaced by: return null; &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_69'>69</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_69'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getOptionalRoleHandler<br/><b>Killed by : </b>spoon.test.api.MetamodelTest.singleValueRoleAddSetRemove(spoon.test.api.MetamodelTest)</span></span> All method instructions replaced by: return null; &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_83'>83</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_83'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getRoleHandlers<br/><b>Killed by : </b>spoon.test.api.MetamodelTest.testGetRoleHandlersOfClass(spoon.test.api.MetamodelTest)</span></span> All method instructions replaced by: return null; &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_102'>102</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_102'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>forEachRoleHandler<br/><b>Killed by : </b>spoon.test.api.MetamodelTest.testGetRoleHandlersOfClass(spoon.test.api.MetamodelTest)</span></span> Removed all instructions in the method &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@58a5cdcd_114'>114</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@58a5cdcd_114'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getRoleHandlerWrtParent<br/><b>Killed by : </b>spoon.test.api.MetamodelTest.testGetParentRoleHandler(spoon.test.api.MetamodelTest)</span></span> All method instructions replaced by: return null; &rarr; KILLED</p> 
+</td>
+</tr>
+
+</table>
+
+
+<h2>Active mutators</h2>
+<ul>
+<li class='mutator'>""</li>
+<li class='mutator'>"A"</li>
+<li class='mutator'>'A'</li>
+<li class='mutator'>'\40'</li>
+<li class='mutator'>(byte)0</li>
+<li class='mutator'>(byte)1</li>
+<li class='mutator'>(short)0</li>
+<li class='mutator'>(short)1</li>
+<li class='mutator'>0</li>
+<li class='mutator'>0.0</li>
+<li class='mutator'>0.0f</li>
+<li class='mutator'>0L</li>
+<li class='mutator'>1</li>
+<li class='mutator'>1.0</li>
+<li class='mutator'>1.0f</li>
+<li class='mutator'>1L</li>
+<li class='mutator'>empty</li>
+<li class='mutator'>false</li>
+<li class='mutator'>null</li>
+<li class='mutator'>true</li>
+<li class='mutator'>void</li>
+
+</ul>
+
+<h2>Tests examined</h2>
+<ul>
+<li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtFieldRead](spoon.test.replace.ReplaceParametrizedTest) (8 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtFieldReference](spoon.test.replace.ReplaceParametrizedTest) (5 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtFor](spoon.test.replace.ReplaceParametrizedTest) (9 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtLambda](spoon.test.replace.ReplaceParametrizedTest) (8 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtCompilationUnit](spoon.test.replace.ReplaceParametrizedTest) (7 ms)</li><li>spoon.test.template.PatternTest.testMatchSample1(spoon.test.template.PatternTest) (139 ms)</li><li>spoon.test.template.TemplateTest.substituteSubString(spoon.test.template.TemplateTest) (160 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtAssert](spoon.test.replace.ReplaceParametrizedTest) (14 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtInterface](spoon.test.replace.ReplaceParametrizedTest) (7 ms)</li><li>spoon.test.api.MetamodelTest.elementAnnotationRoleHandlerTest(spoon.test.api.MetamodelTest) (4 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtNewArray](spoon.test.replace.ReplaceParametrizedTest) (6 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtConstructor](spoon.test.replace.ReplaceParametrizedTest) (33 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtModule](spoon.test.replace.ReplaceParametrizedTest) (12 ms)</li><li>spoon.test.template.PatternTest.testMatchForeach(spoon.test.template.PatternTest) (81 ms)</li><li>spoon.test.path.PathTest.testMultiPathFromString(spoon.test.path.PathTest) (140 ms)</li><li>spoon.test.template.TemplateTest.createTypeFromTemplate(spoon.test.template.TemplateTest) (117 ms)</li><li>spoon.test.prettyprinter.TestSniperPrinter.testPrintReplacementOfInvocation(spoon.test.prettyprinter.TestSniperPrinter) (238 ms)</li><li>spoon.test.prettyprinter.TestSniperPrinter.testAddedElementsIndentedWithAppropriateIndentationStyle(spoon.test.prettyprinter.TestSniperPrinter) (135 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtModuleReference](spoon.test.replace.ReplaceParametrizedTest) (4 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtEnum](spoon.test.replace.ReplaceParametrizedTest) (12 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtEnumValue](spoon.test.replace.ReplaceParametrizedTest) (5 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtSynchronized](spoon.test.replace.ReplaceParametrizedTest) (6 ms)</li><li>spoon.test.prettyprinter.TestSniperPrinter.testPrintAfterRemoveOfLastTypeMember(spoon.test.prettyprinter.TestSniperPrinter) (81 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtPackage](spoon.test.replace.ReplaceParametrizedTest) (5 ms)</li><li>spoon.test.api.MetamodelTest.testRuntimeMetamodel(spoon.test.api.MetamodelTest) (61 ms)</li><li>spoon.test.api.MetamodelTest.elementAnnotationAdaptedRoleTest(spoon.test.api.MetamodelTest) (4 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtTypeReference](spoon.test.replace.ReplaceParametrizedTest) (2 ms)</li><li>spoon.test.prettyprinter.TestSniperPrinter.testAddedImportStatementPlacedOnSeparateLineInFileWithPackageStatement(spoon.test.prettyprinter.TestSniperPrinter) (201 ms)</li><li>spoon.test.prettyprinter.TestSniperPrinter.testPrintAfterRemoveOfFirstParameter(spoon.test.prettyprinter.TestSniperPrinter) (79 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtLocalVariable](spoon.test.replace.ReplaceParametrizedTest) (6 ms)</li><li>spoon.test.position.TestSourceFragment.testSourceFragmentsOfFieldAccess(spoon.test.position.TestSourceFragment) (50 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtIf](spoon.test.replace.ReplaceParametrizedTest) (7 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtExecutableReference](spoon.test.replace.ReplaceParametrizedTest) (7 ms)</li><li>spoon.test.position.TestSourceFragment.testSourceFragmentsOfNewAnnonymousClass(spoon.test.position.TestSourceFragment) (66 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtOperatorAssignment](spoon.test.replace.ReplaceParametrizedTest) (5 ms)</li><li>spoon.processing.ProcessingTest.testStaticImport(spoon.processing.ProcessingTest) (44 ms)</li><li>spoon.test.prettyprinter.TestSniperPrinter.testPrintOneLineMultipleVariableDeclaration(spoon.test.prettyprinter.TestSniperPrinter) (48 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtTry](spoon.test.replace.ReplaceParametrizedTest) (7 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtAnnotationType](spoon.test.replace.ReplaceParametrizedTest) (11 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtAnnotationFieldAccess](spoon.test.replace.ReplaceParametrizedTest) (10 ms)</li><li>spoon.test.path.PathTest.testGetPathFromNonParent(spoon.test.path.PathTest) (89 ms)</li><li>spoon.test.textBlocks.TextBlockTest.testTextBlockqoute(spoon.test.textBlocks.TextBlockTest) (60 ms)</li><li>spoon.test.prettyprinter.TestSniperPrinter.testNewlineInsertedBetweenModifiedCommentAndTypeMemberWithAddedModifier(spoon.test.prettyprinter.TestSniperPrinter) (489 ms)</li><li>spoon.test.prettyprinter.TestSniperPrinter.testPrintLocalVariableDeclaration(spoon.test.prettyprinter.TestSniperPrinter) (51 ms)</li><li>spoon.test.issue3321.SniperPrettyPrinterJavaxTest.testThatCanGenerateSniperPrettyPrintedSourceForJavaxAnnotatedClasses(spoon.test.issue3321.SniperPrettyPrinterJavaxTest) (89 ms)</li><li>spoon.test.prettyprinter.TestSniperPrinter.testPrintAfterRemoveOfLastParameter(spoon.test.prettyprinter.TestSniperPrinter) (105 ms)</li><li>spoon.test.prettyprinter.TestSniperPrinter.testPrintTypeWithMethodImportAboveMethodDefinition(spoon.test.prettyprinter.TestSniperPrinter) (41 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtArrayTypeReference](spoon.test.replace.ReplaceParametrizedTest) (7 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtComment](spoon.test.replace.ReplaceParametrizedTest) (10 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtReturn](spoon.test.replace.ReplaceParametrizedTest) (5 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtBlock](spoon.test.replace.ReplaceParametrizedTest) (13 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtParameter](spoon.test.replace.ReplaceParametrizedTest) (5 ms)</li><li>spoon.test.prettyprinter.TestSniperPrinter.testToStringWithSniperOnElementScan(spoon.test.prettyprinter.TestSniperPrinter) (122 ms)</li><li>spoon.test.path.PathTest.testIncorrectPathFromString(spoon.test.path.PathTest) (126 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtForEach](spoon.test.replace.ReplaceParametrizedTest) (8 ms)</li><li>spoon.test.prettyprinter.SniperDoubleForInitializerTest (36 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtThisAccess](spoon.test.replace.ReplaceParametrizedTest) (4 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtConditional](spoon.test.replace.ReplaceParametrizedTest) (34 ms)</li><li>spoon.test.prettyprinter.TestSniperPrinter.testPrintAfterRemoveOfFormalTypeParamsAndChangeOfReturnType(spoon.test.prettyprinter.TestSniperPrinter) (73 ms)</li><li>spoon.test.position.TestSourceFragment.testSourceFragmentField(spoon.test.position.TestSourceFragment) (87 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtCodeSnippetExpression](spoon.test.replace.ReplaceParametrizedTest) (23 ms)</li><li>spoon.test.api.APITest.testSetterInNodes(spoon.test.api.APITest) (11427 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtCase](spoon.test.replace.ReplaceParametrizedTest) (17 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtLocalVariableReference](spoon.test.replace.ReplaceParametrizedTest) (5 ms)</li><li>spoon.test.position.TestSourceFragment.testSourceFragmentsOfNewArrayList(spoon.test.position.TestSourceFragment) (66 ms)</li><li>spoon.processing.ProcessingTest.testTemplateNotInOutput(spoon.processing.ProcessingTest) (217 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtSwitch](spoon.test.replace.ReplaceParametrizedTest) (7 ms)</li><li>spoon.test.prettyprinter.TestSniperPrinter.testPrintInsertedThrow(spoon.test.prettyprinter.TestSniperPrinter) (42 ms)</li><li>spoon.test.prettyprinter.SniperAssertTest (104 ms)</li><li>spoon.test.prettyprinter.TestSniperPrinter.testSimple(spoon.test.prettyprinter.TestSniperPrinter) (38 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtPackageExport](spoon.test.replace.ReplaceParametrizedTest) (4 ms)</li><li>spoon.test.prettyprinter.TestSniperPrinter.testPrintTypesProducesFullOutputForSingleTypeCompilationUnit(spoon.test.prettyprinter.TestSniperPrinter) (304 ms)</li><li>spoon.test.parent.ParentTest.testParentNotInitializedException(spoon.test.parent.ParentTest) (338 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtPackageReference](spoon.test.replace.ReplaceParametrizedTest) (3 ms)</li><li>spoon.test.template.TemplateTest.testTemplateInheritance(spoon.test.template.TemplateTest) (262 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtField](spoon.test.replace.ReplaceParametrizedTest) (6 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtCatch](spoon.test.replace.ReplaceParametrizedTest) (22 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtClass](spoon.test.replace.ReplaceParametrizedTest) (27 ms)</li><li>spoon.test.prettyprinter.TestSniperPrinter.testPrintAfterRenameOfField(spoon.test.prettyprinter.TestSniperPrinter) (74 ms)</li><li>spoon.test.spoonifier.SpoonifierTest.testGeneratedSpoonifierCode(spoon.test.spoonifier.SpoonifierTest) (24 ms)</li><li>spoon.test.position.TestSourceFragment.testSourceFragmentsOfCompilationUnit(spoon.test.position.TestSourceFragment) (103 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtSuperAccess](spoon.test.replace.ReplaceParametrizedTest) (6 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtInvocation](spoon.test.replace.ReplaceParametrizedTest) (7 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtContinue](spoon.test.replace.ReplaceParametrizedTest) (18 ms)</li><li>spoon.test.path.PathTest.testSignatureOfVarargMethod(spoon.test.path.PathTest) (115 ms)</li><li>spoon.test.prettyprinter.TestSniperPrinter.testPrintAfterRemoveOfMiddleParameter(spoon.test.prettyprinter.TestSniperPrinter) (114 ms)</li><li>spoon.test.template.PatternTest.testExtensionDecoupledSubstitutionVisitor(spoon.test.template.PatternTest) (69 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtArrayWrite](spoon.test.replace.ReplaceParametrizedTest) (19 ms)</li><li>spoon.test.prettyprinter.LoopSniperJavaPrettyPrinterTest (742 ms)</li><li>spoon.test.path.PathTest.testBuilderMethod(spoon.test.path.PathTest) (139 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtNewClass](spoon.test.replace.ReplaceParametrizedTest) (8 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtExecutableReferenceExpression](spoon.test.replace.ReplaceParametrizedTest) (8 ms)</li><li>spoon.test.api.MetamodelTest.testGetRoleHandlersOfClass(spoon.test.api.MetamodelTest) (101 ms)</li><li>spoon.test.textBlocks.TextBlockTest.testTextBlock1(spoon.test.textBlocks.TextBlockTest) (84 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtCatchVariable](spoon.test.replace.ReplaceParametrizedTest) (17 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtMethod](spoon.test.replace.ReplaceParametrizedTest) (21 ms)</li><li>spoon.test.snippets.SnippetTest.testCompileAndReplaceSnippetsIn(spoon.test.snippets.SnippetTest) (56 ms)</li><li>spoon.test.path.PathTest.testAmbiguousName(spoon.test.path.PathTest) (81 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtDo](spoon.test.replace.ReplaceParametrizedTest) (33 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtTypeParameter](spoon.test.replace.ReplaceParametrizedTest) (7 ms)</li><li>spoon.test.prettyprinter.TestSniperPrinter.testPrintChangedComplex(spoon.test.prettyprinter.TestSniperPrinter) (657 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtPackageDeclaration](spoon.test.replace.ReplaceParametrizedTest) (4 ms)</li><li>spoon.test.prettyprinter.TestSniperPrinter.testCalculateCrashesWithInformativeMessageWhenSniperPrinterSetAfterModelBuild(spoon.test.prettyprinter.TestSniperPrinter) (34 ms)</li><li>spoon.reflect.visitor.CtScannerTest.testScan(spoon.reflect.visitor.CtScannerTest) (104 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtThrow](spoon.test.replace.ReplaceParametrizedTest) (4 ms)</li><li>spoon.test.prettyprinter.TestSniperPrinter.testClassRename2(spoon.test.prettyprinter.TestSniperPrinter) (88 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtUnboundVariableReference](spoon.test.replace.ReplaceParametrizedTest) (4 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtWhile](spoon.test.replace.ReplaceParametrizedTest) (5 ms)</li><li>spoon.test.prettyprinter.TestSniperPrinter.testClassRename1(spoon.test.prettyprinter.TestSniperPrinter) (133 ms)</li><li>spoon.test.prettyprinter.SniperDefaultMethodTest (48 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtAnonymousExecutable](spoon.test.replace.ReplaceParametrizedTest) (10 ms)</li><li>spoon.test.prettyprinter.TestSniperPrinter.testNewlineInsertedBetweenCommentAndTypeMemberWithAddedModifier(spoon.test.prettyprinter.TestSniperPrinter) (188 ms)</li><li>spoon.test.prettyprinter.TestSniperPrinter.testPrintTypeWithMethodImportBelowMethodDefinition(spoon.test.prettyprinter.TestSniperPrinter) (201 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtConstructorCall](spoon.test.replace.ReplaceParametrizedTest) (17 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtTypeMemberWildcardImportReference](spoon.test.replace.ReplaceParametrizedTest) (6 ms)</li><li>spoon.test.position.TestSourceFragment.testExactSourceFragments(spoon.test.position.TestSourceFragment) (231 ms)</li><li>spoon.test.template.TemplateTest.substituteTypeAccessReference(spoon.test.template.TemplateTest) (341 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtTypeParameterReference](spoon.test.replace.ReplaceParametrizedTest) (3 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtProvidedService](spoon.test.replace.ReplaceParametrizedTest) (6 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtWildcardReference](spoon.test.replace.ReplaceParametrizedTest) (2 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtAnnotation](spoon.test.replace.ReplaceParametrizedTest) (10 ms)</li><li>spoon.test.prettyprinter.TestSniperPrinter.testPrintLocalVariableDeclaration2(spoon.test.prettyprinter.TestSniperPrinter) (159 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtTryWithResource](spoon.test.replace.ReplaceParametrizedTest) (7 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtBreak](spoon.test.replace.ReplaceParametrizedTest) (11 ms)</li><li>spoon.test.prettyprinter.TestSniperPrinter.testAddedElementsIndentedWithAppropriateIndentationStyleWhenOnlyOneTypeMemberExists(spoon.test.prettyprinter.TestSniperPrinter) (127 ms)</li><li>spoon.test.path.PathTest.testBuilder(spoon.test.path.PathTest) (202 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtImport](spoon.test.replace.ReplaceParametrizedTest) (5 ms)</li><li>spoon.test.path.PathTest.testGenericTypeReferenceInSuperType(spoon.test.path.PathTest) (88 ms)</li><li>spoon.test.template.TemplateTest.testAnotherFieldAccessNameSubstitution(spoon.test.template.TemplateTest) (76 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtParameterReference](spoon.test.replace.ReplaceParametrizedTest) (4 ms)</li><li>spoon.test.path.PathTest.testFieldOfArrayType(spoon.test.path.PathTest) (93 ms)</li><li>spoon.test.template.TemplateTest.testSubstitutionInsertAllNtoN(spoon.test.template.TemplateTest) (339 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtUsedService](spoon.test.replace.ReplaceParametrizedTest) (3 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtFieldWrite](spoon.test.replace.ReplaceParametrizedTest) (9 ms)</li><li>spoon.test.prettyprinter.SniperDoubleBoundTest (35 ms)</li><li>spoon.test.path.PathTest.testPathFromString(spoon.test.path.PathTest) (158 ms)</li><li>spoon.test.main.MainTest.testGenericContract(spoon.test.main.MainTest) (14918 ms)</li><li>spoon.test.modifiers.ModifiersTest.testClearModifiersByNull(spoon.test.modifiers.ModifiersTest) (28 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtTypeAccess](spoon.test.replace.ReplaceParametrizedTest) (5 ms)</li><li>spoon.test.prettyprinter.TestSniperPrinter.testPrintAfterAddOfLastTypeMember(spoon.test.prettyprinter.TestSniperPrinter) (86 ms)</li><li>spoon.processing.ProcessingTest.testNullPointerException(spoon.processing.ProcessingTest) (351 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtVariableWrite](spoon.test.replace.ReplaceParametrizedTest) (5 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtJavaDoc](spoon.test.replace.ReplaceParametrizedTest) (7 ms)</li><li>spoon.test.textBlocks.TextBlockTest.testTextBlockEmpty(spoon.test.textBlocks.TextBlockTest) (34 ms)</li><li>spoon.test.template.TemplateTest.testCheckBoundTemplate(spoon.test.template.TemplateTest) (90 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtLiteral](spoon.test.replace.ReplaceParametrizedTest) (6 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtTextBlock](spoon.test.replace.ReplaceParametrizedTest) (5 ms)</li><li>spoon.test.path.PathTest.testRoles(spoon.test.path.PathTest) (113 ms)</li><li>spoon.test.api.MetamodelTest.listValueRoleSetOn(spoon.test.api.MetamodelTest) (8 ms)</li><li>spoon.test.prettyprinter.TestSniperPrinter.testDefaultsToSingleTabIndentationWhenThereAreNoTypeMembers(spoon.test.prettyprinter.TestSniperPrinter) (40 ms)</li><li>spoon.test.prettyprinter.TestSniperPrinter.testNewlineInsertedBetweenCommentAndTypeMemberWithRemovedModifier(spoon.test.prettyprinter.TestSniperPrinter) (158 ms)</li><li>spoon.test.prettyprinter.TestSniperPrinter.testTypeMemberCommentDoesNotDisappearWhenAllModifiersAreRemoved(spoon.test.prettyprinter.TestSniperPrinter) (138 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtAnnotationMethod](spoon.test.replace.ReplaceParametrizedTest) (22 ms)</li><li>spoon.test.spoonifier.SpoonifierTest.testSpoonifier(spoon.test.spoonifier.SpoonifierTest) (11344 ms)</li><li>spoon.test.api.MetamodelTest.elementAnnotationRoleTest(spoon.test.api.MetamodelTest) (4 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtUnaryOperator](spoon.test.replace.ReplaceParametrizedTest) (7 ms)</li><li>spoon.processing.CtGenerationTest.testGenerateRoleHandler(spoon.processing.CtGenerationTest) (8650 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtIntersectionTypeReference](spoon.test.replace.ReplaceParametrizedTest) (2 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtArrayRead](spoon.test.replace.ReplaceParametrizedTest) (16 ms)</li><li>spoon.test.path.PathTest.testAmbiguousTypeMembers(spoon.test.path.PathTest) (242 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtCodeSnippetStatement](spoon.test.replace.ReplaceParametrizedTest) (12 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtModuleRequirement](spoon.test.replace.ReplaceParametrizedTest) (7 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtJavaDocTag](spoon.test.replace.ReplaceParametrizedTest) (4 ms)</li><li>spoon.test.api.MetamodelTest.testGetParentRoleHandler(spoon.test.api.MetamodelTest) (2 ms)</li><li>spoon.test.prettyprinter.TestSniperPrinter.testOptimizesParenthesesForAddedNestedOperators(spoon.test.prettyprinter.TestSniperPrinter) (176 ms)</li><li>spoon.test.api.MetamodelTest.singleValueRoleAddSetRemove(spoon.test.api.MetamodelTest) (6 ms)</li><li>spoon.test.path.PathTest.testWildcards(spoon.test.path.PathTest) (72 ms)</li><li>spoon.test.prettyprinter.TestSniperPrinter.testPrintUnchaged(spoon.test.prettyprinter.TestSniperPrinter) (92 ms)</li><li>spoon.test.textBlocks.TextBlockTest.testTextBlockCreation(spoon.test.textBlocks.TextBlockTest) (28 ms)</li><li>spoon.test.prettyprinter.TestSniperPrinter.testAddedImportStatementPlacedOnSeparateLineInFileWithoutPackageStatement(spoon.test.prettyprinter.TestSniperPrinter) (223 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtSwitchExpression](spoon.test.replace.ReplaceParametrizedTest) (8 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtBinaryOperator](spoon.test.replace.ReplaceParametrizedTest) (17 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtVariableRead](spoon.test.replace.ReplaceParametrizedTest) (4 ms)</li><li>spoon.test.template.PatternTest.testAddGeneratedBy(spoon.test.template.PatternTest) (35 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtStatementList](spoon.test.replace.ReplaceParametrizedTest) (6 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtCatchVariableReference](spoon.test.replace.ReplaceParametrizedTest) (26 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtYieldStatement](spoon.test.replace.ReplaceParametrizedTest) (5 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtAssignment](spoon.test.replace.ReplaceParametrizedTest) (15 ms)</li><li>spoon.test.template.PatternTest.testMatchForeachWithOuterSubstitution(spoon.test.template.PatternTest) (61 ms)</li><li>spoon.test.path.PathTest.testFastPathWithIndex(spoon.test.path.PathTest) (84 ms)</li><li>spoon.test.prettyprinter.SniperInnerTypeTest (141 ms)</li>
+</ul>
+
+<br/>
+
+Report generated by <a href='http://pitest.org'>PIT</a> 1.6.4
+
+</body>
+</html>

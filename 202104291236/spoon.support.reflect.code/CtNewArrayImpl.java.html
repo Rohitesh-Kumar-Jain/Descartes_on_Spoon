@@ -1,0 +1,2071 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+<body>
+
+
+<h1>CtNewArrayImpl.java</h1>
+
+<table class="src">
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_1'/>
+1
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_1'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>/**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_2'/>
+2
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_2'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * SPDX-License-Identifier: (MIT OR CECILL-C)</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_3'/>
+3
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_3'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_4'/>
+4
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_4'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * Copyright (C) 2006-2019 INRIA and contributors</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_5'/>
+5
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_5'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_6'/>
+6
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_6'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * Spoon is available either under the terms of the MIT License (see LICENSE-MIT.txt) of the Cecill-C License (see LICENSE-CECILL-C.txt). You as the user are entitled to choose the terms under which to adopt Spoon.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_7'/>
+7
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_7'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_8'/>
+8
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_8'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>package spoon.support.reflect.code;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_9'/>
+9
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_9'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_10'/>
+10
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_10'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import spoon.reflect.annotations.MetamodelPropertyField;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_11'/>
+11
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_11'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import spoon.reflect.code.CtExpression;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_12'/>
+12
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_12'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import spoon.reflect.code.CtNewArray;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_13'/>
+13
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_13'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import spoon.reflect.visitor.CtVisitor;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_14'/>
+14
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_14'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import spoon.support.reflect.declaration.CtElementImpl;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_15'/>
+15
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_15'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_16'/>
+16
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_16'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.util.ArrayList;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_17'/>
+17
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_17'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.util.List;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_18'/>
+18
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_18'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_19'/>
+19
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_19'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import static spoon.reflect.ModelElementContainerDefaultCapacities.NEW_ARRAY_DEFAULT_EXPRESSIONS_CONTAINER_DEFAULT_CAPACITY;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_20'/>
+20
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_20'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import static spoon.reflect.path.CtRole.DIMENSION;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_21'/>
+21
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_21'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import static spoon.reflect.path.CtRole.EXPRESSION;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_22'/>
+22
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_22'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_23'/>
+23
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_23'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>public class CtNewArrayImpl&#60;T&#62; extends CtExpressionImpl&#60;T&#62; implements CtNewArray&#60;T&#62; {</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_24'/>
+24
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_24'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;private static final long serialVersionUID = 1L;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_25'/>
+25
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_25'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_26'/>
+26
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_26'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;@MetamodelPropertyField(role = DIMENSION)</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_27'/>
+27
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_27'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;List&#60;CtExpression&#60;Integer&#62;&#62; dimensionExpressions = emptyList();</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_28'/>
+28
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_28'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_29'/>
+29
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_29'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;@MetamodelPropertyField(role = EXPRESSION)</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_30'/>
+30
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_30'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;List&#60;CtExpression&#60;?&#62;&#62; expressions = emptyList();</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_31'/>
+31
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_31'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_32'/>
+32
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_32'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;@Override</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_33'/>
+33
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_33'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;public void accept(CtVisitor visitor) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_34'/>
+34
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_34'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;visitor.visitCtNewArray(this);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_35'/>
+35
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_35'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;}</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_36'/>
+36
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_36'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_37'/>
+37
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_37'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;@Override</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_38'/>
+38
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_38'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;public List&#60;CtExpression&#60;Integer&#62;&#62; getDimensionExpressions() {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_39'/>
+39
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_39'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;return dimensionExpressions;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_40'/>
+40
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_40'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;}</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_41'/>
+41
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_41'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_42'/>
+42
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_42'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;@Override</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_43'/>
+43
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_43'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;public List&#60;CtExpression&#60;?&#62;&#62; getElements() {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_44'/>
+44
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_44'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;return expressions;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_45'/>
+45
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_45'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;}</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_46'/>
+46
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_46'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_47'/>
+47
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_47'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;@Override</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_48'/>
+48
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_48'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;public &#60;C extends CtNewArray&#60;T&#62;&#62; C setDimensionExpressions(List&#60;CtExpression&#60;Integer&#62;&#62; dimensionExpressions) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_49'/>
+49
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_49'>1</a>
+<span>
+1. setDimensionExpressions : All method instructions replaced by: return null; &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>&#9;&#9;if (dimensionExpressions == null || dimensionExpressions.isEmpty()) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_50'/>
+50
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_50'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;&#9;this.dimensionExpressions = CtElementImpl.emptyList();</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_51'/>
+51
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_51'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;&#9;return (C) this;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_52'/>
+52
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_52'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;&#9;}</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_53'/>
+53
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_53'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;getFactory().getEnvironment().getModelChangeListener().onListDeleteAll(this, DIMENSION, this.dimensionExpressions, new ArrayList&#60;&#62;(this.dimensionExpressions));</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_54'/>
+54
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_54'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;this.dimensionExpressions.clear();</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_55'/>
+55
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_55'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;for (CtExpression&#60;Integer&#62; expr : dimensionExpressions) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_56'/>
+56
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_56'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;&#9;addDimensionExpression(expr);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_57'/>
+57
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_57'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;}</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_58'/>
+58
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_58'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;return (C) this;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_59'/>
+59
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_59'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;}</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_60'/>
+60
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_60'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_61'/>
+61
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_61'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;@Override</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_62'/>
+62
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_62'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;public &#60;C extends CtNewArray&#60;T&#62;&#62; C addDimensionExpression(CtExpression&#60;Integer&#62; dimension) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_63'/>
+63
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_63'>1</a>
+<span>
+1. addDimensionExpression : All method instructions replaced by: return null; &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>&#9;&#9;if (dimension == null) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_64'/>
+64
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_64'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;&#9;return (C) this;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_65'/>
+65
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_65'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;&#9;}</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_66'/>
+66
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_66'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;if (dimensionExpressions == CtElementImpl.&#60;CtExpression&#60;Integer&#62;&#62;emptyList()) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_67'/>
+67
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_67'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;&#9;dimensionExpressions = new ArrayList&#60;&#62;(NEW_ARRAY_DEFAULT_EXPRESSIONS_CONTAINER_DEFAULT_CAPACITY);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_68'/>
+68
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_68'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;&#9;}</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_69'/>
+69
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_69'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;dimension.setParent(this);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_70'/>
+70
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_70'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;getFactory().getEnvironment().getModelChangeListener().onListAdd(this, DIMENSION, this.dimensionExpressions, dimension);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_71'/>
+71
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_71'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;dimensionExpressions.add(dimension);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_72'/>
+72
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_72'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;return (C) this;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_73'/>
+73
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_73'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;}</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_74'/>
+74
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_74'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_75'/>
+75
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_75'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;@Override</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_76'/>
+76
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_76'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;public boolean removeDimensionExpression(CtExpression&#60;Integer&#62; dimension) {</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_77'/>
+77
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_77'>2</a>
+<span>
+1. removeDimensionExpression : All method instructions replaced by: return false &rarr; NO_COVERAGE<br/>
+2. removeDimensionExpression : All method instructions replaced by: return true &rarr; NO_COVERAGE<br/>
+
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class='survived'>&#9;&#9;if (dimensionExpressions == CtElementImpl.&#60;CtExpression&#60;Integer&#62;&#62;emptyList()) {</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_78'/>
+78
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_78'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class=''>&#9;&#9;&#9;return false;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_79'/>
+79
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_79'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;&#9;}</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_80'/>
+80
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_80'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class=''>&#9;&#9;getFactory().getEnvironment().getModelChangeListener().onListDelete(this, DIMENSION, dimensionExpressions, dimensionExpressions.indexOf(dimension), dimension);</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_81'/>
+81
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_81'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class=''>&#9;&#9;return dimensionExpressions.remove(dimension);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_82'/>
+82
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_82'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;}</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_83'/>
+83
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_83'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_84'/>
+84
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_84'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;@Override</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_85'/>
+85
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_85'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;public &#60;C extends CtNewArray&#60;T&#62;&#62; C setElements(List&#60;CtExpression&#60;?&#62;&#62; expressions) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_86'/>
+86
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_86'>1</a>
+<span>
+1. setElements : All method instructions replaced by: return null; &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>&#9;&#9;if (expressions == null || expressions.isEmpty()) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_87'/>
+87
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_87'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;&#9;this.expressions = CtElementImpl.emptyList();</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_88'/>
+88
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_88'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;&#9;return (C) this;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_89'/>
+89
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_89'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;&#9;}</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_90'/>
+90
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_90'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;getFactory().getEnvironment().getModelChangeListener().onListDeleteAll(this, EXPRESSION, this.expressions, new ArrayList&#60;&#62;(this.expressions));</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_91'/>
+91
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_91'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;this.expressions.clear();</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_92'/>
+92
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_92'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;for (CtExpression&#60;?&#62; expr : expressions) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_93'/>
+93
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_93'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;&#9;addElement(expr);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_94'/>
+94
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_94'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;}</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_95'/>
+95
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_95'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;return (C) this;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_96'/>
+96
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_96'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;}</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_97'/>
+97
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_97'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_98'/>
+98
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_98'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;@Override</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_99'/>
+99
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_99'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;public &#60;C extends CtNewArray&#60;T&#62;&#62; C addElement(CtExpression&#60;?&#62; expression) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_100'/>
+100
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_100'>1</a>
+<span>
+1. addElement : All method instructions replaced by: return null; &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>&#9;&#9;if (expression == null) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_101'/>
+101
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_101'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;&#9;return (C) this;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_102'/>
+102
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_102'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;&#9;}</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_103'/>
+103
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_103'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;if (expressions == CtElementImpl.&#60;CtExpression&#60;?&#62;&#62;emptyList()) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_104'/>
+104
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_104'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;&#9;this.expressions = new ArrayList&#60;&#62;();</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_105'/>
+105
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_105'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;&#9;}</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_106'/>
+106
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_106'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;expression.setParent(this);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_107'/>
+107
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_107'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;getFactory().getEnvironment().getModelChangeListener().onListAdd(this, EXPRESSION, this.expressions, expression);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_108'/>
+108
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_108'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;expressions.add(expression);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_109'/>
+109
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_109'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;return (C) this;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_110'/>
+110
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_110'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;}</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_111'/>
+111
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_111'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_112'/>
+112
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_112'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;@Override</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_113'/>
+113
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_113'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;public boolean removeElement(CtExpression&#60;?&#62; expression) {</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_114'/>
+114
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_114'>2</a>
+<span>
+1. removeElement : All method instructions replaced by: return false &rarr; NO_COVERAGE<br/>
+2. removeElement : All method instructions replaced by: return true &rarr; NO_COVERAGE<br/>
+
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class='survived'>&#9;&#9;if (expressions == CtElementImpl.&#60;CtExpression&#60;?&#62;&#62;emptyList()) {</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_115'/>
+115
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_115'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class=''>&#9;&#9;&#9;return false;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_116'/>
+116
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_116'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;&#9;}</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_117'/>
+117
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_117'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class=''>&#9;&#9;getFactory().getEnvironment().getModelChangeListener().onListDelete(this, EXPRESSION, expressions, expressions.indexOf(expression), expression);</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_118'/>
+118
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_118'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class=''>&#9;&#9;return expressions.remove(expression);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_119'/>
+119
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_119'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;}</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_120'/>
+120
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_120'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_121'/>
+121
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_121'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;@Override</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_122'/>
+122
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_122'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;public CtNewArray&#60;T&#62; clone() {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_123'/>
+123
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_123'>1</a>
+<span>
+1. clone : All method instructions replaced by: return null; &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>&#9;&#9;return (CtNewArray&#60;T&#62;) super.clone();</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_124'/>
+124
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_124'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;}</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55190945_125'/>
+125
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55190945_125'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>}</span></pre></td></tr>
+
+
+
+<tr><td></td><td></td><td><h2>Mutations</h2></td></tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@55190945_49'>49</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@55190945_49'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>setDimensionExpressions<br/><b>Killed by : </b>spoon.test.replace.ReplaceParametrizedTest.testContract[CtNewArray](spoon.test.replace.ReplaceParametrizedTest)</span></span> All method instructions replaced by: return null; &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@55190945_63'>63</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@55190945_63'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>addDimensionExpression<br/><b>Killed by : </b>spoon.test.replace.ReplaceParametrizedTest.testContract[CtNewArray](spoon.test.replace.ReplaceParametrizedTest)</span></span> All method instructions replaced by: return null; &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@55190945_77'>77</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@55190945_77'/> 
+
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>removeDimensionExpression<br/><b>Killed by : </b>none</span></span> All method instructions replaced by: return false &rarr; NO_COVERAGE</p> <p class='NO_COVERAGE'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>removeDimensionExpression<br/><b>Killed by : </b>none</span></span> All method instructions replaced by: return true &rarr; NO_COVERAGE</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@55190945_86'>86</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@55190945_86'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>setElements<br/><b>Killed by : </b>spoon.test.replace.ReplaceParametrizedTest.testContract[CtNewArray](spoon.test.replace.ReplaceParametrizedTest)</span></span> All method instructions replaced by: return null; &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@55190945_100'>100</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@55190945_100'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>addElement<br/><b>Killed by : </b>spoon.test.replace.ReplaceParametrizedTest.testContract[CtNewArray](spoon.test.replace.ReplaceParametrizedTest)</span></span> All method instructions replaced by: return null; &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@55190945_114'>114</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@55190945_114'/> 
+
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>removeElement<br/><b>Killed by : </b>none</span></span> All method instructions replaced by: return false &rarr; NO_COVERAGE</p> <p class='NO_COVERAGE'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>removeElement<br/><b>Killed by : </b>none</span></span> All method instructions replaced by: return true &rarr; NO_COVERAGE</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@55190945_123'>123</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@55190945_123'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>clone<br/><b>Killed by : </b>spoon.test.replace.ReplaceParametrizedTest.testContract[CtNewArray](spoon.test.replace.ReplaceParametrizedTest)</span></span> All method instructions replaced by: return null; &rarr; KILLED</p> 
+</td>
+</tr>
+
+</table>
+
+
+<h2>Active mutators</h2>
+<ul>
+<li class='mutator'>""</li>
+<li class='mutator'>"A"</li>
+<li class='mutator'>'A'</li>
+<li class='mutator'>'\40'</li>
+<li class='mutator'>(byte)0</li>
+<li class='mutator'>(byte)1</li>
+<li class='mutator'>(short)0</li>
+<li class='mutator'>(short)1</li>
+<li class='mutator'>0</li>
+<li class='mutator'>0.0</li>
+<li class='mutator'>0.0f</li>
+<li class='mutator'>0L</li>
+<li class='mutator'>1</li>
+<li class='mutator'>1.0</li>
+<li class='mutator'>1.0f</li>
+<li class='mutator'>1L</li>
+<li class='mutator'>empty</li>
+<li class='mutator'>false</li>
+<li class='mutator'>null</li>
+<li class='mutator'>true</li>
+<li class='mutator'>void</li>
+
+</ul>
+
+<h2>Tests examined</h2>
+<ul>
+<li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.declaration.CtType spoon.reflect.declaration.CtTypeParameter.addFieldAtTop(spoon.reflect.declaration.CtField)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (719 ms)</li><li>spoon.test.comment.CommentTest.testAnnotationTypeComment(spoon.test.comment.CommentTest) (63 ms)</li><li>spoon.test.annotation.AnnotationTest.testAnnotationParameterTypes(spoon.test.annotation.AnnotationTest) (88 ms)</li><li>spoon.test.api.MetamodelTest.testRoleOnField(spoon.test.api.MetamodelTest) (2671 ms)</li><li>spoon.test.prettyprinter.LinesTest.testPrettyPrinterWithLines(spoon.test.prettyprinter.LinesTest) (180 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.reference.CtActualTypeContainer spoon.reflect.code.CtConstructorCall.addActualTypeArgument(spoon.reflect.reference.CtTypeReference)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (524 ms)</li><li>spoon.test.refactoring.MethodsRefactoringTest.testSubInheritanceHierarchyFunction(spoon.test.refactoring.MethodsRefactoringTest) (84 ms)</li><li>spoon.test.methodreference.MethodReferenceTest.testReferenceToAnInstanceMethodOfAParticularObject(spoon.test.methodreference.MethodReferenceTest) (242 ms)</li><li>spoon.test.generics.GenericsTest.testCtTypeReference_getSuperclass(spoon.test.generics.GenericsTest) (147 ms)</li><li>spoon.test.imports.ImportTest.testImportOnSpoon(spoon.test.imports.ImportTest) (18337 ms)</li><li>spoon.test.template.TemplateTest.testFieldAccessNameSubstitution(spoon.test.template.TemplateTest) (72 ms)</li><li>spoon.test.template.TemplateTest.testTemplateArrayAccess(spoon.test.template.TemplateTest) (64 ms)</li><li>spoon.reflect.visitor.CtScannerTest.testScannerContract(spoon.reflect.visitor.CtScannerTest) (4521 ms)</li><li>spoon.test.annotation.AnnotationValuesTest.testAnnotationFactory(spoon.test.annotation.AnnotationValuesTest) (3 ms)</li><li>spoon.test.arrays.ArraysTest.testCtNewArrayWitComments(spoon.test.arrays.ArraysTest) (79 ms)</li><li>spoon.test.eval.EvalTest.testIsKnownAtCompileTime(spoon.test.eval.EvalTest) (416 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.code.CtRHSReceiver spoon.reflect.declaration.CtEnumValue.setAssignment(spoon.reflect.code.CtExpression)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (575 ms)</li><li>spoon.test.template.TemplateArrayAccessTest.testArrayLengthAccess(spoon.test.template.TemplateArrayAccessTest) (47 ms)</li><li>spoon.test.type.TypeTest.testTypeAccessForDotClass(spoon.test.type.TypeTest) (178 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.code.CtBinaryOperator spoon.reflect.code.CtBinaryOperator.setRightHandOperand(spoon.reflect.code.CtExpression)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (549 ms)</li><li>spoon.test.template.TemplateTest.testTemplateMatcher(spoon.test.template.TemplateTest) (420 ms)</li><li>spoon.test.methodreference.MethodReferenceTest.testReferenceToAnInstanceMethodOfAnArbitraryObjectOfAParticularType(spoon.test.methodreference.MethodReferenceTest) (212 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.declaration.CtExecutable spoon.reflect.declaration.CtAnonymousExecutable.addThrownType(spoon.reflect.reference.CtTypeReference)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (551 ms)</li><li>spoon.test.reference.ElasticsearchStackoverflowTest.testStackOverflow(spoon.test.reference.ElasticsearchStackoverflowTest) (156 ms)</li><li>spoon.test.factory.AnnotationFactoryTest.testAnnotate(spoon.test.factory.AnnotationFactoryTest) (48 ms)</li><li>spoon.test.generics.GenericsTest.testClassTypingContext(spoon.test.generics.GenericsTest) (206 ms)</li><li>spoon.test.visibility.VisibilityTest.testInvocationVisibilityInFieldDeclaration(spoon.test.visibility.VisibilityTest) (719 ms)</li><li>spoon.test.architecture.SpoonArchitectureEnforcerTest.testInterfacesAreCtScannable(spoon.test.architecture.SpoonArchitectureEnforcerTest) (8285 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.declaration.CtMultiTypedElement spoon.reflect.declaration.CtMultiTypedElement.addMultiType(spoon.reflect.reference.CtTypeReference)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (535 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.declaration.CtPackageDeclaration spoon.reflect.declaration.CtPackageDeclaration.setReference(spoon.reflect.reference.CtPackageReference)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (549 ms)</li><li>spoon.test.ctBodyHolder.CtBodyHolderTest.testForWithBlock(spoon.test.ctBodyHolder.CtBodyHolderTest) (77 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.code.CtNewArray spoon.reflect.code.CtNewArray.addElement(spoon.reflect.code.CtExpression)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (604 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.declaration.CtElement spoon.reflect.declaration.CtElement.setParent(spoon.reflect.declaration.CtElement)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (686 ms)</li><li>spoon.test.generics.GenericsTest.testName(spoon.test.generics.GenericsTest) (336 ms)</li><li>spoon.test.imports.ImportTest.testShouldNotCreateAutoreference(spoon.test.imports.ImportTest) (239 ms)</li><li>spoon.test.template.TemplateClassAccessTest.testClassAccessTest(spoon.test.template.TemplateClassAccessTest) (92 ms)</li><li>spoon.test.methodreference.MethodReferenceTest.testGetGenericExecutableReference(spoon.test.methodreference.MethodReferenceTest) (407 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.code.CtBodyHolder spoon.reflect.declaration.CtAnnotationMethod.setBody(spoon.reflect.code.CtStatement)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (665 ms)</li><li>spoon.test.template.TemplateReplaceReturnTest.testReturnReplaceTemplate(spoon.test.template.TemplateReplaceReturnTest) (75 ms)</li><li>spoon.test.annotation.AnnotationValuesTest.testAnnotationPrintAnnotation(spoon.test.annotation.AnnotationValuesTest) (102 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.declaration.CtCompilationUnit spoon.reflect.declaration.CtCompilationUnit.addDeclaredTypeReference(spoon.reflect.reference.CtTypeReference)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (553 ms)</li><li>spoon.test.template.TemplateTest.testMethodCast(spoon.test.template.TemplateTest) (97 ms)</li><li>spoon.test.casts.CastTest.testTypeAnnotationOnCast(spoon.test.casts.CastTest) (103 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.reference.CtExecutableReference spoon.reflect.reference.CtExecutableReference.setDeclaringType(spoon.reflect.reference.CtTypeReference)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (477 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.declaration.CtUsedService spoon.reflect.declaration.CtUsedService.setServiceType(spoon.reflect.reference.CtTypeReference)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (743 ms)</li><li>spoon.test.annotation.AnnotationTest.testReplaceAnnotationValue(spoon.test.annotation.AnnotationTest) (46 ms)</li><li>spoon.support.visitor.java.JavaReflectionTreeBuilderTest.testShadowModelEqualsNormalModel(spoon.support.visitor.java.JavaReflectionTreeBuilderTest) (6436 ms)</li><li>spoon.test.annotation.AnnotationTest.testModelBuildingAnnotationBoundUsage(spoon.test.annotation.AnnotationTest) (68 ms)</li><li>spoon.test.template.TemplateTest.substituteStringLiteral(spoon.test.template.TemplateTest) (105 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.reference.CtTypeReference spoon.reflect.reference.CtTypeReference.setDeclaringType(spoon.reflect.reference.CtTypeReference)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (535 ms)</li><li>spoon.test.annotation.AnnotationTest.testAnnotationInterfacePreserveMethods(spoon.test.annotation.AnnotationTest) (55 ms)</li><li>spoon.test.imports.ImportTest.testSortImportPutStaticImportAfterTypeImport(spoon.test.imports.ImportTest) (113 ms)</li><li>spoon.test.type.TypeTest.testIntersectionTypeReferenceInGenericsAndCasts(spoon.test.type.TypeTest) (150 ms)</li><li>spoon.test.prettyprinter.PrinterTest.testFQNModeWriteFQNConstructorInCtVisitor(spoon.test.prettyprinter.PrinterTest) (8074 ms)</li><li>spoon.test.casts.CastTest.testCase4(spoon.test.casts.CastTest) (70 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.declaration.CtProvidedService spoon.reflect.declaration.CtProvidedService.addImplementationType(spoon.reflect.reference.CtTypeReference)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (533 ms)</li><li>spoon.test.position.PositionTest.testPositionInterface(spoon.test.position.PositionTest) (287 ms)</li><li>spoon.test.processing.ProcessingTest.testCallProcessorWithMultipleTypes(spoon.test.processing.ProcessingTest) (737 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.declaration.CtFormalTypeDeclarer spoon.reflect.declaration.CtFormalTypeDeclarer.addFormalCtTypeParameter(spoon.reflect.declaration.CtTypeParameter)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (545 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.code.CtAssert spoon.reflect.code.CtAssert.setExpression(spoon.reflect.code.CtExpression)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (736 ms)</li><li>spoon.test.prettyprinter.TestSniperPrinter.testClassRename1(spoon.test.prettyprinter.TestSniperPrinter) (133 ms)</li><li>spoon.test.constructorcallnewclass.ConstructorCallTest.testConstructorCallObjectWithoutParameters(spoon.test.constructorcallnewclass.ConstructorCallTest) (325 ms)</li><li>spoon.test.api.APITest.testPrintNotAllSourcesWithNames(spoon.test.api.APITest) (582 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.code.CtFor spoon.reflect.code.CtFor.addForUpdate(spoon.reflect.code.CtStatement)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (625 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.declaration.CtType spoon.reflect.declaration.CtAnnotationType.addMethod(spoon.reflect.declaration.CtMethod)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (541 ms)</li><li>spoon.test.parent.SetParentTest.testContract[public interface CtNewArray<T> extends spoon.reflect.code.CtExpression<T> {
+    spoon.reflect.code.CtNewArray<T> clone();
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.EXPRESSION)
+    java.util.List<spoon.reflect.code.CtExpression<?>> getElements();
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.DIMENSION)
+    <C extends spoon.reflect.code.CtNewArray<T>> C addDimensionExpression(spoon.reflect.code.CtExpression<java.lang.Integer> arg0);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.EXPRESSION)
+    <C extends spoon.reflect.code.CtNewArray<T>> C setElements(java.util.List<spoon.reflect.code.CtExpression<?>> arg0);
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.DIMENSION)
+    java.util.List<spoon.reflect.code.CtExpression<java.lang.Integer>> getDimensionExpressions();
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.DIMENSION)
+    <C extends spoon.reflect.code.CtNewArray<T>> C setDimensionExpressions(java.util.List<spoon.reflect.code.CtExpression<java.lang.Integer>> arg0);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.EXPRESSION)
+    boolean removeElement(spoon.reflect.code.CtExpression<?> arg0);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.EXPRESSION)
+    <C extends spoon.reflect.code.CtNewArray<T>> C addElement(spoon.reflect.code.CtExpression<?> arg0);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.DIMENSION)
+    boolean removeDimensionExpression(spoon.reflect.code.CtExpression<java.lang.Integer> arg0);
+}](spoon.test.parent.SetParentTest) (149 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.code.CtWhile spoon.reflect.code.CtWhile.setLoopingExpression(spoon.reflect.code.CtExpression)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (530 ms)</li><li>spoon.test.annotation.AnnotationTest.testInnerAnnotationsWithArray(spoon.test.annotation.AnnotationTest) (45 ms)</li><li>spoon.test.template.TemplateTest.testObjectIsNotParamTemplate(spoon.test.template.TemplateTest) (40 ms)</li><li>spoon.test.variable.AccessFullyQualifiedFieldTest.testPrivateStaticImportShouldNotBeImportedInSameClass(spoon.test.variable.AccessFullyQualifiedFieldTest) (60 ms)</li><li>spoon.test.template.TemplateArrayAccessTest.testArrayAccess(spoon.test.template.TemplateArrayAccessTest) (59 ms)</li><li>spoon.test.literal.LiteralTest.testCharLiteralInNoClasspath(spoon.test.literal.LiteralTest) (942 ms)</li><li>spoon.test.annotation.AnnotationTest.testSpoonSpoonResult(spoon.test.annotation.AnnotationTest) (83 ms)</li><li>spoon.test.template.TemplateTest.testAnotherFieldAccessNameSubstitution(spoon.test.template.TemplateTest) (76 ms)</li><li>spoon.test.template.TemplateTest.testSubstitutionInsertAllNtoN(spoon.test.template.TemplateTest) (339 ms)</li><li>spoon.test.main.MainTest.testGenericContract(spoon.test.main.MainTest) (14918 ms)</li><li>spoon.test.prettyprinter.PrinterTest.testPrettyPrinter(spoon.test.prettyprinter.PrinterTest) (96 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.reference.CtTypeMemberWildcardImportReference spoon.reflect.reference.CtTypeMemberWildcardImportReference.setTypeReference(spoon.reflect.reference.CtTypeReference)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (498 ms)</li><li>spoon.test.prettyprinter.TestSniperPrinter.testPrintAfterAddOfLastTypeMember(spoon.test.prettyprinter.TestSniperPrinter) (86 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.declaration.CtType spoon.reflect.declaration.CtType.addMethod(spoon.reflect.declaration.CtMethod)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (776 ms)</li><li>spoon.test.template.TemplateTest.testTemplateC1(spoon.test.template.TemplateTest) (146 ms)</li><li>spoon.test.generics.GenericsTest.testInvocationGenerics(spoon.test.generics.GenericsTest) (404 ms)</li><li>spoon.reflect.ast.AstCheckerTest.testAvoidSetCollectionSavedOnAST(spoon.reflect.ast.AstCheckerTest) (11507 ms)</li><li>spoon.test.arrays.ArraysTest.testArrayReferences(spoon.test.arrays.ArraysTest) (7409 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.code.CtTargetedExpression spoon.reflect.code.CtTargetedExpression.setTarget(spoon.reflect.code.CtExpression)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (732 ms)</li><li>spoon.test.methodreference.MethodReferenceTest.testReferenceToAClassParametrizedConstructor(spoon.test.methodreference.MethodReferenceTest) (308 ms)</li><li>spoon.test.annotation.AnnotationTest.testAnnotationAndShadowClassRetentionPolicy(spoon.test.annotation.AnnotationTest) (47 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.reference.CtExecutableReference spoon.reflect.reference.CtExecutableReference.setType(spoon.reflect.reference.CtTypeReference)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (504 ms)</li><li>spoon.test.issue3321.AnnotationPositionTest.testUsageOfTypeAnnotationOnParameterInMethod(spoon.test.issue3321.AnnotationPositionTest) (51 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.code.CtTryWithResource spoon.reflect.code.CtTryWithResource.addResource(spoon.reflect.code.CtLocalVariable)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (567 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.code.CtYieldStatement spoon.reflect.code.CtYieldStatement.setExpression(spoon.reflect.code.CtExpression)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (538 ms)</li><li>spoon.test.prettyprinter.LinesTest.testIdenticalPrettyPrinter(spoon.test.prettyprinter.LinesTest) (737 ms)</li><li>spoon.test.comment.CommentTest.testInLineComment(spoon.test.comment.CommentTest) (190 ms)</li><li>spoon.test.constructorcallnewclass.ConstructorCallTest.testConstructorCallWithGenericArray(spoon.test.constructorcallnewclass.ConstructorCallTest) (235 ms)</li><li>spoon.test.annotation.AnnotationTest.testAnnotatedElementTypes(spoon.test.annotation.AnnotationTest) (280 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.declaration.CtModule spoon.reflect.declaration.CtModule.setRootPackage(spoon.reflect.declaration.CtPackage)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (531 ms)</li><li>spoon.test.annotation.AnnotationTest.testGetAnnotationFromParameter(spoon.test.annotation.AnnotationTest) (101 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.declaration.CtElement spoon.reflect.declaration.CtElement.addComment(spoon.reflect.code.CtComment)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (661 ms)</li><li>spoon.test.template.TemplateInvocationSubstitutionTest.testSubstitutionByExpression(spoon.test.template.TemplateInvocationSubstitutionTest) (67 ms)</li><li>spoon.test.imports.ImportTest.testCanAccess(spoon.test.imports.ImportTest) (307 ms)</li><li>spoon.test.template.TemplateTest.substituteSubString(spoon.test.template.TemplateTest) (160 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.code.CtExecutableReferenceExpression spoon.reflect.code.CtExecutableReferenceExpression.setExecutable(spoon.reflect.reference.CtExecutableReference)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (651 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.declaration.CtCompilationUnit spoon.reflect.declaration.CtCompilationUnit.addDeclaredType(spoon.reflect.declaration.CtType)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (540 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.declaration.CtAnnotation spoon.reflect.declaration.CtAnnotation.setAnnotationType(spoon.reflect.reference.CtTypeReference)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (587 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.code.CtUnaryOperator spoon.reflect.code.CtUnaryOperator.setOperand(spoon.reflect.code.CtExpression)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (555 ms)</li><li>spoon.test.architecture.SpoonArchitectureEnforcerTest.testFactorySubFactory(spoon.test.architecture.SpoonArchitectureEnforcerTest) (3055 ms)</li><li>spoon.test.ctBodyHolder.CtBodyHolderTest.testTryCatch(spoon.test.ctBodyHolder.CtBodyHolderTest) (312 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.declaration.CtTypedElement spoon.reflect.declaration.CtTypedElement.setType(spoon.reflect.reference.CtTypeReference)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (484 ms)</li><li>spoon.test.generics.GenericsTest.testMethodTypingContextAdaptMethod(spoon.test.generics.GenericsTest) (301 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.code.CtIf spoon.reflect.code.CtIf.setElseStatement(spoon.reflect.code.CtStatement)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (632 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.code.CtCatch spoon.reflect.code.CtCatch.setParameter(spoon.reflect.code.CtCatchVariable)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (680 ms)</li><li>spoon.test.prettyprinter.TestSniperPrinter.testPrintAfterRemoveOfFirstParameter(spoon.test.prettyprinter.TestSniperPrinter) (79 ms)</li><li>spoon.test.constructor.ConstructorTest.testTransformationOnConstructorWithInsertBefore(spoon.test.constructor.ConstructorTest) (90 ms)</li><li>spoon.test.template.TemplateEnumAccessTest.testEnumAccessTest(spoon.test.template.TemplateEnumAccessTest) (162 ms)</li><li>spoon.test.arrays.ArraysTest.testInitializeWithNewArray(spoon.test.arrays.ArraysTest) (44 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.code.CtForEach spoon.reflect.code.CtForEach.setVariable(spoon.reflect.code.CtLocalVariable)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (518 ms)</li><li>spoon.test.comment.CommentTest.testInsertNewComment(spoon.test.comment.CommentTest) (165 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.code.CtReturn spoon.reflect.code.CtReturn.setReturnedExpression(spoon.reflect.code.CtExpression)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (674 ms)</li><li>spoon.test.annotation.AnnotationTest.testOutputGeneratedByTypeAnnotation(spoon.test.annotation.AnnotationTest) (199 ms)</li><li>spoon.test.prettyprinter.TestSniperPrinter.testPrintAfterRemoveOfLastParameter(spoon.test.prettyprinter.TestSniperPrinter) (105 ms)</li><li>spoon.test.jdtimportbuilder.ImportBuilderTest.testWithSimpleImport(spoon.test.jdtimportbuilder.ImportBuilderTest) (82 ms)</li><li>spoon.test.type.TypeTest.testTypeReferenceInGenericsAndCasts(spoon.test.type.TypeTest) (106 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.declaration.CtModule spoon.reflect.declaration.CtModule.addExportedPackage(spoon.reflect.declaration.CtPackageExport)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (597 ms)</li><li>spoon.test.eval.EvalTest.testDoNotSimplifyToExpressionWhenStatementIsExpected(spoon.test.eval.EvalTest) (406 ms)</li><li>spoon.test.ctClass.CtClassTest.testParentOfTheEnclosingClassOfStaticClass(spoon.test.ctClass.CtClassTest) (5917 ms)</li><li>spoon.test.prettyprinter.TestSniperPrinter.testPrintAfterRemoveOfFormalTypeParamsAndChangeOfReturnType(spoon.test.prettyprinter.TestSniperPrinter) (73 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.declaration.CtPackage spoon.reflect.declaration.CtPackage.addPackage(spoon.reflect.declaration.CtPackage)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (537 ms)</li><li>spoon.test.annotation.AnnotationTest.testAccessAnnotationValue(spoon.test.annotation.AnnotationTest) (151 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.declaration.CtType spoon.reflect.declaration.CtType.addTypeMember(spoon.reflect.declaration.CtTypeMember)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (695 ms)</li><li>spoon.test.architecture.SpoonArchitectureEnforcerTest.testStaticClasses(spoon.test.architecture.SpoonArchitectureEnforcerTest) (13788 ms)</li><li>spoon.test.methodreference.MethodReferenceTest.testReferenceToAnInstanceMethodOfMultiParticularObject(spoon.test.methodreference.MethodReferenceTest) (216 ms)</li><li>spoon.test.annotation.AnnotationTest.testRepeatableAnnotationAreManagedWithArrays(spoon.test.annotation.AnnotationTest) (41 ms)</li><li>spoon.test.refactoring.CtRenameLocalVariableRefactoringTest.testRenameAllLocalVariablesOfRenameTestSubject(spoon.test.refactoring.CtRenameLocalVariableRefactoringTest) (22685 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.code.CtThrow spoon.reflect.code.CtThrow.setThrownExpression(spoon.reflect.code.CtExpression)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (569 ms)</li><li>spoon.test.position.PositionTest.testPositionClassWithComments(spoon.test.position.PositionTest) (221 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.code.CtAbstractInvocation spoon.reflect.code.CtAbstractInvocation.setExecutable(spoon.reflect.reference.CtExecutableReference)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (623 ms)</li><li>spoon.test.comment.CommentTest.testCoreFactory(spoon.test.comment.CommentTest) (317 ms)</li><li>spoon.test.constructorcallnewclass.ConstructorCallTest.testParameterizedConstructorCallOmittedTypeArgsUnknownExpectedTypeNoClasspath(spoon.test.constructorcallnewclass.ConstructorCallTest) (350 ms)</li><li>spoon.support.visitor.java.JavaReflectionTreeBuilderTest.testAnonymousClass(spoon.support.visitor.java.JavaReflectionTreeBuilderTest) (916 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.declaration.CtTypedElement spoon.reflect.code.CtCatchVariable.setType(spoon.reflect.reference.CtTypeReference)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (555 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.declaration.CtModule spoon.reflect.declaration.CtModule.addRequiredModule(spoon.reflect.declaration.CtModuleRequirement)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (669 ms)</li><li>spoon.test.loop.LoopTest.testAnnotationInForLoop(spoon.test.loop.LoopTest) (73 ms)</li><li>spoon.processing.CtGenerationTest.testGenerateCtBiScanner(spoon.processing.CtGenerationTest) (2911 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.declaration.CtCompilationUnit spoon.reflect.declaration.CtCompilationUnit.setPackageDeclaration(spoon.reflect.declaration.CtPackageDeclaration)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (725 ms)</li><li>spoon.test.annotation.AnnotationTest.testUsageOfTypeAnnotationWithGenericTypesInClassDeclaration(spoon.test.annotation.AnnotationTest) (122 ms)</li><li>spoon.test.constructor.ConstructorTest.testConstructorCallFactory(spoon.test.constructor.ConstructorTest) (71 ms)</li><li>spoon.test.annotation.AnnotationTest.testUsageOfTypeAnnotationInNewInstance(spoon.test.annotation.AnnotationTest) (73 ms)</li><li>spoon.test.methodreference.MethodReferenceTest.testTryRecoverTypeArgumentsHandlesNullTypeArguments(spoon.test.methodreference.MethodReferenceTest) (335 ms)</li><li>spoon.test.prettyprinter.TestSniperPrinter.testClassRename2(spoon.test.prettyprinter.TestSniperPrinter) (88 ms)</li><li>spoon.test.prettyprinter.DefaultPrettyPrinterTest.testPrintAClassWithImports(spoon.test.prettyprinter.DefaultPrettyPrinterTest) (632 ms)</li><li>spoon.test.imports.ImportTest.testImportsForElementsAnnotatedWithTypeUseAnnotations(spoon.test.imports.ImportTest) (165 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.code.CtRHSReceiver spoon.reflect.declaration.CtField.setAssignment(spoon.reflect.code.CtExpression)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (625 ms)</li><li>spoon.test.eval.EvalTest.testStringConcatenation(spoon.test.eval.EvalTest) (132 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.declaration.CtType spoon.reflect.declaration.CtAnnotationType.setSuperclass(spoon.reflect.reference.CtTypeReference)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (558 ms)</li><li>spoon.test.processing.ProcessingTest.testProcessorWithGenericType(spoon.test.processing.ProcessingTest) (659 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.declaration.CtModule spoon.reflect.declaration.CtModule.addModuleDirective(spoon.reflect.declaration.CtModuleDirective)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (582 ms)</li><li>spoon.test.template.TemplateTest.substituteTypeAccessReference(spoon.test.template.TemplateTest) (341 ms)</li><li>spoon.reflect.ast.AstCheckerTest.testPushToStackChanges(spoon.reflect.ast.AstCheckerTest) (2509 ms)</li><li>spoon.test.filters.FilterTest.testAnnotationFilter(spoon.test.filters.FilterTest) (30 ms)</li><li>spoon.test.comment.CommentTest.testJavaDocEmptyCommentAndTag(spoon.test.comment.CommentTest) (350 ms)</li><li>spoon.test.annotation.AnnotationTest.testAnnotationArray(spoon.test.annotation.AnnotationTest) (65 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.declaration.CtType spoon.reflect.declaration.CtType.addSuperInterface(spoon.reflect.reference.CtTypeReference)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (719 ms)</li><li>spoon.test.template.TemplateTest.testTemplateWithWrongUsedStringParam(spoon.test.template.TemplateTest) (283 ms)</li><li>spoon.test.secondaryclasses.ClassesTest.testAnonymousClassInStaticField(spoon.test.secondaryclasses.ClassesTest) (78 ms)</li><li>spoon.test.api.MetamodelTest.testGetAllMetamodelInterfacess(spoon.test.api.MetamodelTest) (724 ms)</li><li>spoon.test.methodreference.MethodReferenceTest.testReferenceToAStaticMethod(spoon.test.methodreference.MethodReferenceTest) (236 ms)</li><li>spoon.test.annotation.AnnotationTest.testGetAnnotationOuter(spoon.test.annotation.AnnotationTest) (35 ms)</li><li>spoon.test.annotation.AnnotationTest.testAnnotationAndShadowDefaultRetentionPolicy(spoon.test.annotation.AnnotationTest) (50 ms)</li><li>spoon.test.refactoring.CtRenameLocalVariableRefactoringTest.testRefactorWrongUsage(spoon.test.refactoring.CtRenameLocalVariableRefactoringTest) (140 ms)</li><li>spoon.processing.CtGenerationTest.testGenerateCloneVisitor(spoon.processing.CtGenerationTest) (54297 ms)</li><li>spoon.test.prettyprinter.DefaultPrettyPrinterTest.testThisConstructorCall2(spoon.test.prettyprinter.DefaultPrettyPrinterTest) (1160 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.code.CtAbstractSwitch spoon.reflect.code.CtAbstractSwitch.setSelector(spoon.reflect.code.CtExpression)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (657 ms)</li><li>spoon.test.ctClass.CtClassTest.testDefaultConstructorAreOk(spoon.test.ctClass.CtClassTest) (114 ms)</li><li>spoon.test.ctBodyHolder.CtBodyHolderTest.testConstructor(spoon.test.ctBodyHolder.CtBodyHolderTest) (144 ms)</li><li>spoon.test.signature.SignatureTest.testArgumentNotNullForExecutableReference(spoon.test.signature.SignatureTest) (95 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.declaration.CtType spoon.reflect.declaration.CtType.setSuperclass(spoon.reflect.reference.CtTypeReference)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (697 ms)</li><li>spoon.test.spoonifier.SpoonifierTest.testSpoonifier(spoon.test.spoonifier.SpoonifierTest) (11344 ms)</li><li>spoon.processing.CtGenerationTest.testGenerateRoleHandler(spoon.processing.CtGenerationTest) (8650 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.code.CtTry spoon.reflect.code.CtTry.setFinalizer(spoon.reflect.code.CtBlock)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (599 ms)</li><li>spoon.LauncherTest.testLauncherInEmptyWorkingDir(spoon.LauncherTest) (272 ms)</li><li>spoon.test.prettyprinter.LinesTest.testCompileWhenUsingLinesArgument(spoon.test.prettyprinter.LinesTest) (528 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.declaration.CtEnum spoon.reflect.declaration.CtEnum.addEnumValue(spoon.reflect.declaration.CtEnumValue)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (533 ms)</li><li>spoon.test.factory.FactoryTest.factoryTest(spoon.test.factory.FactoryTest) (705 ms)</li><li>spoon.test.prettyprinter.TestSniperPrinter.testPrintUnchaged(spoon.test.prettyprinter.TestSniperPrinter) (92 ms)</li><li>spoon.test.serializable.ModelStreamerTest (10651 ms)</li><li>spoon.test.api.MetamodelTest.testGetterSetterForRole(spoon.test.api.MetamodelTest) (693 ms)</li><li>spoon.test.annotation.AnnotationTest.testUsageOfTypeAnnotationBeforeExceptionInSignatureOfMethod(spoon.test.annotation.AnnotationTest) (69 ms)</li><li>spoon.test.refactoring.MethodsRefactoringTest.testCtParameterRemoveRefactoring(spoon.test.refactoring.MethodsRefactoringTest) (141 ms)</li><li>spoon.test.UnresolvedBugTest (35590 ms)</li><li>spoon.test.methodreference.MethodReferenceTest.testReferenceBuilderWithComplexGenerics(spoon.test.methodreference.MethodReferenceTest) (439 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.reference.CtIntersectionTypeReference spoon.reflect.reference.CtIntersectionTypeReference.addBound(spoon.reflect.reference.CtTypeReference)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (414 ms)</li><li>spoon.test.annotation.AnnotationTest.testUsageOfTypeAnnotationOnParameterInMethod(spoon.test.annotation.AnnotationTest) (71 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.code.CtFor spoon.reflect.code.CtFor.addForInit(spoon.reflect.code.CtStatement)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (553 ms)</li><li>spoon.test.imports.ImportScannerTest.testImportOnSpoon(spoon.test.imports.ImportScannerTest) (20752 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.code.CtConditional spoon.reflect.code.CtConditional.setCondition(spoon.reflect.code.CtExpression)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (650 ms)</li><li>spoon.test.eval.EvalTest.testDoNotSimplifyCasts(spoon.test.eval.EvalTest) (283 ms)</li><li>spoon.test.constructor.ConstructorTest.testTypeAnnotationOnExceptionDeclaredInConstructors(spoon.test.constructor.ConstructorTest) (121 ms)</li><li>spoon.test.compilation.CompilationTest.testFilterResourcesDir(spoon.test.compilation.CompilationTest) (3513 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.declaration.CtExecutable spoon.reflect.declaration.CtExecutable.addParameter(spoon.reflect.declaration.CtParameter)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (548 ms)</li><li>spoon.test.template.TemplateTest.createTypeFromTemplate(spoon.test.template.TemplateTest) (117 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.declaration.CtVariable spoon.reflect.code.CtCatchVariable.setDefaultExpression(spoon.reflect.code.CtExpression)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (493 ms)</li><li>spoon.test.generics.GenericsTest.testGenericsInQualifiedNameInConstructorCall(spoon.test.generics.GenericsTest) (369 ms)</li><li>spoon.reflect.ast.CloneTest.testCloneMethodsDeclaredInAST(spoon.reflect.ast.CloneTest) (7266 ms)</li><li>spoon.test.variable.AccessTest.testVariableAccessInNoClasspath(spoon.test.variable.AccessTest) (132 ms)</li><li>spoon.test.constructorcallnewclass.ConstructorCallTest.testParameterizedConstructorCallOmittedTypeArgsNoClasspath(spoon.test.constructorcallnewclass.ConstructorCallTest) (296 ms)</li><li>spoon.test.constructor.ConstructorTest.testTypeAnnotationWithConstructorsOnFormalType(spoon.test.constructor.ConstructorTest) (96 ms)</li><li>spoon.test.prettyprinter.TestSniperPrinter.testPrintAfterRemoveOfLastTypeMember(spoon.test.prettyprinter.TestSniperPrinter) (81 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.reference.CtActualTypeContainer spoon.reflect.reference.CtActualTypeContainer.addActualTypeArgument(spoon.reflect.reference.CtTypeReference)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (610 ms)</li><li>spoon.test.annotation.AnnotationTest.testUsageOfTypeAnnotationInExtendsImplementsOfAClass(spoon.test.annotation.AnnotationTest) (68 ms)</li><li>spoon.test.comment.CommentTest.testJavaDocCommentOnUnix(spoon.test.comment.CommentTest) (411 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.code.CtExpression spoon.reflect.code.CtExpression.addTypeCast(spoon.reflect.reference.CtTypeReference)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (784 ms)</li><li>spoon.test.position.PositionTest.testPositionAnnotation(spoon.test.position.PositionTest) (299 ms)</li><li>spoon.test.jdtimportbuilder.ImportBuilderTest.testWithSimpleImportNoAutoimport(spoon.test.jdtimportbuilder.ImportBuilderTest) (77 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.declaration.CtElement spoon.reflect.declaration.CtElement.addAnnotation(spoon.reflect.declaration.CtAnnotation)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (707 ms)</li><li>spoon.test.constructorcallnewclass.ConstructorCallTest.testParameterizedConstructorCallOmittedTypeArgsResolvedTypeNoClasspath(spoon.test.constructorcallnewclass.ConstructorCallTest) (303 ms)</li><li>spoon.test.issue3321.SniperPrettyPrinterJavaxTest.testThatCanGenerateSniperPrettyPrintedSourceForJavaxAnnotatedClasses(spoon.test.issue3321.SniperPrettyPrinterJavaxTest) (89 ms)</li><li>spoon.test.reference.TypeReferenceTest.testRecursiveTypeReference(spoon.test.reference.TypeReferenceTest) (42 ms)</li><li>spoon.test.template.TemplateTest.testSubstituteInnerClass(spoon.test.template.TemplateTest) (105 ms)</li><li>spoon.test.compilation.CompilationTest.testBuildAstWithSyntheticMethods(spoon.test.compilation.CompilationTest) (272 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.declaration.CtType spoon.reflect.declaration.CtType.addField(spoon.reflect.declaration.CtField)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (550 ms)</li><li>spoon.test.api.APITest.testPrintNotAllSourcesInCommandLine(spoon.test.api.APITest) (12925 ms)</li><li>spoon.test.template.TemplateTest.testSimpleTemplate(spoon.test.template.TemplateTest) (150 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.reference.CtVariableReference spoon.reflect.reference.CtVariableReference.setType(spoon.reflect.reference.CtTypeReference)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (423 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.declaration.CtType spoon.reflect.declaration.CtEnum.setSuperclass(spoon.reflect.reference.CtTypeReference)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (530 ms)</li><li>spoon.support.visitor.java.JavaReflectionTreeBuilderTest.testInnerClass(spoon.support.visitor.java.JavaReflectionTreeBuilderTest) (722 ms)</li><li>spoon.test.eval.EvalTest.testDoNotSimplify(spoon.test.eval.EvalTest) (278 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.code.CtAbstractSwitch spoon.reflect.code.CtAbstractSwitch.addCase(spoon.reflect.code.CtCase)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (774 ms)</li><li>spoon.test.annotation.AnnotationTest.testUsageOfTypeAnnotationInReturnTypeInMethod(spoon.test.annotation.AnnotationTest) (82 ms)</li><li>spoon.processing.ProcessingTest.testTemplateNotInOutput(spoon.processing.ProcessingTest) (217 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.code.CtDo spoon.reflect.code.CtDo.setLoopingExpression(spoon.reflect.code.CtExpression)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (682 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.code.CtTry spoon.reflect.code.CtTry.addCatcher(spoon.reflect.code.CtCatch)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (565 ms)</li><li>spoon.test.methodreference.MethodReferenceTest.testNoClasspathExecutableReferenceExpression(spoon.test.methodreference.MethodReferenceTest) (397 ms)</li><li>spoon.test.template.TemplateTest.testTemplateInheritance(spoon.test.template.TemplateTest) (262 ms)</li><li>spoon.test.annotation.AnnotationTest.testAbstractAllAnnotationProcessor(spoon.test.annotation.AnnotationTest) (97 ms)</li><li>spoon.test.architecture.SpoonArchitectureEnforcerTest.testGoodTestClassNames(spoon.test.architecture.SpoonArchitectureEnforcerTest) (13773 ms)</li><li>spoon.test.position.TestSourceFragment.testSourceFragmentsOfCompilationUnit(spoon.test.position.TestSourceFragment) (103 ms)</li><li>spoon.test.constructorcallnewclass.ConstructorCallTest.testCoreConstructorCall(spoon.test.constructorcallnewclass.ConstructorCallTest) (139 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.code.CtNewClass spoon.reflect.code.CtNewClass.setAnonymousClass(spoon.reflect.declaration.CtClass)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (493 ms)</li><li>spoon.test.reference.ExecutableReferenceTest.testSuperClassInGetAllExecutables(spoon.test.reference.ExecutableReferenceTest) (155 ms)</li><li>spoon.test.comment.CommentTest.testCodeFactory(spoon.test.comment.CommentTest) (502 ms)</li><li>spoon.test.reference.TypeReferenceTest.testUnknownSuperClassWithSameNameInNoClasspath(spoon.test.reference.TypeReferenceTest) (82 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.code.CtIf spoon.reflect.code.CtIf.setThenStatement(spoon.reflect.code.CtStatement)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (690 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.declaration.CtClass spoon.reflect.declaration.CtClass.addAnonymousExecutable(spoon.reflect.declaration.CtAnonymousExecutable)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (525 ms)</li><li>spoon.reflect.visitor.CtVisitorTest.testMethodsInVisitor(spoon.reflect.visitor.CtVisitorTest) (7502 ms)</li><li>spoon.test.generics.GenericsTest.testMethodTypingContext(spoon.test.generics.GenericsTest) (226 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.declaration.CtType spoon.reflect.declaration.CtType.addFieldAtTop(spoon.reflect.declaration.CtField)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (540 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.declaration.CtPackageExport spoon.reflect.declaration.CtPackageExport.setPackageReference(spoon.reflect.reference.CtPackageReference)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (552 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.declaration.CtCompilationUnit spoon.reflect.declaration.CtCompilationUnit.setDeclaredModule(spoon.reflect.declaration.CtModule)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (527 ms)</li><li>spoon.test.methodreference.MethodReferenceTest.testReferenceToAConstructor(spoon.test.methodreference.MethodReferenceTest) (194 ms)</li><li>spoon.test.jdtimportbuilder.ImportBuilderTest.testInternalImportWhenNoClasspath(spoon.test.jdtimportbuilder.ImportBuilderTest) (169 ms)</li><li>spoon.test.template.TemplateTest.testTemplateMatcherWithWholePackage(spoon.test.template.TemplateTest) (122 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.code.CtCase spoon.reflect.code.CtCase.addCaseExpression(spoon.reflect.code.CtExpression)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (655 ms)</li><li>spoon.test.annotation.AnnotationValuesTest.testValuesOnJava8Annotation(spoon.test.annotation.AnnotationValuesTest) (48 ms)</li><li>spoon.test.reference.ExecutableReferenceTest.testGetAllExecutablesMethodForInterface(spoon.test.reference.ExecutableReferenceTest) (270 ms)</li><li>spoon.test.eval.EvalTest.testTryCatchAndStatement(spoon.test.eval.EvalTest) (407 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.declaration.CtModule spoon.reflect.declaration.CtModule.addUsedService(spoon.reflect.declaration.CtUsedService)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (530 ms)</li><li>spoon.test.comment.CommentTest.testRemoveComment(spoon.test.comment.CommentTest) (232 ms)</li><li>spoon.test.prettyprinter.DefaultPrettyPrinterTest.testPrintAMethodWithImports(spoon.test.prettyprinter.DefaultPrettyPrinterTest) (625 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.declaration.CtElement spoon.reflect.declaration.CtCompilationUnit.setParent(spoon.reflect.declaration.CtElement)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (754 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.reference.CtArrayTypeReference spoon.reflect.reference.CtArrayTypeReference.setComponentType(spoon.reflect.reference.CtTypeReference)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (498 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.code.CtIf spoon.reflect.code.CtIf.setCondition(spoon.reflect.code.CtExpression)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (962 ms)</li><li>spoon.test.template.TemplateInvocationSubstitutionTest.testInvocationSubstitutionByStatement(spoon.test.template.TemplateInvocationSubstitutionTest) (113 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.declaration.CtVariable spoon.reflect.declaration.CtParameter.setDefaultExpression(spoon.reflect.code.CtExpression)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (514 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.declaration.CtImport spoon.reflect.declaration.CtImport.setReference(spoon.reflect.reference.CtReference)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (526 ms)</li><li>spoon.reflect.visitor.CtInheritanceScannerMethodsTest.testMethodsInInheritanceScanner(spoon.reflect.visitor.CtInheritanceScannerMethodsTest) (3081 ms)</li><li>spoon.reflect.visitor.CtScannerTest.testScannerCallsAllProperties(spoon.reflect.visitor.CtScannerTest) (16187 ms)</li><li>spoon.test.generics.GenericsTest.testGenericInField(spoon.test.generics.GenericsTest) (125 ms)</li><li>spoon.processing.ProcessingTest.testRuntimeProcessorManager(spoon.processing.ProcessingTest) (690 ms)</li><li>spoon.test.position.PositionTest.testTypeModifiersPositionAfterComment(spoon.test.position.PositionTest) (63 ms)</li><li>spoon.test.position.TestSourceFragment.testExactSourceFragments(spoon.test.position.TestSourceFragment) (231 ms)</li><li>spoon.test.type.TypeTest.testTypeAccessImplicitIsDerived(spoon.test.type.TypeTest) (115 ms)</li><li>spoon.test.constructorcallnewclass.ConstructorCallTest.testConstructorCallObjectWithParameters(spoon.test.constructorcallnewclass.ConstructorCallTest) (173 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.declaration.CtPackageExport spoon.reflect.declaration.CtPackageExport.addTargetExport(spoon.reflect.reference.CtModuleReference)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (556 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.declaration.CtType spoon.reflect.declaration.CtTypeParameter.addNestedType(spoon.reflect.declaration.CtType)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (648 ms)</li><li>spoon.test.ctBodyHolder.CtBodyHolderTest.testMethod(spoon.test.ctBodyHolder.CtBodyHolderTest) (90 ms)</li><li>spoon.test.comment.CommentTest.testCommentsInComment1And2(spoon.test.comment.CommentTest) (331 ms)</li><li>spoon.test.generics.GenericsTest.testNewClassGenerics(spoon.test.generics.GenericsTest) (404 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.declaration.CtCompilationUnit spoon.reflect.declaration.CtCompilationUnit.setDeclaredPackage(spoon.reflect.declaration.CtPackage)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (760 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.declaration.CtProvidedService spoon.reflect.declaration.CtProvidedService.setServiceType(spoon.reflect.reference.CtTypeReference)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (553 ms)</li><li>spoon.test.position.PositionTest.testPositionClass(spoon.test.position.PositionTest) (394 ms)</li><li>spoon.test.intercession.IntercessionTest.testSettersAreAllGood(spoon.test.intercession.IntercessionTest) (8298 ms)</li><li>spoon.test.refactoring.MethodsRefactoringTest.testCtParameterRemoveRefactoringValidationCheck(spoon.test.refactoring.MethodsRefactoringTest) (67 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.reference.CtFieldReference spoon.reflect.reference.CtFieldReference.setDeclaringType(spoon.reflect.reference.CtTypeReference)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (450 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.code.CtConditional spoon.reflect.code.CtConditional.setElseExpression(spoon.reflect.code.CtExpression)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (533 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.declaration.CtType spoon.reflect.declaration.CtInterface.setSuperclass(spoon.reflect.reference.CtTypeReference)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (552 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.code.CtRHSReceiver spoon.reflect.code.CtRHSReceiver.setAssignment(spoon.reflect.code.CtExpression)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (608 ms)</li><li>spoon.test.eval.EvalTest.testArrayLength(spoon.test.eval.EvalTest) (238 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.code.CtJavaDoc spoon.reflect.code.CtJavaDoc.addTag(spoon.reflect.code.CtJavaDocTag)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (722 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.declaration.CtVariable spoon.reflect.declaration.CtVariable.setDefaultExpression(spoon.reflect.code.CtExpression)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (504 ms)</li><li>spoon.reflect.declaration.UnknownDeclarationTest.testUnknownCalls(spoon.reflect.declaration.UnknownDeclarationTest) (76 ms)</li><li>spoon.test.architecture.SpoonArchitectureEnforcerTest.statelessFactory(spoon.test.architecture.SpoonArchitectureEnforcerTest) (869 ms)</li><li>spoon.test.reference.ExecutableReferenceTest.testGetAllExecutablesMethodForClasses(spoon.test.reference.ExecutableReferenceTest) (169 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.declaration.CtAnnotationMethod spoon.reflect.declaration.CtAnnotationMethod.setDefaultExpression(spoon.reflect.code.CtExpression)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (544 ms)</li><li>spoon.test.annotation.AnnotationTest.annotationAddValue(spoon.test.annotation.AnnotationTest) (40 ms)</li><li>spoon.processing.CtGenerationTest.testGenerateReplacementVisitor(spoon.processing.CtGenerationTest) (23898 ms)</li><li>spoon.test.methodreference.MethodReferenceTest.testGetGenericMethodFromReference(spoon.test.methodreference.MethodReferenceTest) (544 ms)</li><li>spoon.test.architecture.SpoonArchitectureEnforcerTest.testSrcMainJava(spoon.test.architecture.SpoonArchitectureEnforcerTest) (31028 ms)</li><li>spoon.test.reference.VariableAccessTest.testDeclarationArray(spoon.test.reference.VariableAccessTest) (37 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.code.CtForEach spoon.reflect.code.CtForEach.setExpression(spoon.reflect.code.CtExpression)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (533 ms)</li><li>spoon.test.annotation.AnnotationTest.testUsageOfTypeAnnotationInCast(spoon.test.annotation.AnnotationTest) (87 ms)</li><li>spoon.test.imports.ImportTest.testAccessToNestedClass(spoon.test.imports.ImportTest) (419 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.declaration.CtModule spoon.reflect.declaration.CtModule.addProvidedService(spoon.reflect.declaration.CtProvidedService)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (674 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.code.CtNewArray spoon.reflect.code.CtNewArray.addDimensionExpression(spoon.reflect.code.CtExpression)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (672 ms)</li><li>spoon.reflect.ast.CloneTest.testCloneCastConditional(spoon.reflect.ast.CloneTest) (41 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.declaration.CtTypedElement spoon.reflect.code.CtTypeAccess.setType(spoon.reflect.reference.CtTypeReference)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (530 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtNewArray](spoon.test.replace.ReplaceParametrizedTest) (6 ms)</li><li>spoon.test.main.MainTest.testTest(spoon.test.main.MainTest) (84655 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.declaration.CtTypedElement spoon.reflect.declaration.CtConstructor.setType(spoon.reflect.reference.CtTypeReference)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (499 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.reference.CtActualTypeContainer spoon.reflect.code.CtNewClass.addActualTypeArgument(spoon.reflect.reference.CtTypeReference)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (485 ms)</li><li>spoon.test.annotation.AnnotationValuesTest.testValuesOnJava7Annotation(spoon.test.annotation.AnnotationValuesTest) (64 ms)</li><li>spoon.test.template.TemplateTest.testFieldAccessNameSubstitutionInInnerClass(spoon.test.template.TemplateTest) (104 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.declaration.CtClass spoon.reflect.declaration.CtClass.addConstructor(spoon.reflect.declaration.CtConstructor)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (582 ms)</li><li>spoon.test.comment.CommentTest.testWildComments(spoon.test.comment.CommentTest) (307 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.declaration.CtPackage spoon.reflect.declaration.CtPackage.addType(spoon.reflect.declaration.CtType)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (555 ms)</li><li>spoon.test.architecture.SpoonArchitectureEnforcerTest.testSpecPackage(spoon.test.architecture.SpoonArchitectureEnforcerTest) (13424 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.code.CtSynchronized spoon.reflect.code.CtSynchronized.setExpression(spoon.reflect.code.CtExpression)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (675 ms)</li><li>spoon.test.constructor.ConstructorTest.testImplicitConstructor(spoon.test.constructor.ConstructorTest) (201 ms)</li><li>spoon.test.compilation.CompilationTest.testBuildAstWithSyntheticMethodsSwapOrder(spoon.test.compilation.CompilationTest) (114 ms)</li><li>spoon.test.eval.EvalTest.testScanAPartiallyEvaluatedElement(spoon.test.eval.EvalTest) (175 ms)</li><li>spoon.test.methodreference.MethodReferenceTest.testCompileMethodReferenceGeneratedBySpoon(spoon.test.methodreference.MethodReferenceTest) (472 ms)</li><li>spoon.test.generics.GenericsTest.testisGeneric(spoon.test.generics.GenericsTest) (301 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.code.CtStatementList spoon.reflect.code.CtStatementList.addStatement(spoon.reflect.code.CtStatement)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (650 ms)</li><li>spoon.test.refactoring.CtRenameLocalVariableRefactoringTest.testRenameLocalVariableToSameName(spoon.test.refactoring.CtRenameLocalVariableRefactoringTest) (111 ms)</li><li>spoon.test.api.MetamodelTest.testMetamodelWithoutSources(spoon.test.api.MetamodelTest) (4615 ms)</li><li>spoon.test.template.TemplateTest.testTemplateInvocationSubstitution(spoon.test.template.TemplateTest) (87 ms)</li><li>spoon.test.generics.GenericsTest.testConstructorCallGenerics(spoon.test.generics.GenericsTest) (309 ms)</li><li>spoon.test.generics.GenericsTest.testMethodsWithGenericsWhoExtendsObject(spoon.test.generics.GenericsTest) (309 ms)</li><li>spoon.test.template.TemplateTest.testExpressionTemplate(spoon.test.template.TemplateTest) (53 ms)</li><li>spoon.test.factory.FactoryTest.testCtModel(spoon.test.factory.FactoryTest) (44 ms)</li><li>spoon.test.comment.CommentTest.testCombinedPackageInfoComment(spoon.test.comment.CommentTest) (311 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.reference.CtTypeReference spoon.reflect.reference.CtTypeReference.setPackage(spoon.reflect.reference.CtPackageReference)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (426 ms)</li><li>spoon.CompilationUnitPrintTest.test(spoon.CompilationUnitPrintTest) (1464 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.code.CtBinaryOperator spoon.reflect.code.CtBinaryOperator.setLeftHandOperand(spoon.reflect.code.CtExpression)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (853 ms)</li><li>spoon.test.prettyprinter.DefaultPrettyPrinterTest.testIssue1501(spoon.test.prettyprinter.DefaultPrettyPrinterTest) (350 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.declaration.CtType spoon.reflect.declaration.CtTypeParameter.addMethod(spoon.reflect.declaration.CtMethod)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (843 ms)</li><li>spoon.test.api.APITest.testSetterInNodes(spoon.test.api.APITest) (11427 ms)</li><li>spoon.test.api.APITest.testPrintNotAllSourcesWithFilter(spoon.test.api.APITest) (404 ms)</li><li>spoon.test.comment.CommentTest.testBlockComment(spoon.test.comment.CommentTest) (389 ms)</li><li>spoon.test.ctBodyHolder.CtBodyHolderTest.testForWithStatement(spoon.test.ctBodyHolder.CtBodyHolderTest) (172 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.declaration.CtCompilationUnit spoon.reflect.declaration.CtCompilationUnit.setDeclaredModuleReference(spoon.reflect.reference.CtModuleReference)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (568 ms)</li><li>spoon.test.prettyprinter.PrinterTest.testPrinterTokenListener(spoon.test.prettyprinter.PrinterTest) (1374 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.code.CtSynchronized spoon.reflect.code.CtSynchronized.setBlock(spoon.reflect.code.CtBlock)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (732 ms)</li><li>spoon.test.constructorcallnewclass.ConstructorCallTest.testConstructorCallStringWithoutParameters(spoon.test.constructorcallnewclass.ConstructorCallTest) (331 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.declaration.CtModule spoon.reflect.declaration.CtModule.addOpenedPackage(spoon.reflect.declaration.CtPackageExport)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (562 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.code.CtAssert spoon.reflect.code.CtAssert.setAssertExpression(spoon.reflect.code.CtExpression)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (785 ms)</li><li>spoon.test.annotation.AnnotationTest.testCreateRepeatableAnnotationWithArrays(spoon.test.annotation.AnnotationTest) (64 ms)</li><li>spoon.test.refactoring.MethodsRefactoringTest.testAllMethodsSameSignatureFunction(spoon.test.refactoring.MethodsRefactoringTest) (288 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.code.CtFor spoon.reflect.code.CtFor.setExpression(spoon.reflect.code.CtExpression)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (640 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.code.CtVariableAccess spoon.reflect.code.CtVariableAccess.setVariable(spoon.reflect.reference.CtVariableReference)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (538 ms)</li><li>spoon.test.imports.ImportTest.testAccessType(spoon.test.imports.ImportTest) (238 ms)</li><li>spoon.test.template.TemplateReplaceReturnTest.testNoReturnReplaceTemplate(spoon.test.template.TemplateReplaceReturnTest) (94 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.code.CtConditional spoon.reflect.code.CtConditional.setThenExpression(spoon.reflect.code.CtExpression)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (735 ms)</li><li>spoon.test.prettyprinter.TestSniperPrinter.testPrintAfterRenameOfField(spoon.test.prettyprinter.TestSniperPrinter) (74 ms)</li><li>spoon.test.annotation.AnnotationTest.testAnnotationAndShadowRuntimeRetentionPolicy(spoon.test.annotation.AnnotationTest) (47 ms)</li><li>spoon.test.initializers.InitializerTest.testModelBuildingInitializerNoclasspath(spoon.test.initializers.InitializerTest) (103 ms)</li><li>spoon.test.constructorcallnewclass.ConstructorCallTest.testConstructorCallStringWithParameters(spoon.test.constructorcallnewclass.ConstructorCallTest) (239 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.reference.CtWildcardReference spoon.reflect.reference.CtWildcardReference.setBoundingType(spoon.reflect.reference.CtTypeReference)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (419 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.declaration.CtModuleRequirement spoon.reflect.declaration.CtModuleRequirement.setModuleReference(spoon.reflect.reference.CtModuleReference)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (609 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.code.CtArrayAccess spoon.reflect.code.CtArrayAccess.setIndexExpression(spoon.reflect.code.CtExpression)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (564 ms)</li><li>spoon.test.prettyprinter.TestSniperPrinter.testPrintAfterRemoveOfMiddleParameter(spoon.test.prettyprinter.TestSniperPrinter) (114 ms)</li><li>spoon.test.ctClass.CtClassTest.toStringWithImports(spoon.test.ctClass.CtClassTest) (879 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.declaration.CtElement spoon.reflect.reference.CtTypeMemberWildcardImportReference.addAnnotation(spoon.reflect.declaration.CtAnnotation)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (717 ms)</li><li>spoon.test.comment.CommentTest.testJavadocShortAndLongComment(spoon.test.comment.CommentTest) (266 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.code.CtRHSReceiver spoon.reflect.code.CtLocalVariable.setAssignment(spoon.reflect.code.CtExpression)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (531 ms)</li><li>spoon.test.methodreference.MethodReferenceTest.testReferenceToAJavaUtilClassConstructor(spoon.test.methodreference.MethodReferenceTest) (455 ms)</li><li>spoon.test.parent.ContractOnSettersParametrizedTest.testContract[public interface CtNewArray<T> extends spoon.reflect.code.CtExpression<T> {
+    spoon.reflect.code.CtNewArray<T> clone();
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.EXPRESSION)
+    java.util.List<spoon.reflect.code.CtExpression<?>> getElements();
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.DIMENSION)
+    <C extends spoon.reflect.code.CtNewArray<T>> C addDimensionExpression(spoon.reflect.code.CtExpression<java.lang.Integer> arg0);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.EXPRESSION)
+    <C extends spoon.reflect.code.CtNewArray<T>> C setElements(java.util.List<spoon.reflect.code.CtExpression<?>> arg0);
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.DIMENSION)
+    java.util.List<spoon.reflect.code.CtExpression<java.lang.Integer>> getDimensionExpressions();
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.DIMENSION)
+    <C extends spoon.reflect.code.CtNewArray<T>> C setDimensionExpressions(java.util.List<spoon.reflect.code.CtExpression<java.lang.Integer>> arg0);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.EXPRESSION)
+    boolean removeElement(spoon.reflect.code.CtExpression<?> arg0);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.EXPRESSION)
+    <C extends spoon.reflect.code.CtNewArray<T>> C addElement(spoon.reflect.code.CtExpression<?> arg0);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.DIMENSION)
+    boolean removeDimensionExpression(spoon.reflect.code.CtExpression<java.lang.Integer> arg0);
+}](spoon.test.parent.ContractOnSettersParametrizedTest) (141 ms)</li><li>spoon.test.generics.GenericsTest.testClassTypingContextMethodSignature(spoon.test.generics.GenericsTest) (145 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.code.CtAbstractInvocation spoon.reflect.code.CtAbstractInvocation.addArgument(spoon.reflect.code.CtExpression)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (770 ms)</li><li>spoon.test.template.PatternTest.testMatchPossesiveMultiValueMinCount2(spoon.test.template.PatternTest) (116 ms)</li><li>spoon.test.prettyprinter.DefaultPrettyPrinterTest.testPrintAMethodWithGeneric(spoon.test.prettyprinter.DefaultPrettyPrinterTest) (574 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.declaration.CtExecutable spoon.reflect.declaration.CtExecutable.addThrownType(spoon.reflect.reference.CtTypeReference)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (555 ms)</li><li>spoon.test.constructor.ConstructorTest.callParamConstructor(spoon.test.constructor.ConstructorTest) (78 ms)</li><li>spoon.test.constructor.ConstructorTest.testTransformationOnConstructorWithInsertBegin(spoon.test.constructor.ConstructorTest) (186 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.code.CtTypeAccess spoon.reflect.code.CtTypeAccess.setAccessedType(spoon.reflect.reference.CtTypeReference)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (556 ms)</li><li>spoon.test.template.TemplateTest.testExtensionBlock(spoon.test.template.TemplateTest) (772 ms)</li><li>spoon.test.template.TemplateInvocationSubstitutionTest.testInvocationSubstitutionByExpression(spoon.test.template.TemplateInvocationSubstitutionTest) (111 ms)</li><li>spoon.test.annotation.AnnotationTest.testGetValueAsObject(spoon.test.annotation.AnnotationTest) (66 ms)</li><li>spoon.test.annotation.AnnotationTest.testUsageOfParametersInTypeAnnotation(spoon.test.annotation.AnnotationTest) (108 ms)</li><li>spoon.test.template.TemplateTest.testTemplateInterfaces(spoon.test.template.TemplateTest) (208 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.code.CtBodyHolder spoon.reflect.code.CtBodyHolder.setBody(spoon.reflect.code.CtStatement)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (667 ms)</li><li>spoon.test.annotation.AnnotationValuesTest.testCtAnnotationAPI(spoon.test.annotation.AnnotationValuesTest) (2 ms)</li><li>spoon.test.annotation.AnnotationTest.testAnnotationWithDefaultArrayValue(spoon.test.annotation.AnnotationTest) (112 ms)</li><li>spoon.test.type.TypeTest.testTypeAccessForTypeAccessInInstanceOf(spoon.test.type.TypeTest) (129 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.reference.CtActualTypeContainer spoon.reflect.code.CtInvocation.addActualTypeArgument(spoon.reflect.reference.CtTypeReference)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (663 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.code.CtAssignment spoon.reflect.code.CtAssignment.setAssigned(spoon.reflect.code.CtExpression)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (766 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.declaration.CtExecutable spoon.reflect.declaration.CtAnonymousExecutable.addParameter(spoon.reflect.declaration.CtParameter)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (548 ms)</li><li>spoon.support.visitor.java.JavaReflectionTreeBuilderTest.testScannerAnnotation(spoon.support.visitor.java.JavaReflectionTreeBuilderTest) (7 ms)</li><li>spoon.test.pkg.PackageTest.testAddAnnotationToPackage(spoon.test.pkg.PackageTest) (251 ms)</li><li>spoon.test.annotation.AnnotationTest.testUsageOfTypeAnnotationOnLocalVariableInMethod(spoon.test.annotation.AnnotationTest) (70 ms)</li><li>spoon.FluentLauncherTest.testMavenLauncher(spoon.FluentLauncherTest) (109013 ms)</li><li>spoon.test.annotation.AnnotationTest.testUsageOfTypeAnnotationWithGenericTypesInStatements(spoon.test.annotation.AnnotationTest) (150 ms)</li><li>spoon.test.reference.TypeReferenceTest.testInvocationWithFieldAccessInNoClasspath(spoon.test.reference.TypeReferenceTest) (292 ms)</li><li>spoon.test.reference.TypeReferenceTest.testToStringEqualityBetweenTwoGenericTypeDifferent(spoon.test.reference.TypeReferenceTest) (637 ms)</li><li>spoon.test.annotation.AnnotationTest.testWritingAnnotParamArray(spoon.test.annotation.AnnotationTest) (35 ms)</li><li>spoon.test.architecture.SpoonArchitectureEnforcerTest.metamodelPackageRule(spoon.test.architecture.SpoonArchitectureEnforcerTest) (3395 ms)</li><li>spoon.test.template.TemplateTest.testCheckBoundTemplate(spoon.test.template.TemplateTest) (90 ms)</li><li>spoon.test.factory.FactoryTest.testClassAccessCreatedFromFactories(spoon.test.factory.FactoryTest) (43 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.code.CtLambda spoon.reflect.code.CtLambda.setExpression(spoon.reflect.code.CtExpression)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (676 ms)</li><li>spoon.test.template.TemplateTest.testTemplateMatcherMatchTwoSnippets(spoon.test.template.TemplateTest) (96 ms)</li><li>spoon.test.arrays.ArraysTest.testCtNewArrayInnerCtNewArray(spoon.test.arrays.ArraysTest) (88 ms)</li><li>spoon.test.ctBodyHolder.CtBodyHolderTest.testWhileWithBlock(spoon.test.ctBodyHolder.CtBodyHolderTest) (76 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.declaration.CtType spoon.reflect.declaration.CtType.addNestedType(spoon.reflect.declaration.CtType)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (994 ms)</li><li>spoon.test.type.TypeTest.testTypeAccessOfArrayObjectInFullyQualifiedName(spoon.test.type.TypeTest) (262 ms)</li><li>spoon.test.template.TemplateTest.testStatementTemplateRootSubstitution(spoon.test.template.TemplateTest) (52 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.code.CtCase spoon.reflect.code.CtCase.setCaseExpression(spoon.reflect.code.CtExpression)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (656 ms)</li><li>spoon.test.support.ResourceTest.testFilteringFolder(spoon.test.support.ResourceTest) (500 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.declaration.CtType spoon.reflect.declaration.CtTypeParameter.addSuperInterface(spoon.reflect.reference.CtTypeReference)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (514 ms)</li><li>spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest.testContract[public abstract spoon.reflect.declaration.CtTypedElement spoon.reflect.declaration.CtAnonymousExecutable.setType(spoon.reflect.reference.CtTypeReference)](spoon.test.intercession.OneCanCallSetterWithNullParameterizedTest) (505 ms)</li><li>spoon.test.comment.CommentTest.testBug2209(spoon.test.comment.CommentTest) (725 ms)</li><li>spoon.test.annotation.AnnotationTest.testAbstractAllAnnotationProcessorWithGlobalAnnotation(spoon.test.annotation.AnnotationTest) (68 ms)</li><li>spoon.test.template.PatternTest.testMatchGreedyMultiValueMinCount2(spoon.test.template.PatternTest) (214 ms)</li><li>spoon.test.methodreference.MethodReferenceTest.testNoClasspathSuperExecutable(spoon.test.methodreference.MethodReferenceTest) (388 ms)</li><li>spoon.test.annotation.AnnotationTest.testAnnotationTypeAndFieldOnField(spoon.test.annotation.AnnotationTest) (90 ms)</li><li>spoon.test.refactoring.MethodsRefactoringTest.testExecutableReferenceFilter(spoon.test.refactoring.MethodsRefactoringTest) (143 ms)</li>
+</ul>
+
+<br/>
+
+Report generated by <a href='http://pitest.org'>PIT</a> 1.6.4
+
+</body>
+</html>

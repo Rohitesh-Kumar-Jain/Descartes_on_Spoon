@@ -1,0 +1,1456 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+<body>
+
+
+<h1>CtScannerFunction.java</h1>
+
+<table class="src">
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_1'/>
+1
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_1'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>/**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_2'/>
+2
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_2'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * SPDX-License-Identifier: (MIT OR CECILL-C)</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_3'/>
+3
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_3'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_4'/>
+4
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_4'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * Copyright (C) 2006-2019 INRIA and contributors</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_5'/>
+5
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_5'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_6'/>
+6
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_6'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * Spoon is available either under the terms of the MIT License (see LICENSE-MIT.txt) of the Cecill-C License (see LICENSE-CECILL-C.txt). You as the user are entitled to choose the terms under which to adopt Spoon.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_7'/>
+7
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_7'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_8'/>
+8
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_8'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>package spoon.reflect.visitor.filter;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_9'/>
+9
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_9'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_10'/>
+10
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_10'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import spoon.reflect.declaration.CtElement;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_11'/>
+11
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_11'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import spoon.reflect.path.CtRole;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_12'/>
+12
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_12'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import spoon.reflect.visitor.EarlyTerminatingScanner;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_13'/>
+13
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_13'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import spoon.reflect.visitor.chain.CtConsumableFunction;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_14'/>
+14
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_14'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import spoon.reflect.visitor.chain.CtConsumer;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_15'/>
+15
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_15'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import spoon.reflect.visitor.chain.CtQuery;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_16'/>
+16
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_16'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import spoon.reflect.visitor.chain.CtQueryAware;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_17'/>
+17
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_17'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import spoon.reflect.visitor.chain.CtScannerListener;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_18'/>
+18
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_18'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import spoon.reflect.visitor.chain.ScanningMode;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_19'/>
+19
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_19'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_20'/>
+20
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_20'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>/**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_21'/>
+21
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_21'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * Returns all children of an element.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_22'/>
+22
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_22'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * More than this, it is a parameterizable class to be subclassed which provides all the power of {@link spoon.reflect.visitor.CtScanner} in the context of queries.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_23'/>
+23
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_23'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * &#60;br&#62;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_24'/>
+24
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_24'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * In particular, one can a register a {@link CtScannerListener}, it is called-back when entering/exiting each scanned AST node</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_25'/>
+25
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_25'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * and it drives the scanning process (see {@link ScanningMode}).</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_26'/>
+26
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_26'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_27'/>
+27
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_27'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>public class CtScannerFunction implements CtConsumableFunction&#60;CtElement&#62;, CtQueryAware {</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_28'/>
+28
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_28'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_29'/>
+29
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_29'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;private final Scanner scanner;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_30'/>
+30
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_30'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;private boolean includingSelf = true;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_31'/>
+31
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_31'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_32'/>
+32
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_32'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;public CtScannerFunction() {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_33'/>
+33
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_33'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;scanner = new Scanner();</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_34'/>
+34
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_34'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;}</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_35'/>
+35
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_35'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_36'/>
+36
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_36'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;/**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_37'/>
+37
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_37'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9; * @param includingSelf if true then input element is sent to output too. By default it is false.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_38'/>
+38
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_38'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9; */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_39'/>
+39
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_39'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;public CtScannerFunction includingSelf(boolean includingSelf) {</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_40'/>
+40
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_40'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class=''>&#9;&#9;this.includingSelf = includingSelf;</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_41'/>
+41
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_41'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class=''>&#9;&#9;return this;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_42'/>
+42
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_42'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;}</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_43'/>
+43
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_43'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_44'/>
+44
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_44'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;/**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_45'/>
+45
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_45'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9; * @param listener the implementation of {@link CtScannerListener}, which will listen for enter/exit of nodes during scanning of AST</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_46'/>
+46
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_46'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9; * @return this to support fluent API</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_47'/>
+47
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_47'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9; */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_48'/>
+48
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_48'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;public CtScannerFunction setListener(CtScannerListener listener) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_49'/>
+49
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_49'>1</a>
+<span>
+1. setListener : All method instructions replaced by: return null; &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>&#9;&#9;scanner.setListener(listener);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_50'/>
+50
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_50'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;return this;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_51'/>
+51
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_51'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;}</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_52'/>
+52
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_52'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_53'/>
+53
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_53'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;@Override</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_54'/>
+54
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_54'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;public void apply(CtElement input, CtConsumer&#60;Object&#62; outputConsumer) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_55'/>
+55
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_55'>1</a>
+<span>
+1. apply : Removed all instructions in the method &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>&#9;&#9;scanner.next = outputConsumer;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_56'/>
+56
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_56'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;if (this.includingSelf) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_57'/>
+57
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_57'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;&#9;scanner.scan(input);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_58'/>
+58
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_58'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;&#9;} else {</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_59'/>
+59
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_59'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class=''>&#9;&#9;&#9;input.accept(scanner);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_60'/>
+60
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_60'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;&#9;}</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_61'/>
+61
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_61'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;}</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_62'/>
+62
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_62'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_63'/>
+63
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_63'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;/*</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_64'/>
+64
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_64'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9; * it is called automatically by CtQuery implementation,</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_65'/>
+65
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_65'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9; * when this mapping function is added.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_66'/>
+66
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_66'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9; */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_67'/>
+67
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_67'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;@Override</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_68'/>
+68
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_68'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;public void setQuery(CtQuery query) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_69'/>
+69
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_69'>1</a>
+<span>
+1. setQuery : Removed all instructions in the method &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>&#9;&#9;scanner.query = query;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_70'/>
+70
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_70'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;}</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_71'/>
+71
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_71'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_72'/>
+72
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_72'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;private static class Scanner extends EarlyTerminatingScanner&#60;Void&#62; {</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_73'/>
+73
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_73'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;&#9;protected CtConsumer&#60;Object&#62; next;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_74'/>
+74
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_74'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;&#9;private CtQuery query;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_75'/>
+75
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_75'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_76'/>
+76
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_76'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;&#9;@Override</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_77'/>
+77
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_77'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;&#9;protected void onElement(CtRole role, CtElement element) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_78'/>
+78
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_78'>1</a>
+<span>
+1. onElement : Removed all instructions in the method &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>&#9;&#9;&#9;next.accept(element);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_79'/>
+79
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_79'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;&#9;super.onElement(role, element);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_80'/>
+80
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_80'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;}</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_81'/>
+81
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_81'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_82'/>
+82
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_82'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;&#9;/*</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_83'/>
+83
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_83'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;&#9; * override {@link EarlyTerminatingScanner#isTerminated()} and let it stop when query is terminated</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_84'/>
+84
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_84'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;&#9; */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_85'/>
+85
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_85'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;&#9;@Override</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_86'/>
+86
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_86'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;&#9;protected boolean isTerminated() {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_87'/>
+87
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_87'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;&#9;return query.isTerminated();</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_88'/>
+88
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_88'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;&#9;}</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_89'/>
+89
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_89'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;}</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@195375f0_90'/>
+90
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_90'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>}</span></pre></td></tr>
+
+
+
+<tr><td></td><td></td><td><h2>Mutations</h2></td></tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@195375f0_49'>49</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_49'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>setListener<br/><b>Killed by : </b>spoon.test.reference.VariableAccessTest.testReferencesInInitExpression(spoon.test.reference.VariableAccessTest)</span></span> All method instructions replaced by: return null; &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@195375f0_55'>55</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_55'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>apply<br/><b>Killed by : </b>spoon.test.api.MetamodelTest.listValueRoleSetOn(spoon.test.api.MetamodelTest)</span></span> Removed all instructions in the method &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@195375f0_69'>69</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_69'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>setQuery<br/><b>Killed by : </b>spoon.test.api.MetamodelTest.listValueRoleSetOn(spoon.test.api.MetamodelTest)</span></span> Removed all instructions in the method &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@195375f0_78'>78</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@195375f0_78'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>onElement<br/><b>Killed by : </b>spoon.test.api.MetamodelTest.listValueRoleSetOn(spoon.test.api.MetamodelTest)</span></span> Removed all instructions in the method &rarr; KILLED</p> 
+</td>
+</tr>
+
+</table>
+
+
+<h2>Active mutators</h2>
+<ul>
+<li class='mutator'>""</li>
+<li class='mutator'>"A"</li>
+<li class='mutator'>'A'</li>
+<li class='mutator'>'\40'</li>
+<li class='mutator'>(byte)0</li>
+<li class='mutator'>(byte)1</li>
+<li class='mutator'>(short)0</li>
+<li class='mutator'>(short)1</li>
+<li class='mutator'>0</li>
+<li class='mutator'>0.0</li>
+<li class='mutator'>0.0f</li>
+<li class='mutator'>0L</li>
+<li class='mutator'>1</li>
+<li class='mutator'>1.0</li>
+<li class='mutator'>1.0f</li>
+<li class='mutator'>1L</li>
+<li class='mutator'>empty</li>
+<li class='mutator'>false</li>
+<li class='mutator'>null</li>
+<li class='mutator'>true</li>
+<li class='mutator'>void</li>
+
+</ul>
+
+<h2>Tests examined</h2>
+<ul>
+<li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtFieldRead](spoon.test.replace.ReplaceParametrizedTest) (8 ms)</li><li>spoon.test.model.IncrementalLauncherTest.testIncremental3(spoon.test.model.IncrementalLauncherTest) (1088 ms)</li><li>spoon.test.model.TypeTest.testGetUsedTypesForTypeInRootPackage(spoon.test.model.TypeTest) (31 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtFor](spoon.test.replace.ReplaceParametrizedTest) (9 ms)</li><li>spoon.test.prettyprinter.LinesTest.testPrettyPrinterWithLines(spoon.test.prettyprinter.LinesTest) (180 ms)</li><li>spoon.test.template.PatternTest.testMatchSample1(spoon.test.template.PatternTest) (139 ms)</li><li>spoon.test.constructorcallnewclass.NewClassTest.testNewClassWithInterfaceGeneric(spoon.test.constructorcallnewclass.NewClassTest) (61 ms)</li><li>spoon.test.control.ControlTest.testModelBuildingFor(spoon.test.control.ControlTest) (52 ms)</li><li>spoon.test.methodreference.MethodReferenceTest.testReferenceToAnInstanceMethodOfAParticularObject(spoon.test.methodreference.MethodReferenceTest) (242 ms)</li><li>spoon.reflect.ast.CloneTest.testCopyType(spoon.reflect.ast.CloneTest) (1194 ms)</li><li>spoon.test.fieldaccesses.FieldAccessTest.testModelBuildingFieldAccesses(spoon.test.fieldaccesses.FieldAccessTest) (51 ms)</li><li>spoon.test.staticFieldAccess2.ImplicitStaticFieldReferenceTest.testImplicitStaticFieldReferenceAutoImport(spoon.test.staticFieldAccess2.ImplicitStaticFieldReferenceTest) (74 ms)</li><li>spoon.test.imports.ImportTest.testImportOnSpoon(spoon.test.imports.ImportTest) (18337 ms)</li><li>spoon.test.compilationunit.TestCompilationUnit.testDifferentEncodings(spoon.test.compilationunit.TestCompilationUnit) (70 ms)</li><li>spoon.test.targeted.TargetedExpressionTest.testCtSuperAccess(spoon.test.targeted.TargetedExpressionTest) (57 ms)</li><li>spoon.test.reference.VariableAccessTest.testVariableAccessDeclarationInAnonymousClass(spoon.test.reference.VariableAccessTest) (49 ms)</li><li>spoon.test.template.TemplateArrayAccessTest.testArrayLengthAccess(spoon.test.template.TemplateArrayAccessTest) (47 ms)</li><li>spoon.test.processing.ProcessingTest.testProcessDontMessWithImports(spoon.test.processing.ProcessingTest) (189 ms)</li><li>spoon.test.prettyprinter.TestSniperPrinter.testPrintTypesThrowsWhenPassedTypesFromMultipleCompilationUnits(spoon.test.prettyprinter.TestSniperPrinter) (41 ms)</li><li>spoon.test.type.TypeTest.testTypeAccessForDotClass(spoon.test.type.TypeTest) (178 ms)</li><li>spoon.test.replace.ReplaceTest.testReplaceAllTypeRefenceWithGenerics(spoon.test.replace.ReplaceTest) (78 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtTry](spoon.test.replace.ReplaceParametrizedTest) (7 ms)</li><li>spoon.test.template.PatternTest.testMatchOfAttribute(spoon.test.template.PatternTest) (62 ms)</li><li>spoon.test.template.TemplateTest.testTemplateMatcher(spoon.test.template.TemplateTest) (420 ms)</li><li>spoon.test.comment.CommentTest.testInlineCommentIfBlock(spoon.test.comment.CommentTest) (25 ms)</li><li>spoon.test.fieldaccesses.FieldAccessTest.testTargetedAccessPosition(spoon.test.fieldaccesses.FieldAccessTest) (45 ms)</li><li>spoon.test.api.NoClasspathTest.testGetStaticDependency(spoon.test.api.NoClasspathTest) (197 ms)</li><li>spoon.test.modifiers.ModifiersTest.testMethodWithVarargsDoesNotBecomeTransient(spoon.test.modifiers.ModifiersTest) (266 ms)</li><li>spoon.test.filters.CUFilterTest.testSingleExcludeWithoutFilter(spoon.test.filters.CUFilterTest) (54 ms)</li><li>spoon.test.trycatch.TryCatchTest.testRethrowingExceptionsJava7(spoon.test.trycatch.TryCatchTest) (29 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtArrayTypeReference](spoon.test.replace.ReplaceParametrizedTest) (7 ms)</li><li>spoon.test.ctCase.SwitchCaseTest.insertBeforeStatementInSwitchCaseWithoutException(spoon.test.ctCase.SwitchCaseTest) (28 ms)</li><li>spoon.test.ctType.CtTypeTest.getUsedTypesWithWildcard(spoon.test.ctType.CtTypeTest) (252 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtReturn](spoon.test.replace.ReplaceParametrizedTest) (5 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtBlock](spoon.test.replace.ReplaceParametrizedTest) (13 ms)</li><li>spoon.test.generics.GenericsTest.testAccessToGenerics(spoon.test.generics.GenericsTest) (61 ms)</li><li>spoon.test.literal.UnicodeBugTest.testUnicodeBug(spoon.test.literal.UnicodeBugTest) (41 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtLocalVariableReference](spoon.test.replace.ReplaceParametrizedTest) (5 ms)</li><li>spoon.test.generics.GenericsTest.testName(spoon.test.generics.GenericsTest) (336 ms)</li><li>spoon.test.replace.ReplaceTest.testReplaceExecutableReferenceByAnotherOne(spoon.test.replace.ReplaceTest) (86 ms)</li><li>spoon.test.template.TemplateClassAccessTest.testClassAccessTest(spoon.test.template.TemplateClassAccessTest) (92 ms)</li><li>spoon.test.methodreference.MethodReferenceTest.testGetGenericExecutableReference(spoon.test.methodreference.MethodReferenceTest) (407 ms)</li><li>spoon.test.filters.FilterTest.testOverriddenMethodsFromSubClassOfAbstractClass(spoon.test.filters.FilterTest) (120 ms)</li><li>spoon.test.model.IncrementalLauncherTest.testCache(spoon.test.model.IncrementalLauncherTest) (2446 ms)</li><li>spoon.test.parent.ParentTest.testParentOfCtExecutableReference(spoon.test.parent.ParentTest) (199 ms)</li><li>spoon.test.template.TemplateReplaceReturnTest.testReturnReplaceTemplate(spoon.test.template.TemplateReplaceReturnTest) (75 ms)</li><li>spoon.test.annotation.AnnotationValuesTest.testAnnotationPrintAnnotation(spoon.test.annotation.AnnotationValuesTest) (102 ms)</li><li>spoon.test.query_function.VariableReferencesTest.testLocalVariableReferenceFunction(spoon.test.query_function.VariableReferencesTest) (172 ms)</li><li>spoon.test.position.PositionTest.testNoClasspathVariableAccessInInnerClass2(spoon.test.position.PositionTest) (44 ms)</li><li>spoon.test.filters.FilterTest.intersectionOfTwoFilters(spoon.test.filters.FilterTest) (80 ms)</li><li>spoon.support.visitor.java.JavaReflectionTreeBuilderTest.testShadowModelEqualsNormalModel(spoon.support.visitor.java.JavaReflectionTreeBuilderTest) (6436 ms)</li><li>spoon.test.template.TemplateTest.substituteStringLiteral(spoon.test.template.TemplateTest) (105 ms)</li><li>spoon.test.prettyprinter.PrinterTest.testUnresolvedImportStaticNoClassPath(spoon.test.prettyprinter.PrinterTest) (57 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtContinue](spoon.test.replace.ReplaceParametrizedTest) (18 ms)</li><li>spoon.test.query_function.VariableReferencesTest.testVariableReferenceFunction(spoon.test.query_function.VariableReferencesTest) (165 ms)</li><li>spoon.test.api.APITest.testBasicAPIUsage(spoon.test.api.APITest) (112 ms)</li><li>spoon.test.jdtimportbuilder.ImportBuilderTest.testWithImportFromItf(spoon.test.jdtimportbuilder.ImportBuilderTest) (226 ms)</li><li>spoon.test.compilationunit.GetBinaryFilesTest.testExistingButNotBuiltBinary(spoon.test.compilationunit.GetBinaryFilesTest) (337 ms)</li><li>spoon.test.statementComment.StatementCommentTest.testAssignmentStatement(spoon.test.statementComment.StatementCommentTest) (51 ms)</li><li>spoon.FluentLauncherTest.testSimpleUsage(spoon.FluentLauncherTest) (127 ms)</li><li>spoon.test.compilation.CompilationTest.testPrecompile(spoon.test.compilation.CompilationTest) (376 ms)</li><li>spoon.test.prettyprinter.PrinterTest.testFQNModeWriteFQNConstructorInCtVisitor(spoon.test.prettyprinter.PrinterTest) (8074 ms)</li><li>spoon.test.textBlocks.TextBlockTest.testTextBlock1(spoon.test.textBlocks.TextBlockTest) (84 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtDo](spoon.test.replace.ReplaceParametrizedTest) (33 ms)</li><li>spoon.test.constructorcallnewclass.NewClassTest.testNewClassInEnumeration(spoon.test.constructorcallnewclass.NewClassTest) (124 ms)</li><li>spoon.testing.CtPackageAssertTest.testEqualityBetweenTwoCtPackage(spoon.testing.CtPackageAssertTest) (24 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtThrow](spoon.test.replace.ReplaceParametrizedTest) (4 ms)</li><li>spoon.test.ctCase.SwitchCaseTest.insertAfterStatementInSwitchCaseWithoutException(spoon.test.ctCase.SwitchCaseTest) (30 ms)</li><li>spoon.test.template.PatternTest.testMatchReluctantMultivalue(spoon.test.template.PatternTest) (193 ms)</li><li>spoon.toStringBugTest.ToStringBugTest.testIssue3382(spoon.toStringBugTest.ToStringBugTest) (1134 ms)</li><li>spoon.test.fieldaccesses.FieldAccessTest.testGetReference(spoon.test.fieldaccesses.FieldAccessTest) (192 ms)</li><li>spoon.test.api.APITest.testPrintNotAllSourcesWithNames(spoon.test.api.APITest) (582 ms)</li><li>spoon.test.parent.ParentTest.testParentOfCtVariableReference(spoon.test.parent.ParentTest) (75 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtConstructorCall](spoon.test.replace.ReplaceParametrizedTest) (17 ms)</li><li>spoon.test.loop.LoopTest.testEmptyForLoopExpression(spoon.test.loop.LoopTest) (45 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtProvidedService](spoon.test.replace.ReplaceParametrizedTest) (6 ms)</li><li>spoon.test.filters.FilterTest.testInvalidQueryStep(spoon.test.filters.FilterTest) (124 ms)</li><li>spoon.test.template.PatternTest.testMatchIfElse(spoon.test.template.PatternTest) (62 ms)</li><li>spoon.test.labels.TestLabels.testLabelsAreDetected(spoon.test.labels.TestLabels) (41 ms)</li><li>spoon.test.filters.FilterTest.testParentFunction(spoon.test.filters.FilterTest) (110 ms)</li><li>spoon.test.lambda.LambdaTest.testLambdaExpressionInIfConditional(spoon.test.lambda.LambdaTest) (295 ms)</li><li>spoon.test.annotation.AnnotationTest.testSpoonSpoonResult(spoon.test.annotation.AnnotationTest) (83 ms)</li><li>spoon.test.literal.LiteralTest.testCharLiteralInNoClasspath(spoon.test.literal.LiteralTest) (942 ms)</li><li>spoon.test.template.TemplateTest.testAnotherFieldAccessNameSubstitution(spoon.test.template.TemplateTest) (76 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtParameterReference](spoon.test.replace.ReplaceParametrizedTest) (4 ms)</li><li>spoon.test.ctType.CtTypeTest.testRetainsInterfaceOrder(spoon.test.ctType.CtTypeTest) (186 ms)</li><li>spoon.test.main.MainTest.testResourcesCopiedInTargetDirectory(spoon.test.main.MainTest) (195 ms)</li><li>spoon.test.generics.GenericsTest.testCannotAdaptTypeOfNonTypeScope(spoon.test.generics.GenericsTest) (73 ms)</li><li>spoon.test.prettyprinter.PrinterTest.testPrettyPrinter(spoon.test.prettyprinter.PrinterTest) (96 ms)</li><li>spoon.test.compilation.CompilationTest.testNewInstance(spoon.test.compilation.CompilationTest) (9641 ms)</li><li>spoon.test.statementComment.StatementCommentTest.testCommentStatement(spoon.test.statementComment.StatementCommentTest) (68 ms)</li><li>spoon.test.template.TemplateTest.testTemplateC1(spoon.test.template.TemplateTest) (146 ms)</li><li>spoon.test.generics.GenericsTest.testInvocationGenerics(spoon.test.generics.GenericsTest) (404 ms)</li><li>spoon.test.reference.ExecutableReferenceGenericTest.testOneReferenceWithGenericMethodOutOfTheClass(spoon.test.reference.ExecutableReferenceGenericTest) (36 ms)</li><li>spoon.test.reference.TypeReferenceTest.testTypeReferenceWithGenerics(spoon.test.reference.TypeReferenceTest) (33 ms)</li><li>spoon.test.parent.ParentTest.testParentOfCtPackageReference(spoon.test.parent.ParentTest) (78 ms)</li><li>spoon.test.exceptions.ExceptionTest.testUnionCatchExceptionInsideLambdaInNoClasspath(spoon.test.exceptions.ExceptionTest) (50 ms)</li><li>spoon.test.arrays.ArraysTest.testArrayReferences(spoon.test.arrays.ArraysTest) (7409 ms)</li><li>spoon.test.annotation.AnnotationTest.testAnnotationAndShadowClassRetentionPolicy(spoon.test.annotation.AnnotationTest) (47 ms)</li><li>spoon.test.methodreference.MethodReferenceTest.testReferenceToAClassParametrizedConstructor(spoon.test.methodreference.MethodReferenceTest) (308 ms)</li><li>spoon.test.lambda.LambdaTest.testEqualsLambdaParameterRef(spoon.test.lambda.LambdaTest) (233 ms)</li><li>spoon.test.prettyprinter.LinesTest.testIdenticalPrettyPrinter(spoon.test.prettyprinter.LinesTest) (737 ms)</li><li>spoon.test.comment.CommentTest.testInLineComment(spoon.test.comment.CommentTest) (190 ms)</li><li>spoon.test.imports.ImportScannerTest.testImportByJavaDoc(spoon.test.imports.ImportScannerTest) (46 ms)</li><li>spoon.test.constructorcallnewclass.ConstructorCallTest.testConstructorCallWithGenericArray(spoon.test.constructorcallnewclass.ConstructorCallTest) (235 ms)</li><li>spoon.test.variable.AccessTest.testCanVisitArrayAccessAndSubClasses(spoon.test.variable.AccessTest) (23 ms)</li><li>spoon.test.lambda.LambdaTest.testTypeParameterOfLambdaWithoutType2(spoon.test.lambda.LambdaTest) (134 ms)</li><li>spoon.test.template.TemplateInvocationSubstitutionTest.testSubstitutionByExpression(spoon.test.template.TemplateInvocationSubstitutionTest) (67 ms)</li><li>spoon.test.interfaces.TestInterfaceWithoutSetup.testInterfacePrettyPrinting(spoon.test.interfaces.TestInterfaceWithoutSetup) (109 ms)</li><li>spoon.test.lambda.LambdaTest.testLambdaExpressionWithExpressionBodyAndWithoutParameter(spoon.test.lambda.LambdaTest) (252 ms)</li><li>spoon.test.prettyprinter.PrinterTest.testMethodParentheses(spoon.test.prettyprinter.PrinterTest) (89 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtConstructor](spoon.test.replace.ReplaceParametrizedTest) (33 ms)</li><li>spoon.test.intercession.insertBefore.InsertMethodsTest.insertBeforeAndUpdateParent(spoon.test.intercession.insertBefore.InsertMethodsTest) (67 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtModule](spoon.test.replace.ReplaceParametrizedTest) (12 ms)</li><li>spoon.test.fieldaccesses.FieldAccessTest.testFieldAccessInLambda(spoon.test.fieldaccesses.FieldAccessTest) (104 ms)</li><li>spoon.test.executable.ExecutableTest.testShadowValueOf(spoon.test.executable.ExecutableTest) (99 ms)</li><li>spoon.test.parent.NullParentTest.testTargetedExpressionNullTarget(spoon.test.parent.NullParentTest) (57 ms)</li><li>spoon.test.imports.ImportTest.testImportOfAnInnerClassInASuperClassPackageFullQualified(spoon.test.imports.ImportTest) (175 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtModuleReference](spoon.test.replace.ReplaceParametrizedTest) (4 ms)</li><li>spoon.test.signature.SignatureTest.testNullSignatureInUnboundVariable(spoon.test.signature.SignatureTest) (27 ms)</li><li>spoon.test.filters.CUFilterTest.testSingleExcludeWithFilter(spoon.test.filters.CUFilterTest) (54 ms)</li><li>spoon.test.generics.GenericsTest.testMethodTypingContextAdaptMethod(spoon.test.generics.GenericsTest) (301 ms)</li><li>spoon.test.delete.DeleteTest.testDeleteChainOfAssignment(spoon.test.delete.DeleteTest) (180 ms)</li><li>spoon.test.eval.EvalTest.testVisitorPartialEvaluatorScanner(spoon.test.eval.EvalTest) (255 ms)</li><li>spoon.test.filters.FilterTest.testReflectionBasedTypeFilter(spoon.test.filters.FilterTest) (135 ms)</li><li>spoon.test.trycatch.TryCatchTest.testFullyQualifiedException(spoon.test.trycatch.TryCatchTest) (30 ms)</li><li>spoon.test.secondaryclasses.ClassesTest.testClassWithInternalPublicClassOrInterf(spoon.test.secondaryclasses.ClassesTest) (27 ms)</li><li>spoon.test.targeted.TargetedExpressionTest.testNestedClassAccessEnclosingTypeFieldNoClasspath(spoon.test.targeted.TargetedExpressionTest) (44 ms)</li><li>spoon.test.template.TemplateEnumAccessTest.testEnumAccessTest(spoon.test.template.TemplateEnumAccessTest) (162 ms)</li><li>spoon.test.lambda.LambdaTest.testFieldAccessInLambdaNoClassPath(spoon.test.lambda.LambdaTest) (283 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtExecutableReference](spoon.test.replace.ReplaceParametrizedTest) (7 ms)</li><li>spoon.test.filters.FilterTest.testFilters(spoon.test.filters.FilterTest) (81 ms)</li><li>spoon.test.comment.CommentTest.testInsertNewComment(spoon.test.comment.CommentTest) (165 ms)</li><li>spoon.test.parent.NullParentTest.testAssertNullExpression(spoon.test.parent.NullParentTest) (65 ms)</li><li>spoon.test.trycatch.TryCatchTest.testMultiTryCatchWithCustomExceptions(spoon.test.trycatch.TryCatchTest) (61 ms)</li><li>spoon.test.lambda.LambdaTest.testTypeParameterOfLambdaWithoutType(spoon.test.lambda.LambdaTest) (176 ms)</li><li>spoon.test.parent.NullParentTest.testIfNullBranches(spoon.test.parent.NullParentTest) (56 ms)</li><li>spoon.test.compilation.CompilationTest.compileCommandLineTest(spoon.test.compilation.CompilationTest) (94 ms)</li><li>spoon.test.api.NoClasspathTest.test(spoon.test.api.NoClasspathTest) (47 ms)</li><li>spoon.test.limits.utils.InternalTest.testInternalClasses(spoon.test.limits.utils.InternalTest) (19 ms)</li><li>spoon.test.architecture.SpoonArchitectureEnforcerTest.testStaticClasses(spoon.test.architecture.SpoonArchitectureEnforcerTest) (13788 ms)</li><li>spoon.test.reference.ExecutableReferenceTest.testInvokeEnumMethod(spoon.test.reference.ExecutableReferenceTest) (30 ms)</li><li>spoon.test.refactoring.CtRenameLocalVariableRefactoringTest.testRenameAllLocalVariablesOfRenameTestSubject(spoon.test.refactoring.CtRenameLocalVariableRefactoringTest) (22685 ms)</li><li>spoon.test.filters.FilterTest.testOverridingMethodFromAbstractClass(spoon.test.filters.FilterTest) (145 ms)</li><li>spoon.test.prettyprinter.TestSniperPrinter.testPrintTypesProducesFullOutputForSingleTypeCompilationUnit(spoon.test.prettyprinter.TestSniperPrinter) (304 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtPackageReference](spoon.test.replace.ReplaceParametrizedTest) (3 ms)</li><li>spoon.test.type.TypeTest.testBinaryOpStringsType(spoon.test.type.TypeTest) (30 ms)</li><li>spoon.test.intercession.insertBefore.InsertMethodsTest.testInsertAfterSwitchCase(spoon.test.intercession.insertBefore.InsertMethodsTest) (56 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtClass](spoon.test.replace.ReplaceParametrizedTest) (27 ms)</li><li>spoon.test.spoonifier.SpoonifierTest.testGeneratedSpoonifierCode(spoon.test.spoonifier.SpoonifierTest) (24 ms)</li><li>spoon.test.model.AnonymousExecutableTest.testStatements(spoon.test.model.AnonymousExecutableTest) (57 ms)</li><li>spoon.test.constructorcallnewclass.ConstructorCallTest.testParameterizedConstructorCallOmittedTypeArgsUnknownExpectedTypeNoClasspath(spoon.test.constructorcallnewclass.ConstructorCallTest) (350 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtInvocation](spoon.test.replace.ReplaceParametrizedTest) (7 ms)</li><li>spoon.test.generics.GenericsTest.testIsParameterized(spoon.test.generics.GenericsTest) (51 ms)</li><li>spoon.test.sourcePosition.SourcePositionTest.testSourcePositionWhenCommentInAnnotation(spoon.test.sourcePosition.SourcePositionTest) (26 ms)</li><li>spoon.test.targeted.TargetedExpressionTest.testInitializeFieldAccessInNoclasspathMode(spoon.test.targeted.TargetedExpressionTest) (116 ms)</li><li>spoon.test.imports.ImportTest.testNestedStaticPathWithTypedParameter(spoon.test.imports.ImportTest) (160 ms)</li><li>spoon.support.visitor.java.JavaReflectionTreeBuilderTest.testAnonymousClass(spoon.support.visitor.java.JavaReflectionTreeBuilderTest) (916 ms)</li><li>spoon.test.serializable.SerializableTest.testSerializationModelStreamer(spoon.test.serializable.SerializableTest) (37 ms)</li><li>spoon.test.filters.FilterTest.testCtScannerListener(spoon.test.filters.FilterTest) (89 ms)</li><li>spoon.processing.CtGenerationTest.testGenerateCtBiScanner(spoon.processing.CtGenerationTest) (2911 ms)</li><li>spoon.test.visibility.VisibilityTest.testFullyQualifiedNameOfTypeReferenceWithGeneric(spoon.test.visibility.VisibilityTest) (315 ms)</li><li>spoon.test.filters.FilterTest.testNameFilterWithGenericType(spoon.test.filters.FilterTest) (119 ms)</li><li>spoon.test.enums.EnumsTypeTest.testEnumsFromInterface(spoon.test.enums.EnumsTypeTest) (63 ms)</li><li>spoon.test.reference.ExecutableReferenceTest.testPbWithStream(spoon.test.reference.ExecutableReferenceTest) (58 ms)</li><li>spoon.test.annotation.AnnotationTest.testUsageOfTypeAnnotationWithGenericTypesInClassDeclaration(spoon.test.annotation.AnnotationTest) (122 ms)</li><li>spoon.test.template.PatternTest.testMatchReluctantMultivalueExactly2(spoon.test.template.PatternTest) (134 ms)</li><li>spoon.test.condition.ConditionalTest.testConditional(spoon.test.condition.ConditionalTest) (43 ms)</li><li>spoon.test.targeted.TargetedExpressionTest.testTargetOfFieldAccess(spoon.test.targeted.TargetedExpressionTest) (53 ms)</li><li>spoon.test.reference.AnnotationFieldReferenceTest.testAnnotationFieldReference(spoon.test.reference.AnnotationFieldReferenceTest) (30 ms)</li><li>spoon.test.comment.CommentTest.testEnumValueComment(spoon.test.comment.CommentTest) (32 ms)</li><li>spoon.test.enums.EnumsTest.testPrintEnumValues(spoon.test.enums.EnumsTest) (313 ms)</li><li>spoon.test.compilation.CompilationTest.testURLClassLoader(spoon.test.compilation.CompilationTest) (7 ms)</li><li>spoon.testing.AbstractAssertTest.testTransformationWithProcessorClass(spoon.testing.AbstractAssertTest) (43 ms)</li><li>spoon.test.prettyprinter.SniperDefaultMethodTest (48 ms)</li><li>spoon.test.compilationunit.GetBinaryFilesTest.testSingleBinary(spoon.test.compilationunit.GetBinaryFilesTest) (57 ms)</li><li>spoon.test.filters.FilterTest.testNameFilter(spoon.test.filters.FilterTest) (39 ms)</li><li>spoon.test.trycatch.TryCatchTest.testCatchOrder(spoon.test.trycatch.TryCatchTest) (33 ms)</li><li>spoon.test.fieldaccesses.FieldAccessTest.testFieldAccess(spoon.test.fieldaccesses.FieldAccessTest) (55 ms)</li><li>spoon.test.api.APITest.testOneLinerIntro(spoon.test.api.APITest) (33 ms)</li><li>spoon.test.variable.AccessTest.testRHS(spoon.test.variable.AccessTest) (27 ms)</li><li>spoon.test.ctElement.ElementTest.testGetChildren(spoon.test.ctElement.ElementTest) (79 ms)</li><li>spoon.test.template.TemplateTest.substituteTypeAccessReference(spoon.test.template.TemplateTest) (341 ms)</li><li>spoon.test.condition.ConditionalTest.testNoThenBlockBug2(spoon.test.condition.ConditionalTest) (48 ms)</li><li>spoon.test.comment.CommentTest.testJavaDocEmptyCommentAndTag(spoon.test.comment.CommentTest) (350 ms)</li><li>spoon.test.annotation.AnnotationTest.testAnnotationArray(spoon.test.annotation.AnnotationTest) (65 ms)</li><li>spoon.test.sourcePosition.SourcePositionTest.equalPositionsHaveSameHashcode(spoon.test.sourcePosition.SourcePositionTest) (52 ms)</li><li>spoon.test.methodreference.MethodReferenceTest.testReferenceToAStaticMethod(spoon.test.methodreference.MethodReferenceTest) (236 ms)</li><li>spoon.testing.FileAssertTest.testEqualsBetweenTwoDifferentFile(spoon.testing.FileAssertTest) (44 ms)</li><li>spoon.test.imports.ImportScannerTest.testMultiCatchImport(spoon.test.imports.ImportScannerTest) (31 ms)</li><li>spoon.test.fieldaccesses.FieldAccessTest.testFieldAccessDeclaredInADefaultClass(spoon.test.fieldaccesses.FieldAccessTest) (77 ms)</li><li>spoon.test.visibility.VisibilityTest.testName(spoon.test.visibility.VisibilityTest) (32 ms)</li><li>spoon.test.annotation.AnnotationTest.testAnnotationAndShadowDefaultRetentionPolicy(spoon.test.annotation.AnnotationTest) (50 ms)</li><li>spoon.test.refactoring.CtRenameLocalVariableRefactoringTest.testRefactorWrongUsage(spoon.test.refactoring.CtRenameLocalVariableRefactoringTest) (140 ms)</li><li>spoon.test.parameters.ParameterTest.testMultiParameterLambdaTypeReference(spoon.test.parameters.ParameterTest) (108 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtTypeAccess](spoon.test.replace.ReplaceParametrizedTest) (5 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtJavaDoc](spoon.test.replace.ReplaceParametrizedTest) (7 ms)</li><li>spoon.test.ctClass.CtClassTest.testDefaultConstructorAreOk(spoon.test.ctClass.CtClassTest) (114 ms)</li><li>spoon.test.ctBodyHolder.CtBodyHolderTest.testConstructor(spoon.test.ctBodyHolder.CtBodyHolderTest) (144 ms)</li><li>spoon.test.filters.FilterTest.testFilterContains(spoon.test.filters.FilterTest) (115 ms)</li><li>spoon.test.method_overriding.MethodOverriddingTest.testMethodOverride(spoon.test.method_overriding.MethodOverriddingTest) (80 ms)</li><li>spoon.test.condition.ConditionalTest.testBlockInConditionAndLoop(spoon.test.condition.ConditionalTest) (43 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtIntersectionTypeReference](spoon.test.replace.ReplaceParametrizedTest) (2 ms)</li><li>spoon.test.filters.FilterTest.filteredElementsAreOfTheCorrectType(spoon.test.filters.FilterTest) (91 ms)</li><li>spoon.test.filters.FilterTest.testSubInheritanceHierarchyResolver(spoon.test.filters.FilterTest) (145 ms)</li><li>spoon.test.lambda.LambdaTest.testLambdaExpressionWithStatementBodyAndWithoutParameters(spoon.test.lambda.LambdaTest) (224 ms)</li><li>spoon.test.signature.SignatureTest.testUnboundFieldSignature(spoon.test.signature.SignatureTest) (28 ms)</li><li>spoon.test.imports.ImportTest.testAnotherMissingImport(spoon.test.imports.ImportTest) (30 ms)</li><li>spoon.test.template.PatternTest.testMatchReluctantMultivalueMinCount1(spoon.test.template.PatternTest) (298 ms)</li><li>spoon.test.generics.GenericsTest.testExecutableTypeParameter(spoon.test.generics.GenericsTest) (43 ms)</li><li>spoon.test.refactoring.MethodsRefactoringTest.testCtParameterRemoveRefactoring(spoon.test.refactoring.MethodsRefactoringTest) (141 ms)</li><li>spoon.test.UnresolvedBugTest (35590 ms)</li><li>spoon.test.targeted.TargetedExpressionTest.testStaticTargetsOfInv(spoon.test.targeted.TargetedExpressionTest) (58 ms)</li><li>spoon.test.methodreference.MethodReferenceTest.testReferenceBuilderWithComplexGenerics(spoon.test.methodreference.MethodReferenceTest) (439 ms)</li><li>spoon.test.replace.ReplaceTest.testReplaceAPackageReferenceByAnotherOne(spoon.test.replace.ReplaceTest) (85 ms)</li><li>spoon.test.intercession.insertBefore.InsertMethodsTest.testInsertBeforeWithoutBrace(spoon.test.intercession.insertBefore.InsertMethodsTest) (39 ms)</li><li>spoon.test.prettyprinter.DefaultPrettyPrinterTest.testIssue2130(spoon.test.prettyprinter.DefaultPrettyPrinterTest) (161 ms)</li><li>spoon.test.query_function.VariableReferencesTest.testParameterReferenceFunction(spoon.test.query_function.VariableReferencesTest) (139 ms)</li><li>spoon.test.position.PositionTest.testPositionTryCatch(spoon.test.position.PositionTest) (258 ms)</li><li>spoon.test.compilationunit.GetBinaryFilesTest.testMultiClassInSingleFile(spoon.test.compilationunit.GetBinaryFilesTest) (64 ms)</li><li>spoon.test.fieldaccesses.FieldAccessTest.testTypeOfFieldAccess(spoon.test.fieldaccesses.FieldAccessTest) (37 ms)</li><li>spoon.test.compilation.CompilationTest.testFilterResourcesDir(spoon.test.compilation.CompilationTest) (3513 ms)</li><li>spoon.test.filters.FilterTest.testSubTypeFilter(spoon.test.filters.FilterTest) (141 ms)</li><li>spoon.test.change.ChangeCollectorTest.testChangeCollector(spoon.test.change.ChangeCollectorTest) (49 ms)</li><li>spoon.test.generics.GenericsTest.testGenericsInQualifiedNameInConstructorCall(spoon.test.generics.GenericsTest) (369 ms)</li><li>spoon.reflect.ast.CloneTest.testCloneMethodsDeclaredInAST(spoon.reflect.ast.CloneTest) (7266 ms)</li><li>spoon.test.reference.TypeReferenceTest.testAnonymousClassesHaveAnEmptyStringForItsNameInNoClasspath(spoon.test.reference.TypeReferenceTest) (40 ms)</li><li>spoon.test.constructorcallnewclass.ConstructorCallTest.testParameterizedConstructorCallOmittedTypeArgsNoClasspath(spoon.test.constructorcallnewclass.ConstructorCallTest) (296 ms)</li><li>spoon.test.parameters.ParameterTest.testParameterInNoClasspath(spoon.test.parameters.ParameterTest) (142 ms)</li><li>spoon.test.reference.ExecutableReferenceGenericTest.testMethodGenericWithoutReferences(spoon.test.reference.ExecutableReferenceGenericTest) (38 ms)</li><li>spoon.test.ctClass.CtClassTest.testCloneAnonymousClassInvocation(spoon.test.ctClass.CtClassTest) (44 ms)</li><li>spoon.test.template.PatternTest.testMatchOfMapAttribute(spoon.test.template.PatternTest) (59 ms)</li><li>spoon.test.comment.CommentTest.testJavaDocCommentOnUnix(spoon.test.comment.CommentTest) (411 ms)</li><li>spoon.test.targeted.TargetedExpressionTest.testUnqualifiedStaticMethodCallNoclasspath(spoon.test.targeted.TargetedExpressionTest) (26 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtAnnotationType](spoon.test.replace.ReplaceParametrizedTest) (11 ms)</li><li>spoon.test.api.APITest.testSourceClasspathDoesNotAcceptDotClass(spoon.test.api.APITest) (69 ms)</li><li>spoon.test.position.PositionTest.testNoClasspathVariableAccessInInnerInterface(spoon.test.position.PositionTest) (43 ms)</li><li>spoon.test.jdtimportbuilder.ImportBuilderTest.testWithSimpleImportNoAutoimport(spoon.test.jdtimportbuilder.ImportBuilderTest) (77 ms)</li><li>spoon.test.api.APITest.testGetOneLinerMainClassFromCU(spoon.test.api.APITest) (44 ms)</li><li>spoon.test.replace.ReplaceTest.testReplaceAParameterReferenceToFieldReference(spoon.test.replace.ReplaceTest) (66 ms)</li><li>spoon.test.template.TemplateTest.testSubstituteInnerClass(spoon.test.template.TemplateTest) (105 ms)</li><li>spoon.test.api.APITest.testPrintNotAllSourcesInCommandLine(spoon.test.api.APITest) (12925 ms)</li><li>spoon.test.condition.ConditionalTest.testNoThenBlockBug(spoon.test.condition.ConditionalTest) (50 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtParameter](spoon.test.replace.ReplaceParametrizedTest) (5 ms)</li><li>spoon.test.imports.ImportAndExtendWithPackageNameTest.testBuildModel(spoon.test.imports.ImportAndExtendWithPackageNameTest) (62 ms)</li><li>spoon.test.fieldaccesses.FieldAccessTest.testFieldAccessNoClasspath(spoon.test.fieldaccesses.FieldAccessTest) (81 ms)</li><li>spoon.test.secondaryclasses.ClassesTest.testTopLevel(spoon.test.secondaryclasses.ClassesTest) (114 ms)</li><li>spoon.processing.ProcessingTest.testTemplateNotInOutput(spoon.processing.ProcessingTest) (217 ms)</li><li>spoon.test.prettyprinter.SniperAssertTest (104 ms)</li><li>spoon.test.filters.FilterTest.testInvalidQueryStepFailurePolicyIgnore(spoon.test.filters.FilterTest) (104 ms)</li><li>spoon.test.methodreference.MethodReferenceTest.testNoClasspathExecutableReferenceExpression(spoon.test.methodreference.MethodReferenceTest) (397 ms)</li><li>spoon.test.template.TemplateTest.testTemplateInheritance(spoon.test.template.TemplateTest) (262 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtField](spoon.test.replace.ReplaceParametrizedTest) (6 ms)</li><li>spoon.test.reference.TypeReferenceTest.testEqualityTypeReference(spoon.test.reference.TypeReferenceTest) (32 ms)</li><li>spoon.test.processing.processors.ParallelProcessorTest.compareWithSingleThreaded1(spoon.test.processing.processors.ParallelProcessorTest) (332 ms)</li><li>spoon.test.template.PatternTest.testMatchParameterValueType(spoon.test.template.PatternTest) (55 ms)</li><li>spoon.support.compiler.jdt.JDTBatchCompilerTest.testCompileGeneratedJavaFile(spoon.support.compiler.jdt.JDTBatchCompilerTest) (80 ms)</li><li>spoon.test.reference.TypeReferenceTest.testConstructorCallInNoClasspath(spoon.test.reference.TypeReferenceTest) (31 ms)</li><li>spoon.test.model.IncrementalLauncherTest.testIncremental2(spoon.test.model.IncrementalLauncherTest) (113 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtSuperAccess](spoon.test.replace.ReplaceParametrizedTest) (6 ms)</li><li>spoon.test.processing.processors.ParallelProcessorTest.compareWithSingleThreaded3(spoon.test.processing.processors.ParallelProcessorTest) (154 ms)</li><li>spoon.test.constructorcallnewclass.ConstructorCallTest.testCoreConstructorCall(spoon.test.constructorcallnewclass.ConstructorCallTest) (139 ms)</li><li>spoon.test.fieldaccesses.FieldAccessTest.testBUG20160112(spoon.test.fieldaccesses.FieldAccessTest) (50 ms)</li><li>spoon.test.reference.ExecutableReferenceTest.testSuperClassInGetAllExecutables(spoon.test.reference.ExecutableReferenceTest) (155 ms)</li><li>spoon.test.template.PatternTest.testMatchInSet(spoon.test.template.PatternTest) (69 ms)</li><li>spoon.test.lambda.LambdaTest.testLambdaExpressionWithExpressionBodyAndWithParameterTyped(spoon.test.lambda.LambdaTest) (236 ms)</li><li>spoon.reflect.ast.CloneTest.testCopyMethod(spoon.reflect.ast.CloneTest) (28 ms)</li><li>spoon.test.reference.TypeReferenceTest.testUnknownSuperClassWithSameNameInNoClasspath(spoon.test.reference.TypeReferenceTest) (82 ms)</li><li>spoon.test.condition.ConditionalTest.testConditionalWithAssignment(spoon.test.condition.ConditionalTest) (47 ms)</li><li>spoon.test.variable.AccessFullyQualifiedFieldTest.testCheckAssignmentContracts(spoon.test.variable.AccessFullyQualifiedFieldTest) (27 ms)</li><li>spoon.test.prettyprinter.DefaultPrettyPrinterTest.importsFromMultipleTypesSupported(spoon.test.prettyprinter.DefaultPrettyPrinterTest) (91 ms)</li><li>spoon.test.constructorcallnewclass.NewClassTest.testNewClassWithInterface(spoon.test.constructorcallnewclass.NewClassTest) (58 ms)</li><li>spoon.test.methodreference.MethodReferenceTest.testReferenceToAConstructor(spoon.test.methodreference.MethodReferenceTest) (194 ms)</li><li>spoon.reflect.visitor.CtIteratorTest.testCtElementIteration(spoon.reflect.visitor.CtIteratorTest) (572 ms)</li><li>spoon.test.template.TemplateTest.testTemplateMatcherWithWholePackage(spoon.test.template.TemplateTest) (122 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtTypeParameter](spoon.test.replace.ReplaceParametrizedTest) (7 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtPackageDeclaration](spoon.test.replace.ReplaceParametrizedTest) (4 ms)</li><li>spoon.test.statementComment.StatementCommentTest.testMethodBodyNonEmptyStatement(spoon.test.statementComment.StatementCommentTest) (36 ms)</li><li>spoon.test.comment.CommentTest.testRemoveComment(spoon.test.comment.CommentTest) (232 ms)</li><li>spoon.test.executable.ExecutableRefTest.testOverridingMethod(spoon.test.executable.ExecutableRefTest) (34 ms)</li><li>spoon.test.variable.AccessTest.testFieldWriteDeclaredInTheSuperclass(spoon.test.variable.AccessTest) (27 ms)</li><li>spoon.test.prettyprinter.DefaultPrettyPrinterTest.testPrintAMethodWithImports(spoon.test.prettyprinter.DefaultPrettyPrinterTest) (625 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtWhile](spoon.test.replace.ReplaceParametrizedTest) (5 ms)</li><li>spoon.test.reference.ExecutableReferenceGenericTest.testReferencesBetweenConstructorsInOtherClass(spoon.test.reference.ExecutableReferenceGenericTest) (38 ms)</li><li>spoon.test.prettyprinter.TestSniperPrinter.testPrintTypeWithMethodImportBelowMethodDefinition(spoon.test.prettyprinter.TestSniperPrinter) (201 ms)</li><li>spoon.reflect.visitor.CtScannerTest.testScannerCallsAllProperties(spoon.reflect.visitor.CtScannerTest) (16187 ms)</li><li>spoon.processing.ProcessingTest.testRuntimeProcessorManager(spoon.processing.ProcessingTest) (690 ms)</li><li>spoon.test.generics.GenericsTest.testGenericsOnLocalType(spoon.test.generics.GenericsTest) (35 ms)</li><li>spoon.test.type.TypeTest.testTypeAccessImplicitIsDerived(spoon.test.type.TypeTest) (115 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtTryWithResource](spoon.test.replace.ReplaceParametrizedTest) (7 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtBreak](spoon.test.replace.ReplaceParametrizedTest) (11 ms)</li><li>spoon.test.ctBodyHolder.CtBodyHolderTest.testMethod(spoon.test.ctBodyHolder.CtBodyHolderTest) (90 ms)</li><li>spoon.test.comment.CommentTest.testCommentsInComment1And2(spoon.test.comment.CommentTest) (331 ms)</li><li>spoon.test.template.PatternTest.testGenerateIfElse(spoon.test.template.PatternTest) (35 ms)</li><li>spoon.test.statementComment.StatementCommentTest.testIfStatement(spoon.test.statementComment.StatementCommentTest) (46 ms)</li><li>spoon.test.query_function.VariableReferencesTest.testFieldScopeFunction(spoon.test.query_function.VariableReferencesTest) (101 ms)</li><li>spoon.test.statementComment.StatementCommentTest.testLoopStatement(spoon.test.statementComment.StatementCommentTest) (35 ms)</li><li>spoon.test.refactoring.MethodsRefactoringTest.testCtParameterRemoveRefactoringValidationCheck(spoon.test.refactoring.MethodsRefactoringTest) (67 ms)</li><li>spoon.test.template.PatternTest.testMatchGreedyMultiValueUnlimited(spoon.test.template.PatternTest) (204 ms)</li><li>spoon.test.prettyprinter.QualifiedThisRefTest.testCloneThisAccess(spoon.test.prettyprinter.QualifiedThisRefTest) (67 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtLiteral](spoon.test.replace.ReplaceParametrizedTest) (6 ms)</li><li>spoon.test.api.MetamodelTest.listValueRoleSetOn(spoon.test.api.MetamodelTest) (8 ms)</li><li>spoon.test.architecture.SpoonArchitectureEnforcerTest.statelessFactory(spoon.test.architecture.SpoonArchitectureEnforcerTest) (869 ms)</li><li>spoon.test.filters.FilterTest.testFunctionQueryStep(spoon.test.filters.FilterTest) (143 ms)</li><li>spoon.test.prettyprinter.PrinterTest.testUnresolvedNoClassPath(spoon.test.prettyprinter.PrinterTest) (36 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtModuleRequirement](spoon.test.replace.ReplaceParametrizedTest) (7 ms)</li><li>spoon.test.generics.GenericsTest.testWildcard(spoon.test.generics.GenericsTest) (71 ms)</li><li>spoon.test.annotation.AnnotationTest.annotationOverrideFQNIsOK(spoon.test.annotation.AnnotationTest) (65 ms)</li><li>spoon.processing.CtGenerationTest.testGenerateReplacementVisitor(spoon.processing.CtGenerationTest) (23898 ms)</li><li>spoon.test.architecture.SpoonArchitectureEnforcerTest.testSrcMainJava(spoon.test.architecture.SpoonArchitectureEnforcerTest) (31028 ms)</li><li>spoon.test.imports.ImportTest.testNestedAccessPathWithTypedParameterWithImports(spoon.test.imports.ImportTest) (194 ms)</li><li>spoon.test.template.PatternTest.testPatternParameters(spoon.test.template.PatternTest) (204 ms)</li><li>spoon.test.lambda.LambdaTest.testLambdaExpressionWithExpressionBodyAndWithMultiParametersTyped(spoon.test.lambda.LambdaTest) (286 ms)</li><li>spoon.test.generics.GenericsTest.testTopLevelIsGenerics(spoon.test.generics.GenericsTest) (55 ms)</li><li>spoon.test.annotation.AnnotationTest.testUsageOfTypeAnnotationInCast(spoon.test.annotation.AnnotationTest) (87 ms)</li><li>spoon.test.prettyprinter.PrinterTest.testAutoimportModeDontImportUselessStatic(spoon.test.prettyprinter.PrinterTest) (147 ms)</li><li>spoon.test.lambda.LambdaTest.testLambdaExpressionWithStatementBodyAndWithParameter(spoon.test.lambda.LambdaTest) (244 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtLambda](spoon.test.replace.ReplaceParametrizedTest) (8 ms)</li><li>spoon.test.imports.ImportTest.testFQNJavadoc(spoon.test.imports.ImportTest) (166 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtNewArray](spoon.test.replace.ReplaceParametrizedTest) (6 ms)</li><li>spoon.test.filters.FilterTest.testFilterChildrenWithoutFilterQueryStep(spoon.test.filters.FilterTest) (109 ms)</li><li>spoon.test.template.TemplateTest.testFieldAccessNameSubstitutionInInnerClass(spoon.test.template.TemplateTest) (104 ms)</li><li>spoon.test.comment.CommentTest.testWildComments(spoon.test.comment.CommentTest) (307 ms)</li><li>spoon.test.parameters.ParameterTest.testGetParameterReferenceInLambdaNoClasspath(spoon.test.parameters.ParameterTest) (72 ms)</li><li>spoon.test.annotation.AnnotationTest.testCatchExpressionAnnotation(spoon.test.annotation.AnnotationTest) (63 ms)</li><li>spoon.test.exceptions.ExceptionTest.testIssue2860(spoon.test.exceptions.ExceptionTest) (31 ms)</li><li>spoon.test.variable.AccessTest.testCanVisitFieldAccessAndSubClasses(spoon.test.variable.AccessTest) (25 ms)</li><li>spoon.test.constructor.ConstructorTest.testImplicitConstructor(spoon.test.constructor.ConstructorTest) (201 ms)</li><li>spoon.test.delete.DeleteTest.testDeleteConditionInACondition(spoon.test.delete.DeleteTest) (178 ms)</li><li>spoon.test.filters.FilterTest.testEarlyTerminatingQuery(spoon.test.filters.FilterTest) (97 ms)</li><li>spoon.test.generics.GenericsTest.testisGeneric(spoon.test.generics.GenericsTest) (301 ms)</li><li>spoon.test.methodreference.MethodReferenceTest.testCompileMethodReferenceGeneratedBySpoon(spoon.test.methodreference.MethodReferenceTest) (472 ms)</li><li>spoon.test.refactoring.CtRenameLocalVariableRefactoringTest.testRenameLocalVariableToSameName(spoon.test.refactoring.CtRenameLocalVariableRefactoringTest) (111 ms)</li><li>spoon.test.comment.CommentTest.testSnippedWithComments(spoon.test.comment.CommentTest) (33 ms)</li><li>spoon.test.template.TemplateTest.testTemplateInvocationSubstitution(spoon.test.template.TemplateTest) (87 ms)</li><li>spoon.test.api.MetamodelTest.testMetamodelWithoutSources(spoon.test.api.MetamodelTest) (4615 ms)</li><li>spoon.test.strings.StringTest.testModelBuildingInitializer(spoon.test.strings.StringTest) (34 ms)</li><li>spoon.test.statementComment.StatementCommentTest.testCodeSnippetStatement(spoon.test.statementComment.StatementCommentTest) (112 ms)</li><li>spoon.test.ctType.CtTypeParameterTest.testTypeErasure(spoon.test.ctType.CtTypeParameterTest) (154 ms)</li><li>spoon.test.model.TypeTest.testMultiClassEnableWithStaticFieldAccessToNestedType(spoon.test.model.TypeTest) (40 ms)</li><li>spoon.test.processing.ProcessingTest.testInsertBegin(spoon.test.processing.ProcessingTest) (38 ms)</li><li>spoon.test.prettyprinter.PrinterTest.testAutoimportModeDontImportUselessStaticNoClassPath(spoon.test.prettyprinter.PrinterTest) (157 ms)</li><li>spoon.test.ctClass.CtClassTest.testNoClasspathWithSuperClassOfAClassInAnInterface(spoon.test.ctClass.CtClassTest) (233 ms)</li><li>spoon.test.generics.GenericsTest.testModelBuildingSimilarSignatureMethods(spoon.test.generics.GenericsTest) (29 ms)</li><li>spoon.test.query_function.VariableReferencesTest.testCatchVariableReferenceFunction(spoon.test.query_function.VariableReferencesTest) (142 ms)</li><li>spoon.test.api.NoClasspathTest.testInheritanceInNoClassPathWithClasses(spoon.test.api.NoClasspathTest) (101 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtThisAccess](spoon.test.replace.ReplaceParametrizedTest) (4 ms)</li><li>spoon.test.api.APITest.testSetterInNodes(spoon.test.api.APITest) (11427 ms)</li><li>spoon.test.ctBodyHolder.CtBodyHolderTest.testForWithStatement(spoon.test.ctBodyHolder.CtBodyHolderTest) (172 ms)</li><li>spoon.test.model.TypeTest.testGetUsedTypes(spoon.test.model.TypeTest) (32 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtSwitch](spoon.test.replace.ReplaceParametrizedTest) (7 ms)</li><li>spoon.test.variable.AccessFullyQualifiedFieldTest.testNoFQNAndStaticImport(spoon.test.variable.AccessFullyQualifiedFieldTest) (75 ms)</li><li>spoon.test.refactoring.MethodsRefactoringTest.testAllMethodsSameSignatureFunction(spoon.test.refactoring.MethodsRefactoringTest) (288 ms)</li><li>spoon.test.annotation.AnnotationLoopTest.testAnnotationDeclaredInForInit(spoon.test.annotation.AnnotationLoopTest) (36 ms)</li><li>spoon.test.variable.AccessTest.testStackedAssignments(spoon.test.variable.AccessTest) (22 ms)</li><li>spoon.test.template.PatternTest.testPatternToStringNoComments(spoon.test.template.PatternTest) (143 ms)</li><li>spoon.test.processing.ProcessingTest.testInsertEnd(spoon.test.processing.ProcessingTest) (32 ms)</li><li>spoon.test.prettyprinter.PrinterTest.testLambdaCanBeBuild(spoon.test.prettyprinter.PrinterTest) (255 ms)</li><li>spoon.test.annotation.AnnotationTest.testAnnotationAndShadowRuntimeRetentionPolicy(spoon.test.annotation.AnnotationTest) (47 ms)</li><li>spoon.test.filters.FilterTest.testOverridingMethodFromSubClassOfInterface(spoon.test.filters.FilterTest) (140 ms)</li><li>spoon.test.query_function.VariableReferencesTest.testPotentialVariableAccessFromStaticMethod(spoon.test.query_function.VariableReferencesTest) (127 ms)</li><li>spoon.test.initializers.InitializerTest.testModelBuildingInitializerNoclasspath(spoon.test.initializers.InitializerTest) (103 ms)</li><li>spoon.test.constructorcallnewclass.ConstructorCallTest.testConstructorCallStringWithParameters(spoon.test.constructorcallnewclass.ConstructorCallTest) (239 ms)</li><li>spoon.test.ctClass.CtClassTest.toStringWithImports(spoon.test.ctClass.CtClassTest) (879 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtArrayWrite](spoon.test.replace.ReplaceParametrizedTest) (19 ms)</li><li>spoon.test.jdtimportbuilder.ImportBuilderTest.testWithStaticInheritedImport(spoon.test.jdtimportbuilder.ImportBuilderTest) (88 ms)</li><li>spoon.test.comment.CommentTest.testJavadocShortAndLongComment(spoon.test.comment.CommentTest) (266 ms)</li><li>spoon.test.reference.ExecutableReferenceGenericTest.testReferencesBetweenConstructors(spoon.test.reference.ExecutableReferenceGenericTest) (32 ms)</li><li>spoon.test.refactoring.CtRenameGenericVariableRefactoringTest.testRenameAllVariablesRandom(spoon.test.refactoring.CtRenameGenericVariableRefactoringTest) (65 ms)</li><li>spoon.test.template.PatternTest.testMatchOfMapKeySubstring(spoon.test.template.PatternTest) (43 ms)</li><li>spoon.test.generics.GenericsTest.testClassTypingContextMethodSignature(spoon.test.generics.GenericsTest) (145 ms)</li><li>spoon.test.processing.ProcessingTest.testNullableSettingForProcessor(spoon.test.processing.ProcessingTest) (41 ms)</li><li>spoon.test.constructor.ConstructorTest.callParamConstructor(spoon.test.constructor.ConstructorTest) (78 ms)</li><li>spoon.test.trycatch.TryCatchTest.testCatchWithUnknownExceptions(spoon.test.trycatch.TryCatchTest) (30 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtExecutableReferenceExpression](spoon.test.replace.ReplaceParametrizedTest) (8 ms)</li><li>spoon.test.constructor.ConstructorTest.testTransformationOnConstructorWithInsertBegin(spoon.test.constructor.ConstructorTest) (186 ms)</li><li>spoon.test.template.TemplateTest.testExtensionBlock(spoon.test.template.TemplateTest) (772 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtMethod](spoon.test.replace.ReplaceParametrizedTest) (21 ms)</li><li>spoon.test.snippets.SnippetTest.testCompileAndReplaceSnippetsIn(spoon.test.snippets.SnippetTest) (56 ms)</li><li>spoon.test.imports.ImportTest.testNewInnerClassDefinesInItsClassAndSuperClass(spoon.test.imports.ImportTest) (65 ms)</li><li>spoon.test.lambda.LambdaTest.testLambdaWithPrimitiveParameter(spoon.test.lambda.LambdaTest) (156 ms)</li><li>spoon.test.annotation.AnnotationTest.testGetValueAsObject(spoon.test.annotation.AnnotationTest) (66 ms)</li><li>spoon.test.comment.CommentTest.testJavaDocCommentOnMac(spoon.test.comment.CommentTest) (53 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtAnonymousExecutable](spoon.test.replace.ReplaceParametrizedTest) (10 ms)</li><li>spoon.test.position.PositionTest.testLinePositionOkWithOneLineClassCode(spoon.test.position.PositionTest) (47 ms)</li><li>spoon.test.filters.FilterTest.testQueryStepScannWithConsumer(spoon.test.filters.FilterTest) (116 ms)</li><li>spoon.test.prettyprinter.PrinterTest.testJDTBatchCompilerCanBeBuild(spoon.test.prettyprinter.PrinterTest) (878 ms)</li><li>spoon.test.lambda.LambdaTest.testCompileLambdaGeneratedBySpoon(spoon.test.lambda.LambdaTest) (353 ms)</li><li>spoon.test.condition.ConditionalTest.testNoThenBlock(spoon.test.condition.ConditionalTest) (46 ms)</li><li>spoon.FluentLauncherTest.testMavenLauncher(spoon.FluentLauncherTest) (109013 ms)</li><li>spoon.test.annotation.AnnotationTest.testUsageOfTypeAnnotationWithGenericTypesInStatements(spoon.test.annotation.AnnotationTest) (150 ms)</li><li>spoon.test.compilationunit.GetBinaryFilesTest.testAnonymousClasses(spoon.test.compilationunit.GetBinaryFilesTest) (118 ms)</li><li>spoon.test.reference.ExecutableReferenceGenericTest.testMethodWithoutReferences(spoon.test.reference.ExecutableReferenceGenericTest) (39 ms)</li><li>spoon.test.prettyprinter.DefaultPrettyPrinterTest.printerCanPrintInvocationWithoutException(spoon.test.prettyprinter.DefaultPrettyPrinterTest) (14 ms)</li><li>spoon.test.filters.FilterTest.testOverridingMethodFromSubClassOfAbstractClass(spoon.test.filters.FilterTest) (174 ms)</li><li>spoon.test.method.MethodTest.testGetAllMethodsAdaptingType(spoon.test.method.MethodTest) (311 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtTextBlock](spoon.test.replace.ReplaceParametrizedTest) (5 ms)</li><li>spoon.test.variable.AccessFullyQualifiedFieldTest.testNoFQNWhenShadowedByLocalVariable(spoon.test.variable.AccessFullyQualifiedFieldTest) (73 ms)</li><li>spoon.test.position.PositionTest.testLambdaParameterPosition1(spoon.test.position.PositionTest) (43 ms)</li><li>spoon.test.ctBodyHolder.CtBodyHolderTest.testWhileWithBlock(spoon.test.ctBodyHolder.CtBodyHolderTest) (76 ms)</li><li>spoon.test.type.TypeTest.testTypeAccessOfArrayObjectInFullyQualifiedName(spoon.test.type.TypeTest) (262 ms)</li><li>spoon.test.filters.FilterTest.testEmptyQuery(spoon.test.filters.FilterTest) (52 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtJavaDocTag](spoon.test.replace.ReplaceParametrizedTest) (4 ms)</li><li>spoon.test.filters.FilterTest.testInvocationFilterWithExecutableInLibrary(spoon.test.filters.FilterTest) (103 ms)</li><li>spoon.test.signature.SignatureTest.testNullSignature(spoon.test.signature.SignatureTest) (30 ms)</li><li>spoon.test.api.APITest.testOutputOfSpoon(spoon.test.api.APITest) (121 ms)</li><li>spoon.test.ctType.CtTypeTest.testIsSubTypeOfonTypeParameters(spoon.test.ctType.CtTypeTest) (202 ms)</li><li>spoon.test.template.PatternTest.testMatchParameterValue(spoon.test.template.PatternTest) (76 ms)</li><li>spoon.test.support.ResourceTest.testFilteringFolder(spoon.test.support.ResourceTest) (500 ms)</li><li>spoon.test.filters.FilterTest.testReturnOrThrowFilter(spoon.test.filters.FilterTest) (54 ms)</li><li>spoon.test.reference.ExecutableReferenceGenericTest.testMultiReferenceWithGenericMethodOutOfTheClass(spoon.test.reference.ExecutableReferenceGenericTest) (42 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtStatementList](spoon.test.replace.ReplaceParametrizedTest) (6 ms)</li><li>spoon.test.compilation.CompilationTest.compileTest(spoon.test.compilation.CompilationTest) (227 ms)</li><li>spoon.test.comment.CommentTest.testBug2209(spoon.test.comment.CommentTest) (725 ms)</li><li>spoon.test.template.PatternTest.testMatchForeachWithOuterSubstitution(spoon.test.template.PatternTest) (61 ms)</li><li>spoon.test.annotation.AnnotationTest.testAbstractAllAnnotationProcessorWithGlobalAnnotation(spoon.test.annotation.AnnotationTest) (68 ms)</li><li>spoon.test.template.PatternTest.testMatchGreedyMultiValueMinCount2(spoon.test.template.PatternTest) (214 ms)</li><li>spoon.test.methodreference.MethodReferenceTest.testNoClasspathSuperExecutable(spoon.test.methodreference.MethodReferenceTest) (388 ms)</li><li>spoon.test.annotation.AnnotationTest.testAnnotationTypeAndFieldOnField(spoon.test.annotation.AnnotationTest) (90 ms)</li><li>spoon.test.refactoring.MethodsRefactoringTest.testExecutableReferenceFilter(spoon.test.refactoring.MethodsRefactoringTest) (143 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtFieldReference](spoon.test.replace.ReplaceParametrizedTest) (5 ms)</li><li>spoon.test.comment.CommentTest.testAnnotationTypeComment(spoon.test.comment.CommentTest) (63 ms)</li><li>spoon.test.annotation.AnnotationTest.testAnnotationParameterTypes(spoon.test.annotation.AnnotationTest) (88 ms)</li><li>spoon.test.api.MetamodelTest.testRoleOnField(spoon.test.api.MetamodelTest) (2671 ms)</li><li>spoon.test.reference.TypeReferenceTest.testPackageInNoClasspath(spoon.test.reference.TypeReferenceTest) (45 ms)</li><li>spoon.test.reference.ExecutableReferenceTest.testCreateReferenceForAnonymousExecutable(spoon.test.reference.ExecutableReferenceTest) (24 ms)</li><li>spoon.test.refactoring.MethodsRefactoringTest.testSubInheritanceHierarchyFunction(spoon.test.refactoring.MethodsRefactoringTest) (84 ms)</li><li>spoon.test.imports.ImportTest.testStaticImportForInvocationInNoClasspath(spoon.test.imports.ImportTest) (39 ms)</li><li>spoon.test.template.PatternTest.testMatchForeach(spoon.test.template.PatternTest) (81 ms)</li><li>spoon.test.targeted.TargetedExpressionTest.testStaticTargetsOfFieldAccessNoClasspath(spoon.test.targeted.TargetedExpressionTest) (67 ms)</li><li>spoon.test.generics.GenericsTest.testCtTypeReference_getSuperclass(spoon.test.generics.GenericsTest) (147 ms)</li><li>spoon.test.variable.AccessFullyQualifiedFieldTest.testNoFQNWhenUsedInLoop(spoon.test.variable.AccessFullyQualifiedFieldTest) (60 ms)</li><li>spoon.test.template.TemplateTest.testFieldAccessNameSubstitution(spoon.test.template.TemplateTest) (72 ms)</li><li>spoon.test.template.TemplateTest.testTemplateArrayAccess(spoon.test.template.TemplateTest) (64 ms)</li><li>spoon.test.delete.DeleteTest.testDeleteStatementInCase(spoon.test.delete.DeleteTest) (104 ms)</li><li>spoon.test.constructorcallnewclass.NewClassTest.testNewClassWithObjectClass(spoon.test.constructorcallnewclass.NewClassTest) (74 ms)</li><li>spoon.test.fieldaccesses.FieldAccessTest.testTypeDeclaredInAnonymousClass(spoon.test.fieldaccesses.FieldAccessTest) (54 ms)</li><li>spoon.test.arrays.ArraysTest.testCtNewArrayWitComments(spoon.test.arrays.ArraysTest) (79 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtLocalVariable](spoon.test.replace.ReplaceParametrizedTest) (6 ms)</li><li>spoon.test.imports.ImportTest.testNestedAccessPathWithTypedParameter(spoon.test.imports.ImportTest) (219 ms)</li><li>spoon.test.statementComment.StatementCommentTest.testLocalVariableStatement(spoon.test.statementComment.StatementCommentTest) (40 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtOperatorAssignment](spoon.test.replace.ReplaceParametrizedTest) (5 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtAnnotationFieldAccess](spoon.test.replace.ReplaceParametrizedTest) (10 ms)</li><li>spoon.test.methodreference.MethodReferenceTest.testReferenceToAnInstanceMethodOfAnArbitraryObjectOfAParticularType(spoon.test.methodreference.MethodReferenceTest) (212 ms)</li><li>spoon.test.reference.ElasticsearchStackoverflowTest.testStackOverflow(spoon.test.reference.ElasticsearchStackoverflowTest) (156 ms)</li><li>spoon.test.generics.GenericsTest.testClassTypingContext(spoon.test.generics.GenericsTest) (206 ms)</li><li>spoon.test.javadoc.JavaDocTest.testTagsParameters(spoon.test.javadoc.JavaDocTest) (67 ms)</li><li>spoon.test.visibility.VisibilityTest.testInvocationVisibilityInFieldDeclaration(spoon.test.visibility.VisibilityTest) (719 ms)</li><li>spoon.test.prettyprinter.PrinterTest.testRuleCanBeBuild(spoon.test.prettyprinter.PrinterTest) (519 ms)</li><li>spoon.test.prettyprinter.SniperDoubleForInitializerTest (36 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtConditional](spoon.test.replace.ReplaceParametrizedTest) (34 ms)</li><li>spoon.test.comment.CommentTest.testCatchComments(spoon.test.comment.CommentTest) (242 ms)</li><li>spoon.test.fieldaccesses.FieldAccessTest.testIncrementationOnAVarIsAUnaryOperator(spoon.test.fieldaccesses.FieldAccessTest) (38 ms)</li><li>spoon.test.variable.AccessFullyQualifiedFieldTest.testNoFQNWhenShadowedByField(spoon.test.variable.AccessFullyQualifiedFieldTest) (61 ms)</li><li>spoon.test.ctBodyHolder.CtBodyHolderTest.testForWithBlock(spoon.test.ctBodyHolder.CtBodyHolderTest) (77 ms)</li><li>spoon.test.reference.TypeReferenceTest.testIsInTheSamePackageNoClasspath(spoon.test.reference.TypeReferenceTest) (31 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtCase](spoon.test.replace.ReplaceParametrizedTest) (17 ms)</li><li>spoon.test.imports.ImportTest.testShouldNotCreateAutoreference(spoon.test.imports.ImportTest) (239 ms)</li><li>spoon.test.targeted.TargetedExpressionTest.testTargetsOfInv(spoon.test.targeted.TargetedExpressionTest) (42 ms)</li><li>spoon.test.signature.SignatureTest.testBugSignature(spoon.test.signature.SignatureTest) (136 ms)</li><li>spoon.test.lambda.AnonymousInLambdaTest.testAnonymousInLambda(spoon.test.lambda.AnonymousInLambdaTest) (70 ms)</li><li>spoon.LauncherTest.testLLauncherBuildModelReturnAModel(spoon.LauncherTest) (38 ms)</li><li>spoon.test.lambda.LambdaTest.testLambdaExpressionWithExpressionBodyAndWithoutTypeForParameter(spoon.test.lambda.LambdaTest) (228 ms)</li><li>spoon.test.template.TemplateTest.testMethodCast(spoon.test.template.TemplateTest) (97 ms)</li><li>spoon.test.casts.CastTest.testTypeAnnotationOnCast(spoon.test.casts.CastTest) (103 ms)</li><li>spoon.test.annotation.AnnotationTest.testReplaceAnnotationValue(spoon.test.annotation.AnnotationTest) (46 ms)</li><li>spoon.test.api.APITest.testDestinationOfSpoon(spoon.test.api.APITest) (136 ms)</li><li>spoon.test.annotation.AnnotationTest.testModelBuildingAnnotationBoundUsage(spoon.test.annotation.AnnotationTest) (68 ms)</li><li>spoon.test.filters.FilterTest.testQueryInQuery(spoon.test.filters.FilterTest) (318 ms)</li><li>spoon.test.trycatch.TryCatchTest.testExceptionJava7(spoon.test.trycatch.TryCatchTest) (38 ms)</li><li>spoon.test.secondaryclasses.ClassesTest.testIsAnonymousMethodInCtClass(spoon.test.secondaryclasses.ClassesTest) (66 ms)</li><li>spoon.test.processing.processors.ParallelProcessorTest.compareWithSingleThreaded2(spoon.test.processing.processors.ParallelProcessorTest) (160 ms)</li><li>spoon.testing.AbstractAssertTest.testTransformationWithProcessorInstantiated(spoon.testing.AbstractAssertTest) (45 ms)</li><li>spoon.test.template.PatternTest.testExtensionDecoupledSubstitutionVisitor(spoon.test.template.PatternTest) (69 ms)</li><li>spoon.test.imports.ImportTest.testSortImportPutStaticImportAfterTypeImport(spoon.test.imports.ImportTest) (113 ms)</li><li>spoon.test.type.TypeTest.testIntersectionTypeReferenceInGenericsAndCasts(spoon.test.type.TypeTest) (150 ms)</li><li>spoon.test.filters.FilterTest.testFieldAccessFilter(spoon.test.filters.FilterTest) (234 ms)</li><li>spoon.test.imports.ImportTest.testAccessPath(spoon.test.imports.ImportTest) (101 ms)</li><li>spoon.test.path.PathTest.testBuilderMethod(spoon.test.path.PathTest) (139 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtNewClass](spoon.test.replace.ReplaceParametrizedTest) (8 ms)</li><li>spoon.test.generics.GenericsTest.testTypeAdapted(spoon.test.generics.GenericsTest) (62 ms)</li><li>spoon.test.casts.CastTest.testCase4(spoon.test.casts.CastTest) (70 ms)</li><li>spoon.test.processing.ProcessingTest.testCallProcessorWithMultipleTypes(spoon.test.processing.ProcessingTest) (737 ms)</li><li>spoon.test.field.FieldTest.getFQNofFieldReference(spoon.test.field.FieldTest) (41 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtUnboundVariableReference](spoon.test.replace.ReplaceParametrizedTest) (4 ms)</li><li>spoon.test.prettyprinter.TestSniperPrinter.testClassRename1(spoon.test.prettyprinter.TestSniperPrinter) (133 ms)</li><li>spoon.test.constructorcallnewclass.ConstructorCallTest.testConstructorCallObjectWithoutParameters(spoon.test.constructorcallnewclass.ConstructorCallTest) (325 ms)</li><li>spoon.test.compilation.CompilationTest.testNewInstanceFromExistingClass(spoon.test.compilation.CompilationTest) (3168 ms)</li><li>spoon.test.imports.ImportTest.testStaticImportOfEnumField(spoon.test.imports.ImportTest) (119 ms)</li><li>spoon.test.template.TemplateTest.testObjectIsNotParamTemplate(spoon.test.template.TemplateTest) (40 ms)</li><li>spoon.test.trycatch.TryCatchTest.testCompileMultiTryCatchWithCustomExceptions(spoon.test.trycatch.TryCatchTest) (138 ms)</li><li>spoon.test.template.TemplateArrayAccessTest.testArrayAccess(spoon.test.template.TemplateArrayAccessTest) (59 ms)</li><li>spoon.test.variable.AccessFullyQualifiedFieldTest.testPrivateStaticImportShouldNotBeImportedInSameClass(spoon.test.variable.AccessFullyQualifiedFieldTest) (60 ms)</li><li>spoon.test.lambda.LambdaTest.testGetOverriddenMethodWithFunction(spoon.test.lambda.LambdaTest) (206 ms)</li><li>spoon.test.template.TemplateTest.testSubstitutionInsertAllNtoN(spoon.test.template.TemplateTest) (339 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtUsedService](spoon.test.replace.ReplaceParametrizedTest) (3 ms)</li><li>spoon.test.template.PatternTest.testGenerateMethodWithSelfReferences(spoon.test.template.PatternTest) (33 ms)</li><li>spoon.test.main.MainTest.testGenericContract(spoon.test.main.MainTest) (14918 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtVariableWrite](spoon.test.replace.ReplaceParametrizedTest) (5 ms)</li><li>spoon.test.textBlocks.TextBlockTest.testTextBlockEmpty(spoon.test.textBlocks.TextBlockTest) (34 ms)</li><li>spoon.reflect.ast.AstCheckerTest.testAvoidSetCollectionSavedOnAST(spoon.reflect.ast.AstCheckerTest) (11507 ms)</li><li>spoon.test.api.APITest.testAddProcessorMethodInSpoonAPI(spoon.test.api.APITest) (67 ms)</li><li>spoon.test.prettyprinter.TestSniperPrinter.testThrowsWhenTryingToPrintSubsetOfCompilationUnitTypes(spoon.test.prettyprinter.TestSniperPrinter) (29 ms)</li><li>spoon.test.limits.utils.InternalTest.testStaticFinalFieldInAnonymousClass(spoon.test.limits.utils.InternalTest) (18 ms)</li><li>spoon.test.parent.ParentTest.testGetParentWithFilter(spoon.test.parent.ParentTest) (82 ms)</li><li>spoon.test.executable.ExecutableRefTest.testSameTypeInConstructorCallBetweenItsObjectAndItsExecutable(spoon.test.executable.ExecutableRefTest) (182 ms)</li><li>spoon.test.condition.ConditionalTest.testNoBlockInConditionAndLoop(spoon.test.condition.ConditionalTest) (47 ms)</li><li>spoon.test.replace.ReplaceTest.testReplaceReplace(spoon.test.replace.ReplaceTest) (32 ms)</li><li>spoon.test.position.PositionTest.getPositionOfImplicitBlock(spoon.test.position.PositionTest) (52 ms)</li><li>spoon.test.filters.CUFilterTest.testWithoutFilters(spoon.test.filters.CUFilterTest) (62 ms)</li><li>spoon.test.textBlocks.TextBlockTest.testTextBlockCreation(spoon.test.textBlocks.TextBlockTest) (28 ms)</li><li>spoon.test.reference.ExecutableReferenceGenericTest.testMultiReferenceBetweenMethodsWithGenericInSameClass(spoon.test.reference.ExecutableReferenceGenericTest) (38 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtSwitchExpression](spoon.test.replace.ReplaceParametrizedTest) (8 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtBinaryOperator](spoon.test.replace.ReplaceParametrizedTest) (17 ms)</li><li>spoon.test.parent.NullParentTest.testForLoopNullChildren(spoon.test.parent.NullParentTest) (58 ms)</li><li>spoon.test.intercession.insertBefore.InsertMethodsTest.testInsertBeforeWithBrace(spoon.test.intercession.insertBefore.InsertMethodsTest) (44 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtVariableRead](spoon.test.replace.ReplaceParametrizedTest) (4 ms)</li><li>spoon.test.annotation.AnnotationTest.testGetAnnotationFromParameter(spoon.test.annotation.AnnotationTest) (101 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtCatchVariableReference](spoon.test.replace.ReplaceParametrizedTest) (26 ms)</li><li>spoon.test.query_function.VariableReferencesTest.testCheckModelConsistency(spoon.test.query_function.VariableReferencesTest) (190 ms)</li><li>spoon.test.filters.FilterTest.testLineFilter(spoon.test.filters.FilterTest) (71 ms)</li><li>spoon.test.pkg.PackageTest.testNoPackageAssumptionWithStarImportNoClasspath(spoon.test.pkg.PackageTest) (42 ms)</li><li>spoon.test.template.TemplateTest.substituteSubString(spoon.test.template.TemplateTest) (160 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtAssert](spoon.test.replace.ReplaceParametrizedTest) (14 ms)</li><li>spoon.test.imports.ImportTest.testImportStarredPackageWithNonVisibleClass(spoon.test.imports.ImportTest) (110 ms)</li><li>spoon.test.reference.VariableAccessTest.testReferencesInInitExpression(spoon.test.reference.VariableAccessTest) (38 ms)</li><li>spoon.test.api.APITest.testOutputDestinationHandler(spoon.test.api.APITest) (99 ms)</li><li>spoon.test.architecture.SpoonArchitectureEnforcerTest.testFactorySubFactory(spoon.test.architecture.SpoonArchitectureEnforcerTest) (3055 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtEnum](spoon.test.replace.ReplaceParametrizedTest) (12 ms)</li><li>spoon.test.generics.GenericsTest.testBugCommonCollection(spoon.test.generics.GenericsTest) (125 ms)</li><li>spoon.test.ctBodyHolder.CtBodyHolderTest.testTryCatch(spoon.test.ctBodyHolder.CtBodyHolderTest) (312 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtEnumValue](spoon.test.replace.ReplaceParametrizedTest) (5 ms)</li><li>spoon.test.trycatch.TryCatchTest.testTryWithOneResource(spoon.test.trycatch.TryCatchTest) (42 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtPackage](spoon.test.replace.ReplaceParametrizedTest) (5 ms)</li><li>spoon.test.delete.DeleteTest.testDeleteACaseOfASwitch(spoon.test.delete.DeleteTest) (278 ms)</li><li>spoon.test.model.IncrementalLauncherTest.testIncremental1(spoon.test.model.IncrementalLauncherTest) (1174 ms)</li><li>spoon.test.constructor.ConstructorTest.testTransformationOnConstructorWithInsertBefore(spoon.test.constructor.ConstructorTest) (90 ms)</li><li>spoon.test.arrays.ArraysTest.testInitializeWithNewArray(spoon.test.arrays.ArraysTest) (44 ms)</li><li>spoon.test.lambda.LambdaTest.testTypeParameterWithImplicitArrayType(spoon.test.lambda.LambdaTest) (134 ms)</li><li>spoon.test.trycatch.TryCatchTest.testCatchUnqualifiedReferenceIsMarkedSimplyQualified(spoon.test.trycatch.TryCatchTest) (36 ms)</li><li>spoon.test.imports.ImportTest.testDeepNestedStaticPathWithTypedParameter(spoon.test.imports.ImportTest) (89 ms)</li><li>spoon.test.annotation.AnnotationTest.testOutputGeneratedByTypeAnnotation(spoon.test.annotation.AnnotationTest) (199 ms)</li><li>spoon.test.reference.TypeReferenceTest.testTypeReferenceSpecifiedInClassDeclarationInNoClasspath(spoon.test.reference.TypeReferenceTest) (59 ms)</li><li>spoon.test.type.TypeTest.testTypeReferenceInGenericsAndCasts(spoon.test.type.TypeTest) (106 ms)</li><li>spoon.test.annotation.AnnotationTest.testCatchAnnotation(spoon.test.annotation.AnnotationTest) (64 ms)</li><li>spoon.test.imports.ImportTest.testImportByJavaDoc(spoon.test.imports.ImportTest) (37 ms)</li><li>spoon.test.visitor.AssignmentsEqualsTest.testEquals(spoon.test.visitor.AssignmentsEqualsTest) (21 ms)</li><li>spoon.test.invocations.InvocationTest.testIssue1753(spoon.test.invocations.InvocationTest) (518 ms)</li><li>spoon.test.filters.FilterTest.testOverriddenMethodFromInterface(spoon.test.filters.FilterTest) (109 ms)</li><li>spoon.test.lambda.LambdaTest.testTypeAccessInLambdaNoClassPath(spoon.test.lambda.LambdaTest) (156 ms)</li><li>spoon.test.ctType.CtTypeTest.testIsSubTypeOfonTypeReferences(spoon.test.ctType.CtTypeTest) (499 ms)</li><li>spoon.test.ctClass.CtClassTest.testParentOfTheEnclosingClassOfStaticClass(spoon.test.ctClass.CtClassTest) (5917 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtForEach](spoon.test.replace.ReplaceParametrizedTest) (8 ms)</li><li>spoon.test.reference.VariableAccessTest.testDeclaringTypeOfALambdaReferencedByParameterReference(spoon.test.reference.VariableAccessTest) (84 ms)</li><li>spoon.test.compilationunit.GetBinaryFilesTest.testNestedTypes(spoon.test.compilationunit.GetBinaryFilesTest) (59 ms)</li><li>spoon.test.intercession.insertBefore.InsertMethodsTest.testInsertAfterWithBrace(spoon.test.intercession.insertBefore.InsertMethodsTest) (50 ms)</li><li>spoon.test.template.PatternTest.testSubstituteExactElements(spoon.test.template.PatternTest) (36 ms)</li><li>spoon.test.statementComment.StatementCommentTest.testMethodBodyEmptyStatement(spoon.test.statementComment.StatementCommentTest) (36 ms)</li><li>spoon.test.methodreference.MethodReferenceTest.testReferenceToAnInstanceMethodOfMultiParticularObject(spoon.test.methodreference.MethodReferenceTest) (216 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtPackageExport](spoon.test.replace.ReplaceParametrizedTest) (4 ms)</li><li>spoon.test.generics.GenericsTest.testDiamondComplexGenericsRxJava(spoon.test.generics.GenericsTest) (315 ms)</li><li>spoon.test.filters.FilterTest.classCastExceptionIsNotThrown(spoon.test.filters.FilterTest) (103 ms)</li><li>spoon.test.filters.FilterTest.testOverridingMethodFromInterface(spoon.test.filters.FilterTest) (131 ms)</li><li>spoon.test.imports.ImportTest.testNestedStaticPathWithTypedParameterWithImports(spoon.test.imports.ImportTest) (171 ms)</li><li>spoon.test.template.PatternTest.testMatchPossesiveMultiValueMaxCount4(spoon.test.template.PatternTest) (158 ms)</li><li>spoon.test.replace.ReplaceTest.testReplaceBlock(spoon.test.replace.ReplaceTest) (39 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtCatch](spoon.test.replace.ReplaceParametrizedTest) (22 ms)</li><li>spoon.test.comment.CommentTest.testCoreFactory(spoon.test.comment.CommentTest) (317 ms)</li><li>spoon.test.replace.ReplaceTest.testReplaceBlockTry(spoon.test.replace.ReplaceTest) (205 ms)</li><li>spoon.test.ctBlock.TestCtBlock.testRemoveStatement(spoon.test.ctBlock.TestCtBlock) (80 ms)</li><li>spoon.test.filters.FilterTest.testOverriddenMethodFromAbstractClass(spoon.test.filters.FilterTest) (111 ms)</li><li>spoon.test.template.PatternTest.testMatchOfMapAttributeAndOtherAnnotations(spoon.test.template.PatternTest) (41 ms)</li><li>spoon.test.loop.LoopTest.testAnnotationInForLoop(spoon.test.loop.LoopTest) (73 ms)</li><li>spoon.test.generics.GenericsTest.testDeclarationOfTypeParameterReference(spoon.test.generics.GenericsTest) (78 ms)</li><li>spoon.test.ctType.CtTypeParameterTest.test(spoon.test.ctType.CtTypeParameterTest) (348 ms)</li><li>spoon.test.fieldaccesses.FieldAccessTest.testFieldAccessInAnonymousClass(spoon.test.fieldaccesses.FieldAccessTest) (50 ms)</li><li>spoon.test.targeted.TargetedExpressionTest.testTargetsOfFieldAccessInInnerClass(spoon.test.targeted.TargetedExpressionTest) (47 ms)</li><li>spoon.test.control.ControlTest.testModelBuildingDoWhile(spoon.test.control.ControlTest) (41 ms)</li><li>spoon.test.executable.ExecutableTest.testInfoInsideAnonymousExecutable(spoon.test.executable.ExecutableTest) (299 ms)</li><li>spoon.test.constructor.ConstructorTest.testConstructorCallFactory(spoon.test.constructor.ConstructorTest) (71 ms)</li><li>spoon.test.enums.EnumsTest.testAnnotationsOnEnum(spoon.test.enums.EnumsTest) (164 ms)</li><li>spoon.test.template.PatternTest.testGenerateMultiValues(spoon.test.template.PatternTest) (161 ms)</li><li>spoon.test.annotation.AnnotationTest.testUsageOfTypeAnnotationInNewInstance(spoon.test.annotation.AnnotationTest) (73 ms)</li><li>spoon.test.methodreference.MethodReferenceTest.testTryRecoverTypeArgumentsHandlesNullTypeArguments(spoon.test.methodreference.MethodReferenceTest) (335 ms)</li><li>spoon.test.intercession.insertBefore.InsertMethodsTest.testInsertBeforeSwitchCase(spoon.test.intercession.insertBefore.InsertMethodsTest) (51 ms)</li><li>spoon.test.prettyprinter.DefaultPrettyPrinterTest.testPrintAClassWithImports(spoon.test.prettyprinter.DefaultPrettyPrinterTest) (632 ms)</li><li>spoon.test.targeted.TargetedExpressionTest.testTargetsOfFieldAccess(spoon.test.targeted.TargetedExpressionTest) (54 ms)</li><li>spoon.test.field.FieldTest.testFieldImplicitTarget(spoon.test.field.FieldTest) (48 ms)</li><li>spoon.test.targeted.TargetedExpressionTest.testOnlyStaticTargetFieldReadNoClasspath(spoon.test.targeted.TargetedExpressionTest) (83 ms)</li><li>spoon.test.processing.ProcessingTest.testProcessorWithGenericType(spoon.test.processing.ProcessingTest) (659 ms)</li><li>spoon.test.intercession.insertBefore.InsertMethodsTest.testInsertAfterWithoutBrace(spoon.test.intercession.insertBefore.InsertMethodsTest) (49 ms)</li><li>spoon.reflect.ast.AstCheckerTest.testPushToStackChanges(spoon.reflect.ast.AstCheckerTest) (2509 ms)</li><li>spoon.test.filters.FilterTest.testAnnotationFilter(spoon.test.filters.FilterTest) (30 ms)</li><li>spoon.test.prettyprinter.TestSniperPrinter.testPrintLocalVariableDeclaration2(spoon.test.prettyprinter.TestSniperPrinter) (159 ms)</li><li>spoon.test.reference.TypeReferenceTest.testUnqualifiedExternalTypeMemberAccess(spoon.test.reference.TypeReferenceTest) (50 ms)</li><li>spoon.test.variable.AccessFullyQualifiedFieldTest.testNoFQNWhenUsedInTryCatch(spoon.test.variable.AccessFullyQualifiedFieldTest) (65 ms)</li><li>spoon.test.template.TemplateTest.testTemplateWithWrongUsedStringParam(spoon.test.template.TemplateTest) (283 ms)</li><li>spoon.test.secondaryclasses.ClassesTest.testAnonymousClassInStaticField(spoon.test.secondaryclasses.ClassesTest) (78 ms)</li><li>spoon.test.generics.GenericsTest.testModelBuildingTree(spoon.test.generics.GenericsTest) (69 ms)</li><li>spoon.test.api.MetamodelTest.testGetAllMetamodelInterfacess(spoon.test.api.MetamodelTest) (724 ms)</li><li>spoon.test.reference.ExecutableReferenceGenericTest.testExecutableReferences(spoon.test.reference.ExecutableReferenceGenericTest) (34 ms)</li><li>spoon.test.reference.ExecutableReferenceGenericTest.testReferencesBetweenMethods(spoon.test.reference.ExecutableReferenceGenericTest) (34 ms)</li><li>spoon.test.position.PositionTest.testPositionBuilderFailureIsCaugth(spoon.test.position.PositionTest) (43 ms)</li><li>spoon.test.position.PositionTest.testNoClasspathVariableAccessInInnerClass1(spoon.test.position.PositionTest) (62 ms)</li><li>spoon.test.path.PathTest.testPathFromString(spoon.test.path.PathTest) (158 ms)</li><li>spoon.processing.CtGenerationTest.testGenerateCloneVisitor(spoon.processing.CtGenerationTest) (54297 ms)</li><li>spoon.test.signature.SignatureTest.testArgumentNotNullForExecutableReference(spoon.test.signature.SignatureTest) (95 ms)</li><li>spoon.test.spoonifier.SpoonifierTest.testSpoonifier(spoon.test.spoonifier.SpoonifierTest) (11344 ms)</li><li>spoon.test.compilation.CompilationTest.compileTestWithImportStaticWildcard(spoon.test.compilation.CompilationTest) (3111 ms)</li><li>spoon.test.signature.SignatureTest.testMethodInvocationSignatureWithVariableAccess(spoon.test.signature.SignatureTest) (32 ms)</li><li>spoon.processing.CtGenerationTest.testGenerateRoleHandler(spoon.processing.CtGenerationTest) (8650 ms)</li><li>spoon.test.statementComment.StatementCommentTest.testTryStatement(spoon.test.statementComment.StatementCommentTest) (59 ms)</li><li>spoon.test.fieldaccesses.FieldAccessTest.testFieldWriteWithPlusEqualsOperation(spoon.test.fieldaccesses.FieldAccessTest) (64 ms)</li><li>spoon.test.parent.NullParentTest.testLocalVariableNullDefaultExpression(spoon.test.parent.NullParentTest) (47 ms)</li><li>spoon.test.prettyprinter.LinesTest.testCompileWhenUsingLinesArgument(spoon.test.prettyprinter.LinesTest) (528 ms)</li><li>spoon.test.targeted.TargetedExpressionTest.testTargetsOfInvInInnerClass(spoon.test.targeted.TargetedExpressionTest) (54 ms)</li><li>spoon.test.serializable.ModelStreamerTest (10651 ms)</li><li>spoon.test.compilation.CompilationTest.testFilterResourcesFile(spoon.test.compilation.CompilationTest) (152 ms)</li><li>spoon.test.enums.EnumsTypeTest.testEnumsType(spoon.test.enums.EnumsTypeTest) (60 ms)</li><li>spoon.test.template.PatternTest.testMatchType(spoon.test.template.PatternTest) (39 ms)</li><li>spoon.test.api.MetamodelTest.testGetterSetterForRole(spoon.test.api.MetamodelTest) (693 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtYieldStatement](spoon.test.replace.ReplaceParametrizedTest) (5 ms)</li><li>spoon.test.filters.FilterTest.testOverriddenMethodFromSubClassOfInterface(spoon.test.filters.FilterTest) (107 ms)</li><li>spoon.test.imports.ImportScannerTest.testImportOnSpoon(spoon.test.imports.ImportScannerTest) (20752 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtInterface](spoon.test.replace.ReplaceParametrizedTest) (7 ms)</li><li>spoon.test.lambda.LambdaTest.testGetDeclarationOnTypeParameterFromLambda(spoon.test.lambda.LambdaTest) (220 ms)</li><li>spoon.test.variable.AccessTest.testCanVisitVariableAccessAndSubClasses(spoon.test.variable.AccessTest) (23 ms)</li><li>spoon.test.constructor.ConstructorTest.testTypeAnnotationOnExceptionDeclaredInConstructors(spoon.test.constructor.ConstructorTest) (121 ms)</li><li>spoon.test.fieldaccesses.FieldAccessTest.testBCUBug20140402(spoon.test.fieldaccesses.FieldAccessTest) (54 ms)</li><li>spoon.test.template.TemplateTest.createTypeFromTemplate(spoon.test.template.TemplateTest) (117 ms)</li><li>spoon.test.variable.AccessTest.testVariableAccessInNoClasspath(spoon.test.variable.AccessTest) (132 ms)</li><li>spoon.test.ctType.CtTypeParameterTest.testTypeSame(spoon.test.ctType.CtTypeParameterTest) (252 ms)</li><li>spoon.FluentLauncherTest.testProcessor(spoon.FluentLauncherTest) (326 ms)</li><li>spoon.test.parameters.ParameterTest.testGetParentAfterGetParameterReference(spoon.test.parameters.ParameterTest) (60 ms)</li><li>spoon.test.constructor.ConstructorTest.testTypeAnnotationWithConstructorsOnFormalType(spoon.test.constructor.ConstructorTest) (96 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtSynchronized](spoon.test.replace.ReplaceParametrizedTest) (6 ms)</li><li>spoon.test.annotation.AnnotationTest.testUsageOfTypeAnnotationInExtendsImplementsOfAClass(spoon.test.annotation.AnnotationTest) (68 ms)</li><li>spoon.test.pkg.PackageTest.testRenamePackageAndPrettyPrintNoclasspath(spoon.test.pkg.PackageTest) (57 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtIf](spoon.test.replace.ReplaceParametrizedTest) (7 ms)</li><li>spoon.test.generics.GenericsTest.testGenericsInConstructorCall(spoon.test.generics.GenericsTest) (186 ms)</li><li>spoon.test.targeted.TargetedExpressionTest.testTargetsOfInvInAnonymousClass(spoon.test.targeted.TargetedExpressionTest) (45 ms)</li><li>spoon.test.constructorcallnewclass.NewClassTest.testNewClassInterfaceWithParameters(spoon.test.constructorcallnewclass.NewClassTest) (63 ms)</li><li>spoon.test.imports.ImportTest.testImportStaticAndFieldAccessWithImport(spoon.test.imports.ImportTest) (36 ms)</li><li>spoon.test.loop.LoopTest.testForeachShouldHaveAlwaysABlockInItsBody(spoon.test.loop.LoopTest) (239 ms)</li><li>spoon.test.constructorcallnewclass.ConstructorCallTest.testParameterizedConstructorCallOmittedTypeArgsResolvedTypeNoClasspath(spoon.test.constructorcallnewclass.ConstructorCallTest) (303 ms)</li><li>spoon.test.compilation.CompilationTest.buildAstWithDuplicateClass(spoon.test.compilation.CompilationTest) (32 ms)</li><li>spoon.test.trycatch.TryCatchTest.testTryWithResources(spoon.test.trycatch.TryCatchTest) (34 ms)</li><li>spoon.test.targeted.TargetedExpressionTest.testTargetsOfStaticFieldAccess(spoon.test.targeted.TargetedExpressionTest) (40 ms)</li><li>spoon.testing.AbstractAssertTest.testTransformationWithProcessorName(spoon.testing.AbstractAssertTest) (56 ms)</li><li>spoon.test.reference.TypeReferenceTest.testRecursiveTypeReference(spoon.test.reference.TypeReferenceTest) (42 ms)</li><li>spoon.test.prettyprinter.TestSniperPrinter.testPrintTypeWithMethodImportAboveMethodDefinition(spoon.test.prettyprinter.TestSniperPrinter) (41 ms)</li><li>spoon.test.reference.ExecutableReferenceGenericTest.testOneReferenceBetweenMethodsInSameClass(spoon.test.reference.ExecutableReferenceGenericTest) (35 ms)</li><li>spoon.reflect.ast.CloneTest.testCloneListener(spoon.reflect.ast.CloneTest) (3501 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtComment](spoon.test.replace.ReplaceParametrizedTest) (10 ms)</li><li>spoon.test.statementComment.StatementCommentTest.testCatchStatementFail(spoon.test.statementComment.StatementCommentTest) (59 ms)</li><li>spoon.test.enums.EnumsTest.testEnumMembersModifiers(spoon.test.enums.EnumsTest) (155 ms)</li><li>spoon.test.template.PatternTest.testPatternMatchOfMultipleElements(spoon.test.template.PatternTest) (189 ms)</li><li>spoon.test.template.TemplateTest.testSimpleTemplate(spoon.test.template.TemplateTest) (150 ms)</li><li>spoon.test.main.MainTest.testResourcesNotCopiedInTargetDirectory(spoon.test.main.MainTest) (233 ms)</li><li>spoon.test.template.PatternTest.testMatchPossesiveMultiValueMinCount(spoon.test.template.PatternTest) (56 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtCodeSnippetExpression](spoon.test.replace.ReplaceParametrizedTest) (23 ms)</li><li>spoon.test.parent.ParentTest.testParentOfGenericInTypeReference(spoon.test.parent.ParentTest) (72 ms)</li><li>spoon.test.statementComment.StatementCommentTest.testCaseStatement(spoon.test.statementComment.StatementCommentTest) (49 ms)</li><li>spoon.test.filters.FilterTest.testClassCastExceptionOnForEach(spoon.test.filters.FilterTest) (118 ms)</li><li>spoon.test.constructorcallnewclass.NewClassTest.testCtNewClassInNoClasspath(spoon.test.constructorcallnewclass.NewClassTest) (502 ms)</li><li>spoon.test.casts.CastTest.testCast3(spoon.test.casts.CastTest) (60 ms)</li><li>spoon.test.annotation.AnnotationTest.testAbstractAllAnnotationProcessor(spoon.test.annotation.AnnotationTest) (97 ms)</li><li>spoon.test.filters.FilterTest.testFilterQueryStep(spoon.test.filters.FilterTest) (112 ms)</li><li>spoon.test.api.APITest.testInvalidateCacheOfCompiler(spoon.test.api.APITest) (243 ms)</li><li>spoon.test.architecture.SpoonArchitectureEnforcerTest.testGoodTestClassNames(spoon.test.architecture.SpoonArchitectureEnforcerTest) (13773 ms)</li><li>spoon.test.template.PatternTest.testMatchParameterCondition(spoon.test.template.PatternTest) (50 ms)</li><li>spoon.test.template.PatternTest.testPatternToString(spoon.test.template.PatternTest) (188 ms)</li><li>spoon.test.statementComment.StatementCommentTest.testUnaryOperatorStatement(spoon.test.statementComment.StatementCommentTest) (50 ms)</li><li>spoon.FluentLauncherTest.testConsistency(spoon.FluentLauncherTest) (298 ms)</li><li>spoon.test.comment.CommentTest.testCodeFactory(spoon.test.comment.CommentTest) (502 ms)</li><li>spoon.test.targeted.TargetedExpressionTest.testTargetsOfFieldInAnonymousClass(spoon.test.targeted.TargetedExpressionTest) (47 ms)</li><li>spoon.test.generics.GenericsTest.testMethodTypingContext(spoon.test.generics.GenericsTest) (226 ms)</li><li>spoon.test.reflect.visitor.ReferenceQueryTest.getAllTypeReferencesInEnum(spoon.test.reflect.visitor.ReferenceQueryTest) (39 ms)</li><li>spoon.test.template.PatternTest.testMatchPossesiveMultiValueUnlimited(spoon.test.template.PatternTest) (159 ms)</li><li>spoon.test.lambda.LambdaTest.testLambdaWithGenericExtendingMultipleInterfaces(spoon.test.lambda.LambdaTest) (146 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtCatchVariable](spoon.test.replace.ReplaceParametrizedTest) (17 ms)</li><li>spoon.test.annotation.AnnotationValuesTest.testValuesOnJava8Annotation(spoon.test.annotation.AnnotationValuesTest) (48 ms)</li><li>spoon.test.filters.FilterTest.testQueryBuilderWithFilterChain(spoon.test.filters.FilterTest) (219 ms)</li><li>spoon.test.reference.TypeReferenceTest.testQualifiedArrayTypeReferenceNoClasspath(spoon.test.reference.TypeReferenceTest) (25 ms)</li><li>spoon.test.lambda.LambdaTest.testFieldAccessInLambdaNoClassPathExternal1Example(spoon.test.lambda.LambdaTest) (302 ms)</li><li>spoon.test.ctClass.CtClassTest.testCloneAnonymousClassInvocationWithAutoimports(spoon.test.ctClass.CtClassTest) (49 ms)</li><li>spoon.test.template.TemplateInvocationSubstitutionTest.testInvocationSubstitutionByStatement(spoon.test.template.TemplateInvocationSubstitutionTest) (113 ms)</li><li>spoon.test.variable.AccessFullyQualifiedFieldTest.testStaticImportWithAutoImport(spoon.test.variable.AccessFullyQualifiedFieldTest) (92 ms)</li><li>spoon.reflect.ast.AstCheckerTest.testExecutableReference(spoon.reflect.ast.AstCheckerTest) (46 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtWildcardReference](spoon.test.replace.ReplaceParametrizedTest) (2 ms)</li><li>spoon.test.statementComment.StatementCommentTest.testSwitchStatement(spoon.test.statementComment.StatementCommentTest) (35 ms)</li><li>spoon.test.constructorcallnewclass.ConstructorCallTest.testConstructorCallObjectWithParameters(spoon.test.constructorcallnewclass.ConstructorCallTest) (173 ms)</li><li>spoon.test.generics.GenericsTest.testGenericsOverriding(spoon.test.generics.GenericsTest) (38 ms)</li><li>spoon.test.parent.NullParentTest.testFieldNullDefaultExpression(spoon.test.parent.NullParentTest) (50 ms)</li><li>spoon.test.comment.CommentTest.testCommentGetRawContent(spoon.test.comment.CommentTest) (71 ms)</li><li>spoon.test.filters.FilterTest.unionOfTwoFilters(spoon.test.filters.FilterTest) (88 ms)</li><li>spoon.test.generics.GenericsTest.testNewClassGenerics(spoon.test.generics.GenericsTest) (404 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtFieldWrite](spoon.test.replace.ReplaceParametrizedTest) (9 ms)</li><li>spoon.test.prettyprinter.SniperDoubleBoundTest (35 ms)</li><li>spoon.test.reference.ExecutableReferenceGenericTest.testMultiReferencesBetweenMethodsWithoutGenericInSameClass(spoon.test.reference.ExecutableReferenceGenericTest) (38 ms)</li><li>spoon.test.intercession.IntercessionTest.testSettersAreAllGood(spoon.test.intercession.IntercessionTest) (8298 ms)</li><li>spoon.test.javadoc.JavaDocTest.testJavaDocReprint(spoon.test.javadoc.JavaDocTest) (89 ms)</li><li>spoon.test.initializers.InitializerTest.testModelBuildingStaticInitializer(spoon.test.initializers.InitializerTest) (46 ms)</li><li>spoon.test.statementComment.StatementCommentTest.testSynchronousStatement(spoon.test.statementComment.StatementCommentTest) (41 ms)</li><li>spoon.test.comment.CommentTest.testEmptyStatementComments(spoon.test.comment.CommentTest) (28 ms)</li><li>spoon.test.lambda.LambdaTest.testLambdaMethod(spoon.test.lambda.LambdaTest) (144 ms)</li><li>spoon.test.generics.GenericsTest.testModelBuildingGenericConstructor(spoon.test.generics.GenericsTest) (45 ms)</li><li>spoon.test.lambda.LambdaTest.testInterfaceWithObjectMethods(spoon.test.lambda.LambdaTest) (211 ms)</li><li>spoon.test.template.PatternTest.testMatchGreedyMultiValueMaxCountLimit(spoon.test.template.PatternTest) (212 ms)</li><li>spoon.test.annotation.AnnotationTest.annotationAddValue(spoon.test.annotation.AnnotationTest) (40 ms)</li><li>spoon.test.methodreference.MethodReferenceTest.testGetGenericMethodFromReference(spoon.test.methodreference.MethodReferenceTest) (544 ms)</li><li>spoon.test.reference.VariableAccessTest.testDeclarationArray(spoon.test.reference.VariableAccessTest) (37 ms)</li><li>spoon.test.statementComment.StatementCommentTest.testAssertStatement(spoon.test.statementComment.StatementCommentTest) (53 ms)</li><li>spoon.test.pkg.PackageTest.testAnnotationOnPackage(spoon.test.pkg.PackageTest) (154 ms)</li><li>spoon.test.variable.AccessFullyQualifiedFieldTest.testNoFQNWhenUsedInInnerClassAndShadowedByLocalVariable(spoon.test.variable.AccessFullyQualifiedFieldTest) (65 ms)</li><li>spoon.test.statementComment.StatementCommentTest.testClassStatement(spoon.test.statementComment.StatementCommentTest) (58 ms)</li><li>spoon.test.reference.TypeReferenceTest.testAnnotationOnMethodWithPrimitiveReturnTypeInNoClasspath(spoon.test.reference.TypeReferenceTest) (38 ms)</li><li>spoon.generating.CorrectIdentifierTest.intersectionTypeIdentifierTest(spoon.generating.CorrectIdentifierTest) (902 ms)</li><li>spoon.test.trycatch.TryCatchTest.testCatchQualifiedReferenceNoClasspath(spoon.test.trycatch.TryCatchTest) (29 ms)</li><li>spoon.test.main.MainTest.testTest(spoon.test.main.MainTest) (84655 ms)</li><li>spoon.test.textBlocks.TextBlockTest.testTextBlockQouteWithinQoute(spoon.test.textBlocks.TextBlockTest) (37 ms)</li><li>spoon.test.prettyprinter.PrinterTest.testChangeAutoImportModeWorks(spoon.test.prettyprinter.PrinterTest) (88 ms)</li><li>spoon.test.lambda.LambdaTest.testLambdaExpressionWithExpressionBodyAndWithMultiParameters(spoon.test.lambda.LambdaTest) (247 ms)</li><li>spoon.test.query_function.VariableReferencesTest.testVariableScopeFunction(spoon.test.query_function.VariableReferencesTest) (96 ms)</li><li>spoon.test.enums.EnumsTest.testEnumValue(spoon.test.enums.EnumsTest) (162 ms)</li><li>spoon.test.generics.GenericsTest.testConstructorCallGenerics(spoon.test.generics.GenericsTest) (309 ms)</li><li>spoon.test.textBlocks.TextBlockTest.testTextBlockqoute(spoon.test.textBlocks.TextBlockTest) (60 ms)</li><li>spoon.test.generics.GenericsTest.testMethodsWithGenericsWhoExtendsObject(spoon.test.generics.GenericsTest) (309 ms)</li><li>spoon.test.initializers.InitializerTest.testModelBuildingInitializer(spoon.test.initializers.InitializerTest) (81 ms)</li><li>spoon.test.template.TemplateTest.testExpressionTemplate(spoon.test.template.TemplateTest) (53 ms)</li><li>spoon.test.factory.FactoryTest.testCtModel(spoon.test.factory.FactoryTest) (44 ms)</li><li>spoon.test.reference.VariableAccessTest.testGetDeclarationAfterClone(spoon.test.reference.VariableAccessTest) (56 ms)</li><li>spoon.test.imports.ImportTest.testMissingImport(spoon.test.imports.ImportTest) (90 ms)</li><li>spoon.test.comment.CommentTest.testCombinedPackageInfoComment(spoon.test.comment.CommentTest) (311 ms)</li><li>spoon.reflect.visitor.CtScannerTest.testDequeSCanner(spoon.reflect.visitor.CtScannerTest) (52 ms)</li><li>spoon.test.staticFieldAccess.StaticAccessTest.testProcessAndCompile(spoon.test.staticFieldAccess.StaticAccessTest) (81 ms)</li><li>spoon.test.prettyprinter.TestSniperPrinter.testToStringWithSniperOnElementScan(spoon.test.prettyprinter.TestSniperPrinter) (122 ms)</li><li>spoon.testing.FileAssertTest.testEqualsBetweenTwoSameFile(spoon.testing.FileAssertTest) (51 ms)</li><li>spoon.test.prettyprinter.DefaultPrettyPrinterTest.testIssue1501(spoon.test.prettyprinter.DefaultPrettyPrinterTest) (350 ms)</li><li>spoon.test.lambda.LambdaTest.testBuildExecutableReferenceFromLambda(spoon.test.lambda.LambdaTest) (466 ms)</li><li>spoon.test.api.APITest.testPrintNotAllSourcesWithFilter(spoon.test.api.APITest) (404 ms)</li><li>spoon.test.comment.CommentTest.testBlockComment(spoon.test.comment.CommentTest) (389 ms)</li><li>spoon.test.imports.ImportTest.testDeepNestedStaticPathWithTypedParameterWithImports(spoon.test.imports.ImportTest) (108 ms)</li><li>spoon.test.prettyprinter.PrinterTest.testPrinterTokenListener(spoon.test.prettyprinter.PrinterTest) (1374 ms)</li><li>spoon.test.constructorcallnewclass.ConstructorCallTest.testConstructorCallStringWithoutParameters(spoon.test.constructorcallnewclass.ConstructorCallTest) (331 ms)</li><li>spoon.test.parent.NullParentTest.testTargetedAccessNullTarget(spoon.test.parent.NullParentTest) (37 ms)</li><li>spoon.test.reference.VariableAccessTest.testDeclarationOfVariableReference(spoon.test.reference.VariableAccessTest) (29 ms)</li><li>spoon.test.lambda.LambdaTest.testCastLambdaWithIntersection(spoon.test.lambda.LambdaTest) (212 ms)</li><li>spoon.test.comparison.EqualTest.testEqualsEmptyException(spoon.test.comparison.EqualTest) (24 ms)</li><li>spoon.test.template.PatternTest.testGenerateClassWithSelfReferences(spoon.test.template.PatternTest) (50 ms)</li><li>spoon.test.serializable.SourcePositionTest.testSourcePosition(spoon.test.serializable.SourcePositionTest) (33 ms)</li><li>spoon.test.annotation.AnnotationTest.testRepeatSameAnnotationOnLocalVariable(spoon.test.annotation.AnnotationTest) (36 ms)</li><li>spoon.test.template.TemplateReplaceReturnTest.testNoReturnReplaceTemplate(spoon.test.template.TemplateReplaceReturnTest) (94 ms)</li><li>spoon.test.type.TypeTest.test(spoon.test.type.TypeTest) (75 ms)</li><li>spoon.test.imports.ImportTest.testWithInnerEnumDoesNotImportStaticInnerMethods(spoon.test.imports.ImportTest) (115 ms)</li><li>spoon.reflect.visitor.CtBFSIteratorTest.testCtElementIteration(spoon.reflect.visitor.CtBFSIteratorTest) (508 ms)</li><li>spoon.test.secondaryclasses.ClassesTest.testAnonymousClass(spoon.test.secondaryclasses.ClassesTest) (80 ms)</li><li>spoon.test.pkg.PackageTest.testRenamePackageAndPrettyPrint(spoon.test.pkg.PackageTest) (72 ms)</li><li>spoon.test.generics.GenericsTest.testBugComparableComparator(spoon.test.generics.GenericsTest) (56 ms)</li><li>spoon.test.methodreference.MethodReferenceTest.testReferenceToAJavaUtilClassConstructor(spoon.test.methodreference.MethodReferenceTest) (455 ms)</li><li>spoon.test.template.PatternTest.testMatchPossesiveMultiValueMinCount2(spoon.test.template.PatternTest) (116 ms)</li><li>spoon.test.prettyprinter.DefaultPrettyPrinterTest.testPrintAMethodWithGeneric(spoon.test.prettyprinter.DefaultPrettyPrinterTest) (574 ms)</li><li>spoon.test.template.TemplateInvocationSubstitutionTest.testInvocationSubstitutionByExpression(spoon.test.template.TemplateInvocationSubstitutionTest) (111 ms)</li><li>spoon.test.trycatch.TryCatchTest.testCatchWithExplicitFinalVariable(spoon.test.trycatch.TryCatchTest) (108 ms)</li><li>spoon.test.fieldaccesses.FieldAccessTest.testFieldAccessWithParenthesis(spoon.test.fieldaccesses.FieldAccessTest) (204 ms)</li><li>spoon.test.prettyprinter.TestSniperPrinter.testPrintChangedComplex(spoon.test.prettyprinter.TestSniperPrinter) (657 ms)</li><li>spoon.test.processing.processors.ParallelProcessorTest.consumerConstructorTest(spoon.test.processing.processors.ParallelProcessorTest) (178 ms)</li><li>spoon.test.invocations.InvocationTest.testTypeOfStaticInvocation(spoon.test.invocations.InvocationTest) (50 ms)</li><li>spoon.test.jar.JarTest.testJar(spoon.test.jar.JarTest) (89 ms)</li><li>spoon.test.template.TemplateTest.testTemplateInterfaces(spoon.test.template.TemplateTest) (208 ms)</li><li>spoon.test.reference.ExecutableReferenceTest.testCallMethodOfClassNotPresent(spoon.test.reference.ExecutableReferenceTest) (37 ms)</li><li>spoon.test.staticFieldAccess2.ImplicitStaticFieldReferenceTest.testImplicitStaticFieldReference(spoon.test.staticFieldAccess2.ImplicitStaticFieldReferenceTest) (60 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtTypeMemberWildcardImportReference](spoon.test.replace.ReplaceParametrizedTest) (6 ms)</li><li>spoon.test.type.TypeTest.testTypeAccessForTypeAccessInInstanceOf(spoon.test.type.TypeTest) (129 ms)</li><li>spoon.test.method_overriding.MethodOverriddingTest.testMethodOverrideByReference(spoon.test.method_overriding.MethodOverriddingTest) (95 ms)</li><li>spoon.test.annotation.AnnotationTest.testUsageOfTypeAnnotationOnLocalVariableInMethod(spoon.test.annotation.AnnotationTest) (70 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtAnnotation](spoon.test.replace.ReplaceParametrizedTest) (10 ms)</li><li>spoon.test.targeted.TargetedExpressionTest.testStaticTargetsOfInvNoClasspath(spoon.test.targeted.TargetedExpressionTest) (37 ms)</li><li>spoon.test.reference.TypeReferenceTest.testSubTypeAnonymous(spoon.test.reference.TypeReferenceTest) (47 ms)</li><li>spoon.test.reference.TypeReferenceTest.testInvocationWithFieldAccessInNoClasspath(spoon.test.reference.TypeReferenceTest) (292 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtImport](spoon.test.replace.ReplaceParametrizedTest) (5 ms)</li><li>spoon.test.javadoc.JavaDocTest.testJavadocTagNames(spoon.test.javadoc.JavaDocTest) (53 ms)</li><li>spoon.test.trycatch.TryCatchTest.testTryCatchVariableGetType(spoon.test.trycatch.TryCatchTest) (32 ms)</li><li>spoon.test.annotation.AnnotationTest.testWritingAnnotParamArray(spoon.test.annotation.AnnotationTest) (35 ms)</li><li>spoon.test.type.TypeTest.testPolyTypBindingInTernaryExpression(spoon.test.type.TypeTest) (252 ms)</li><li>spoon.test.constructorcallnewclass.NewClassTest.testMoreThan9NewClass(spoon.test.constructorcallnewclass.NewClassTest) (235 ms)</li><li>spoon.test.query_function.VariableReferencesTest.testLocalVariableReferenceDeclarationFunction(spoon.test.query_function.VariableReferencesTest) (111 ms)</li><li>spoon.test.reference.ExecutableReferenceGenericTest.testOneReferenceWithMethodNotGenericOutOfTheClass(spoon.test.reference.ExecutableReferenceGenericTest) (34 ms)</li><li>spoon.test.template.TemplateTest.testCheckBoundTemplate(spoon.test.template.TemplateTest) (90 ms)</li><li>spoon.test.architecture.SpoonArchitectureEnforcerTest.metamodelPackageRule(spoon.test.architecture.SpoonArchitectureEnforcerTest) (3395 ms)</li><li>spoon.test.targeted.TargetedExpressionTest.testCtThisAccess(spoon.test.targeted.TargetedExpressionTest) (103 ms)</li><li>spoon.test.reference.TypeReferenceTest.testArgumentOfAInvocationIsNotATypeAccess(spoon.test.reference.TypeReferenceTest) (45 ms)</li><li>spoon.test.template.TemplateTest.testTemplateMatcherMatchTwoSnippets(spoon.test.template.TemplateTest) (96 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtAnnotationMethod](spoon.test.replace.ReplaceParametrizedTest) (22 ms)</li><li>spoon.test.arrays.ArraysTest.testCtNewArrayInnerCtNewArray(spoon.test.arrays.ArraysTest) (88 ms)</li><li>spoon.test.targeted.TargetedExpressionTest.testCastWriteWithGenerics(spoon.test.targeted.TargetedExpressionTest) (30 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtUnaryOperator](spoon.test.replace.ReplaceParametrizedTest) (7 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtArrayRead](spoon.test.replace.ReplaceParametrizedTest) (16 ms)</li><li>spoon.test.fieldaccesses.FieldAccessTest.testFieldAccessAutoExplicit(spoon.test.fieldaccesses.FieldAccessTest) (112 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtCodeSnippetStatement](spoon.test.replace.ReplaceParametrizedTest) (12 ms)</li><li>spoon.test.template.TemplateTest.testStatementTemplateRootSubstitution(spoon.test.template.TemplateTest) (52 ms)</li><li>spoon.test.modifiers.ModifiersTest.testGetModifiersHelpers(spoon.test.modifiers.ModifiersTest) (240 ms)</li><li>spoon.test.imports.ImportTest.testSortingOfImports(spoon.test.imports.ImportTest) (1654 ms)</li><li>spoon.test.imports.ImportTest.testImportOfAnInnerClassInASuperClassPackageAutoImport(spoon.test.imports.ImportTest) (211 ms)</li><li>spoon.test.targeted.TargetedExpressionTest.testClassDeclaredInALambda(spoon.test.targeted.TargetedExpressionTest) (40 ms)</li><li>spoon.test.statementComment.StatementCommentTest.testBlockStatementWithinBody(spoon.test.statementComment.StatementCommentTest) (64 ms)</li><li>spoon.test.reference.TypeReferenceTest.loadReferencedClassFromClasspath(spoon.test.reference.TypeReferenceTest) (18 ms)</li><li>spoon.test.lambda.LambdaTest.testLambdaFilter(spoon.test.lambda.LambdaTest) (346 ms)</li><li>spoon.test.generics.GenericsTest.testGetDeclarationOfTypeParameterReference(spoon.test.generics.GenericsTest) (66 ms)</li><li>spoon.test.template.PatternTest.testAddGeneratedBy(spoon.test.template.PatternTest) (35 ms)</li><li>spoon.test.generics.GenericsTest.testDeepGenericsInExecutableReference(spoon.test.generics.GenericsTest) (46 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtAssignment](spoon.test.replace.ReplaceParametrizedTest) (15 ms)</li><li>spoon.test.parent.NullParentTest.testReturnNullExpression(spoon.test.parent.NullParentTest) (81 ms)</li><li>spoon.test.prettyprinter.SniperInnerTypeTest (141 ms)</li>
+</ul>
+
+<br/>
+
+Report generated by <a href='http://pitest.org'>PIT</a> 1.6.4
+
+</body>
+</html>

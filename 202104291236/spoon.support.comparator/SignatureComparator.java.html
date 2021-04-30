@@ -1,0 +1,1761 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+<body>
+
+
+<h1>SignatureComparator.java</h1>
+
+<table class="src">
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@384c1063_1'/>
+1
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@384c1063_1'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>/**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@384c1063_2'/>
+2
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@384c1063_2'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * SPDX-License-Identifier: (MIT OR CECILL-C)</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@384c1063_3'/>
+3
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@384c1063_3'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@384c1063_4'/>
+4
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@384c1063_4'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * Copyright (C) 2006-2019 INRIA and contributors</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@384c1063_5'/>
+5
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@384c1063_5'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@384c1063_6'/>
+6
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@384c1063_6'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * Spoon is available either under the terms of the MIT License (see LICENSE-MIT.txt) of the Cecill-C License (see LICENSE-CECILL-C.txt). You as the user are entitled to choose the terms under which to adopt Spoon.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@384c1063_7'/>
+7
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@384c1063_7'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@384c1063_8'/>
+8
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@384c1063_8'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>package spoon.support.comparator;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@384c1063_9'/>
+9
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@384c1063_9'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@384c1063_10'/>
+10
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@384c1063_10'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import spoon.reflect.declaration.CtElement;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@384c1063_11'/>
+11
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@384c1063_11'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import spoon.support.visitor.SignaturePrinter;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@384c1063_12'/>
+12
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@384c1063_12'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@384c1063_13'/>
+13
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@384c1063_13'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.io.Serializable;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@384c1063_14'/>
+14
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@384c1063_14'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.util.Comparator;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@384c1063_15'/>
+15
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@384c1063_15'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@384c1063_16'/>
+16
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@384c1063_16'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>/**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@384c1063_17'/>
+17
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@384c1063_17'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * Compares executables (method, executable-references) based on a signature.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@384c1063_18'/>
+18
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@384c1063_18'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> */</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@384c1063_19'/>
+19
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@384c1063_19'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>public class SignatureComparator implements Comparator&#60;CtElement&#62;, Serializable {</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@384c1063_20'/>
+20
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@384c1063_20'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@384c1063_21'/>
+21
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@384c1063_21'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;private static final long serialVersionUID = 1L;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@384c1063_22'/>
+22
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@384c1063_22'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@384c1063_23'/>
+23
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@384c1063_23'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;@Override</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@384c1063_24'/>
+24
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@384c1063_24'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;public int compare(CtElement o1, CtElement o2) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@384c1063_25'/>
+25
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@384c1063_25'>2</a>
+<span>
+1. compare : All method instructions replaced by: return 0 &rarr; KILLED<br/>
+2. compare : All method instructions replaced by: return 1 &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>&#9;&#9;SignaturePrinter signaturePrinter1 = new SignaturePrinter();</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@384c1063_26'/>
+26
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@384c1063_26'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;SignaturePrinter signaturePrinter2 = new SignaturePrinter();</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@384c1063_27'/>
+27
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@384c1063_27'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;signaturePrinter1.scan(o1);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@384c1063_28'/>
+28
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@384c1063_28'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;signaturePrinter2.scan(o2);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@384c1063_29'/>
+29
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@384c1063_29'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;return signaturePrinter1.getSignature().compareTo(signaturePrinter2.getSignature());</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@384c1063_30'/>
+30
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@384c1063_30'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;}</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@384c1063_31'/>
+31
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@384c1063_31'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@384c1063_32'/>
+32
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@384c1063_32'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>}</span></pre></td></tr>
+
+
+
+<tr><td></td><td></td><td><h2>Mutations</h2></td></tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@384c1063_25'>25</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@384c1063_25'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>compare<br/><b>Killed by : </b>spoon.test.interfaces.TestInterfaceWithoutSetup.testModifierFromInterfaceFieldAndMethod(spoon.test.interfaces.TestInterfaceWithoutSetup)</span></span> All method instructions replaced by: return 0 &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>compare<br/><b>Killed by : </b>spoon.test.ctClass.CtClassTest.getConstructor(spoon.test.ctClass.CtClassTest)</span></span> All method instructions replaced by: return 1 &rarr; KILLED</p> 
+</td>
+</tr>
+
+</table>
+
+
+<h2>Active mutators</h2>
+<ul>
+<li class='mutator'>""</li>
+<li class='mutator'>"A"</li>
+<li class='mutator'>'A'</li>
+<li class='mutator'>'\40'</li>
+<li class='mutator'>(byte)0</li>
+<li class='mutator'>(byte)1</li>
+<li class='mutator'>(short)0</li>
+<li class='mutator'>(short)1</li>
+<li class='mutator'>0</li>
+<li class='mutator'>0.0</li>
+<li class='mutator'>0.0f</li>
+<li class='mutator'>0L</li>
+<li class='mutator'>1</li>
+<li class='mutator'>1.0</li>
+<li class='mutator'>1.0f</li>
+<li class='mutator'>1L</li>
+<li class='mutator'>empty</li>
+<li class='mutator'>false</li>
+<li class='mutator'>null</li>
+<li class='mutator'>true</li>
+<li class='mutator'>void</li>
+
+</ul>
+
+<h2>Tests examined</h2>
+<ul>
+<li>spoon.test.comparison.EqualTest.testEqualsActualTypeRef(spoon.test.comparison.EqualTest) (80 ms)</li><li>spoon.test.model.TypeTest.testGetUsedTypesForTypeInRootPackage(spoon.test.model.TypeTest) (31 ms)</li><li>spoon.test.prettyprinter.DefaultPrettyPrinterTest.testThisConstructorCall(spoon.test.prettyprinter.DefaultPrettyPrinterTest) (53 ms)</li><li>spoon.test.comment.CommentTest.testAnnotationTypeComment(spoon.test.comment.CommentTest) (63 ms)</li><li>spoon.test.annotation.AnnotationTest.testAnnotationParameterTypes(spoon.test.annotation.AnnotationTest) (88 ms)</li><li>spoon.test.imports.ImportScannerTest.testImportOnSpoon(spoon.test.imports.ImportScannerTest) (20752 ms)</li><li>spoon.test.api.MetamodelTest.testRoleOnField(spoon.test.api.MetamodelTest) (2671 ms)</li><li>spoon.test.parent.ContractOnSettersParametrizedTest.testContract[public interface CtBreak extends spoon.reflect.code.CtLabelledFlowBreak {
+    spoon.reflect.code.CtBreak clone();
+}](spoon.test.parent.ContractOnSettersParametrizedTest) (309 ms)</li><li>spoon.test.parent.ContractOnSettersParametrizedTest.testContract[public interface CtYieldStatement extends spoon.reflect.code.CtCFlowBreak {
+    spoon.reflect.code.CtYieldStatement clone();
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.EXPRESSION)
+    <T extends spoon.reflect.code.CtYieldStatement> T setExpression(spoon.reflect.code.CtExpression<?> arg0);
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.EXPRESSION)
+    spoon.reflect.code.CtExpression<?> getExpression();
+}](spoon.test.parent.ContractOnSettersParametrizedTest) (272 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtInterface](spoon.test.replace.ReplaceParametrizedTest) (7 ms)</li><li>spoon.test.interfaces.InterfaceTest.testExtendsStaticMethodInSubInterface(spoon.test.interfaces.InterfaceTest) (83 ms)</li><li>spoon.test.parent.ContractOnSettersParametrizedTest.testContract[public interface CtJavaDocTag extends spoon.reflect.declaration.CtElement {
+    spoon.reflect.code.CtJavaDocTag clone();
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.DOCUMENTATION_TYPE)
+    spoon.reflect.code.CtJavaDocTag.TagType getType();
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.DOCUMENTATION_TYPE_REALNAME)
+    java.lang.String getRealName();
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.COMMENT_CONTENT)
+    java.lang.String getContent();
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.JAVADOC_TAG_VALUE)
+    java.lang.String getParam();
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.JAVADOC_TAG_VALUE)
+    <E extends spoon.reflect.code.CtJavaDocTag> E setParam(java.lang.String arg0);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.DOCUMENTATION_TYPE_REALNAME)
+    <E extends spoon.reflect.code.CtJavaDocTag> E setRealName(java.lang.String arg0);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.COMMENT_CONTENT)
+    <E extends spoon.reflect.code.CtJavaDocTag> E setContent(java.lang.String arg0);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.DOCUMENTATION_TYPE)
+    <E extends spoon.reflect.code.CtJavaDocTag> E setType(java.lang.String arg0);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.DOCUMENTATION_TYPE)
+    <E extends spoon.reflect.code.CtJavaDocTag> E setType(spoon.reflect.code.CtJavaDocTag.TagType arg0);
+
+    static final java.lang.String JAVADOC_TAG_PREFIX = "@";
+
+    final enum TagType {
+
+        AUTHOR,
+        DEPRECATED,
+        EXCEPTION,
+        PARAM,
+        RETURN,
+        SEE,
+        SERIAL,
+        SERIAL_DATA,
+        SERIAL_FIELD,
+        SINCE,
+        THROWS,
+        VERSION,
+        UNKNOWN;
+        private TagType(java.lang.String arg0) {
+        }
+
+        public java.lang.String getName() {
+        }
+
+        public java.lang.String toString() {
+        }
+
+        public static spoon.reflect.code.CtJavaDocTag.TagType tagFromName(java.lang.String arg0) {
+        }
+
+        public boolean hasParam() {
+        }
+
+        private java.lang.String name;
+    }
+}](spoon.test.parent.ContractOnSettersParametrizedTest) (154 ms)</li><li>spoon.test.generics.GenericsTest.testDiamond1(spoon.test.generics.GenericsTest) (37 ms)</li><li>spoon.test.parent.ContractOnSettersParametrizedTest.testContract[public interface CtAnnotationMethod<T> extends spoon.reflect.declaration.CtMethod<T> {
+    spoon.reflect.declaration.CtAnnotationMethod<T> clone();
+
+    @spoon.support.UnsettableProperty
+    <T1 extends spoon.reflect.declaration.CtExecutable<T>> T1 setParameters(java.util.List<spoon.reflect.declaration.CtParameter<?>> arg0);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.DEFAULT_EXPRESSION)
+    <C extends spoon.reflect.declaration.CtAnnotationMethod<T>> C setDefaultExpression(spoon.reflect.code.CtExpression<T> arg0);
+
+    @spoon.support.UnsettableProperty
+    <T extends spoon.reflect.declaration.CtFormalTypeDeclarer> T setFormalCtTypeParameters(java.util.List<spoon.reflect.declaration.CtTypeParameter> arg0);
+
+    @spoon.support.UnsettableProperty
+    <T1 extends spoon.reflect.declaration.CtExecutable<T>> T1 setThrownTypes(java.util.Set<spoon.reflect.reference.CtTypeReference<? extends java.lang.Throwable>> arg0);
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.DEFAULT_EXPRESSION)
+    spoon.reflect.code.CtExpression<T> getDefaultExpression();
+
+    @spoon.support.UnsettableProperty
+    <T1 extends spoon.reflect.code.CtBodyHolder> T1 setBody(spoon.reflect.code.CtStatement arg0);
+}](spoon.test.parent.ContractOnSettersParametrizedTest) (330 ms)</li><li>spoon.test.parent.ContractOnSettersParametrizedTest.testContract[public interface CtAssignment<T, A extends T> extends spoon.reflect.code.CtExpression<T> , spoon.reflect.code.CtStatement , spoon.reflect.code.CtRHSReceiver<A> {
+    spoon.reflect.code.CtAssignment<T, A> clone();
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.ASSIGNED)
+    spoon.reflect.code.CtExpression<T> getAssigned();
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.ASSIGNED)
+    <C extends spoon.reflect.code.CtAssignment<T, A>> C setAssigned(spoon.reflect.code.CtExpression<T> arg0);
+}](spoon.test.parent.ContractOnSettersParametrizedTest) (177 ms)</li><li>spoon.test.ctType.CtTypeParameterTest.testTypeSame(spoon.test.ctType.CtTypeParameterTest) (252 ms)</li><li>spoon.test.annotation.AnnotationValuesTest.testIssue3639(spoon.test.annotation.AnnotationValuesTest) (18 ms)</li><li>spoon.test.parent.ContractOnSettersParametrizedTest.testContract[public interface CtInvocation<T> extends spoon.reflect.code.CtStatement , spoon.reflect.code.CtTargetedExpression<T, spoon.reflect.code.CtExpression<?>> , spoon.reflect.code.CtAbstractInvocation<T> , spoon.reflect.reference.CtActualTypeContainer {
+    spoon.reflect.code.CtInvocation<T> clone();
+
+    @spoon.support.DerivedProperty
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.TYPE)
+    spoon.reflect.reference.CtTypeReference<T> getType();
+
+    @spoon.support.DerivedProperty
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.TYPE_ARGUMENT)
+    java.util.List<spoon.reflect.reference.CtTypeReference<?>> getActualTypeArguments();
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.TYPE_ARGUMENT)
+    <T extends spoon.reflect.reference.CtActualTypeContainer> T addActualTypeArgument(spoon.reflect.reference.CtTypeReference<?> arg0);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.TYPE_ARGUMENT)
+    <T extends spoon.reflect.reference.CtActualTypeContainer> T setActualTypeArguments(java.util.List<? extends spoon.reflect.reference.CtTypeReference<?>> arg0);
+}](spoon.test.parent.ContractOnSettersParametrizedTest) (129 ms)</li><li>spoon.test.parent.ContractOnSettersParametrizedTest.testContract[public interface CtBlock<R> extends spoon.reflect.code.CtStatement , spoon.template.TemplateParameter<R> , spoon.reflect.code.CtStatementList {
+    spoon.reflect.code.CtBlock<R> clone();
+
+    void comment();
+}](spoon.test.parent.ContractOnSettersParametrizedTest) (160 ms)</li><li>spoon.reflect.declaration.CtTypeInformationTest.testGetSuperclass(spoon.reflect.declaration.CtTypeInformationTest) (1026 ms)</li><li>spoon.test.eval.EvalTest.testIsKnownAtCompileTime(spoon.test.eval.EvalTest) (416 ms)</li><li>spoon.test.parent.ContractOnSettersParametrizedTest.testContract[public interface CtThisAccess<T> extends spoon.reflect.code.CtTargetedExpression<T, spoon.reflect.code.CtExpression<?>> {
+    spoon.reflect.code.CtThisAccess<T> clone();
+}](spoon.test.parent.ContractOnSettersParametrizedTest) (157 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtAnnotationType](spoon.test.replace.ReplaceParametrizedTest) (11 ms)</li><li>spoon.test.parent.ContractOnSettersParametrizedTest.testContract[public interface CtPackageExport extends spoon.reflect.declaration.CtModuleDirective {
+    spoon.reflect.declaration.CtPackageExport clone();
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.OPENED_PACKAGE)
+    boolean isOpenedPackage();
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.OPENED_PACKAGE)
+    <T extends spoon.reflect.declaration.CtPackageExport> T setOpenedPackage(boolean arg0);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.PACKAGE_REF)
+    <T extends spoon.reflect.declaration.CtPackageExport> T setPackageReference(spoon.reflect.reference.CtPackageReference arg0);
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.PACKAGE_REF)
+    spoon.reflect.reference.CtPackageReference getPackageReference();
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.MODULE_REF)
+    java.util.List<spoon.reflect.reference.CtModuleReference> getTargetExport();
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.MODULE_REF)
+    <T extends spoon.reflect.declaration.CtPackageExport> T setTargetExport(java.util.List<spoon.reflect.reference.CtModuleReference> arg0);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.MODULE_REF)
+    <T extends spoon.reflect.declaration.CtPackageExport> T addTargetExport(spoon.reflect.reference.CtModuleReference arg0);
+}](spoon.test.parent.ContractOnSettersParametrizedTest) (162 ms)</li><li>spoon.test.parent.ContractOnSettersParametrizedTest.testContract[public interface CtReturn<R> extends spoon.reflect.code.CtCFlowBreak , spoon.template.TemplateParameter<java.lang.Void> {
+    spoon.reflect.code.CtReturn<R> clone();
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.EXPRESSION)
+    <T extends spoon.reflect.code.CtReturn<R>> T setReturnedExpression(spoon.reflect.code.CtExpression<R> arg0);
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.EXPRESSION)
+    spoon.reflect.code.CtExpression<R> getReturnedExpression();
+}](spoon.test.parent.ContractOnSettersParametrizedTest) (161 ms)</li><li>spoon.test.loop.LoopTest.testForeachShouldHaveAlwaysABlockInItsBody(spoon.test.loop.LoopTest) (239 ms)</li><li>spoon.support.visitor.java.JavaReflectionTreeBuilderTest.testScannerClass(spoon.support.visitor.java.JavaReflectionTreeBuilderTest) (61 ms)</li><li>spoon.test.trycatch.TryCatchTest.testRethrowingExceptionsJava7(spoon.test.trycatch.TryCatchTest) (29 ms)</li><li>spoon.test.parent.ContractOnSettersParametrizedTest.testContract[public interface CtNewClass<T> extends spoon.reflect.code.CtConstructorCall<T> {
+    spoon.reflect.code.CtNewClass<T> clone();
+
+    @spoon.support.DerivedProperty
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.TYPE_ARGUMENT)
+    java.util.List<spoon.reflect.reference.CtTypeReference<?>> getActualTypeArguments();
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.TYPE_ARGUMENT)
+    <T extends spoon.reflect.reference.CtActualTypeContainer> T addActualTypeArgument(spoon.reflect.reference.CtTypeReference<?> arg0);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.NESTED_TYPE)
+    <N extends spoon.reflect.code.CtNewClass> N setAnonymousClass(spoon.reflect.declaration.CtClass<?> arg0);
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.NESTED_TYPE)
+    spoon.reflect.declaration.CtClass<?> getAnonymousClass();
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.TYPE_ARGUMENT)
+    <T extends spoon.reflect.reference.CtActualTypeContainer> T setActualTypeArguments(java.util.List<? extends spoon.reflect.reference.CtTypeReference<?>> arg0);
+}](spoon.test.parent.ContractOnSettersParametrizedTest) (121 ms)</li><li>spoon.test.compilation.CompilationTest.testBuildAstWithSyntheticMethods(spoon.test.compilation.CompilationTest) (272 ms)</li><li>spoon.test.parent.ContractOnSettersParametrizedTest.testContract[public interface CtBinaryOperator<T> extends spoon.reflect.code.CtExpression<T> {
+    spoon.reflect.code.CtBinaryOperator<T> clone();
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.OPERATOR_KIND)
+    spoon.reflect.code.BinaryOperatorKind getKind();
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.LEFT_OPERAND)
+    <C extends spoon.reflect.code.CtBinaryOperator<T>> C setLeftHandOperand(spoon.reflect.code.CtExpression<?> arg0);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.RIGHT_OPERAND)
+    <C extends spoon.reflect.code.CtBinaryOperator<T>> C setRightHandOperand(spoon.reflect.code.CtExpression<?> arg0);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.OPERATOR_KIND)
+    <C extends spoon.reflect.code.CtBinaryOperator<T>> C setKind(spoon.reflect.code.BinaryOperatorKind arg0);
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.LEFT_OPERAND)
+    spoon.reflect.code.CtExpression<?> getLeftHandOperand();
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.RIGHT_OPERAND)
+    spoon.reflect.code.CtExpression<?> getRightHandOperand();
+}](spoon.test.parent.ContractOnSettersParametrizedTest) (181 ms)</li><li>spoon.test.template.TemplateTest.testSimpleTemplate(spoon.test.template.TemplateTest) (150 ms)</li><li>spoon.test.delete.DeleteTest.testDeleteMethod(spoon.test.delete.DeleteTest) (205 ms)</li><li>spoon.test.ctBodyHolder.CtBodyHolderTest.testForWithBlock(spoon.test.ctBodyHolder.CtBodyHolderTest) (77 ms)</li><li>spoon.test.parent.ContractOnSettersParametrizedTest.testContract[public interface CtTryWithResource extends spoon.reflect.code.CtTry {
+    spoon.reflect.code.CtTryWithResource clone();
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.TRY_RESOURCE)
+    java.util.List<spoon.reflect.code.CtLocalVariable<?>> getResources();
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.TRY_RESOURCE)
+    <T extends spoon.reflect.code.CtTryWithResource> T addResource(spoon.reflect.code.CtLocalVariable<?> arg0);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.TRY_RESOURCE)
+    <T extends spoon.reflect.code.CtTryWithResource> T setResources(java.util.List<spoon.reflect.code.CtLocalVariable<?>> arg0);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.TRY_RESOURCE)
+    boolean removeResource(spoon.reflect.code.CtLocalVariable<?> arg0);
+}](spoon.test.parent.ContractOnSettersParametrizedTest) (152 ms)</li><li>spoon.test.parent.ContractOnSettersParametrizedTest.testContract[public interface CtSuperAccess<T> extends spoon.reflect.code.CtTargetedExpression<T, spoon.reflect.code.CtExpression<?>> , spoon.reflect.code.CtVariableRead<T> {
+    spoon.reflect.code.CtSuperAccess<T> clone();
+
+    @spoon.support.DerivedProperty
+    spoon.reflect.reference.CtTypeReference<T> getType();
+}](spoon.test.parent.ContractOnSettersParametrizedTest) (170 ms)</li><li>spoon.support.visitor.java.JavaReflectionTreeBuilderTest.testScannerInterface(spoon.support.visitor.java.JavaReflectionTreeBuilderTest) (2 ms)</li><li>spoon.test.snippets.SnippetTest.testCompileSnippetSeveralTimes(spoon.test.snippets.SnippetTest) (101 ms)</li><li>spoon.test.parent.ContractOnSettersParametrizedTest.testContract[public interface CtCodeSnippetStatement extends spoon.reflect.declaration.CtCodeSnippet , spoon.reflect.code.CtStatement {
+    spoon.reflect.code.CtCodeSnippetStatement clone();
+
+    <S extends spoon.reflect.code.CtStatement> S compile() throws spoon.support.compiler.SnippetCompilationError;
+}](spoon.test.parent.ContractOnSettersParametrizedTest) (154 ms)</li><li>spoon.test.parent.ContractOnSettersParametrizedTest.testContract[public interface CtCase<S> extends spoon.reflect.code.CtStatement , spoon.reflect.code.CtStatementList {
+    spoon.reflect.code.CtCase<S> clone();
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.EXPRESSION)
+    <T extends spoon.reflect.code.CtCase<S>> T addCaseExpression(spoon.reflect.code.CtExpression<S> arg0);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.EXPRESSION)
+    <T extends spoon.reflect.code.CtCase<S>> T setCaseExpression(spoon.reflect.code.CtExpression<S> arg0);
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.EXPRESSION)
+    spoon.reflect.code.CtExpression<S> getCaseExpression();
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.EXPRESSION)
+    java.util.List<spoon.reflect.code.CtExpression<S>> getCaseExpressions();
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.CASE_KIND)
+    spoon.reflect.code.CaseKind getCaseKind();
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.CASE_KIND)
+    <T extends spoon.reflect.code.CtCase<S>> T setCaseKind(spoon.reflect.code.CaseKind arg0);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.EXPRESSION)
+    <T extends spoon.reflect.code.CtCase<S>> T setCaseExpressions(java.util.List<spoon.reflect.code.CtExpression<S>> arg0);
+}](spoon.test.parent.ContractOnSettersParametrizedTest) (189 ms)</li><li>spoon.reflect.declaration.CtTypeInformationTest.testGetAllMethodsReturnsTheRightNumber(spoon.reflect.declaration.CtTypeInformationTest) (85 ms)</li><li>spoon.test.parent.ContractOnSettersParametrizedTest.testContract[public interface CtSwitchExpression<T, S> extends spoon.reflect.code.CtExpression<T> , spoon.reflect.code.CtAbstractSwitch<S> {
+    spoon.reflect.code.CtSwitchExpression<T, S> clone();
+}](spoon.test.parent.ContractOnSettersParametrizedTest) (225 ms)</li><li>spoon.test.parent.ContractOnSettersParametrizedTest.testContract[public interface CtConstructorCall<T> extends spoon.reflect.code.CtStatement , spoon.reflect.code.CtTargetedExpression<T, spoon.reflect.code.CtExpression<?>> , spoon.reflect.code.CtAbstractInvocation<T> , spoon.reflect.reference.CtActualTypeContainer {
+    spoon.reflect.code.CtConstructorCall<T> clone();
+
+    @spoon.support.DerivedProperty
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.TYPE)
+    spoon.reflect.reference.CtTypeReference<T> getType();
+
+    @spoon.support.DerivedProperty
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.TYPE_ARGUMENT)
+    java.util.List<spoon.reflect.reference.CtTypeReference<?>> getActualTypeArguments();
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.TYPE_ARGUMENT)
+    <T extends spoon.reflect.reference.CtActualTypeContainer> T addActualTypeArgument(spoon.reflect.reference.CtTypeReference<?> arg0);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.TYPE_ARGUMENT)
+    <T extends spoon.reflect.reference.CtActualTypeContainer> T setActualTypeArguments(java.util.List<? extends spoon.reflect.reference.CtTypeReference<?>> arg0);
+}](spoon.test.parent.ContractOnSettersParametrizedTest) (153 ms)</li><li>spoon.test.parent.ContractOnSettersParametrizedTest.testContract[public interface CtArrayWrite<T> extends spoon.reflect.code.CtArrayAccess<T, spoon.reflect.code.CtExpression<?>> {
+    spoon.reflect.code.CtArrayWrite<T> clone();
+}](spoon.test.parent.ContractOnSettersParametrizedTest) (188 ms)</li><li>spoon.test.method.MethodTest.testMethodSignature(spoon.test.method.MethodTest) (52 ms)</li><li>spoon.test.invocations.InvocationTest.testTargetNullForStaticMethod(spoon.test.invocations.InvocationTest) (68 ms)</li><li>spoon.test.constructorcallnewclass.NewClassTest.testCtNewClassInNoClasspath(spoon.test.constructorcallnewclass.NewClassTest) (502 ms)</li><li>spoon.test.parent.ContractOnSettersParametrizedTest.testContract[public interface CtEnumValue<T> extends spoon.reflect.declaration.CtField<T> {
+    spoon.reflect.declaration.CtEnumValue clone();
+
+    @spoon.support.UnsettableProperty
+    <U extends spoon.reflect.code.CtRHSReceiver<T>> U setAssignment(spoon.reflect.code.CtExpression<T> arg0);
+}](spoon.test.parent.ContractOnSettersParametrizedTest) (100 ms)</li><li>spoon.test.casts.CastTest.testCast3(spoon.test.casts.CastTest) (60 ms)</li><li>spoon.test.annotation.AnnotationTest.testModelBuildingAnnotationBoundUsage(spoon.test.annotation.AnnotationTest) (68 ms)</li><li>spoon.test.trycatch.TryCatchTest.testExceptionJava7(spoon.test.trycatch.TryCatchTest) (38 ms)</li><li>spoon.test.path.PathTest.testSignatureOfVarargMethod(spoon.test.path.PathTest) (115 ms)</li><li>spoon.test.reference.ExecutableReferenceTest.testSuperClassInGetAllExecutables(spoon.test.reference.ExecutableReferenceTest) (155 ms)</li><li>spoon.test.eval.EvalTest.testVisitorPartialEvaluator_unary(spoon.test.eval.EvalTest) (69 ms)</li><li>spoon.test.parent.ContractOnSettersParametrizedTest.testContract[public interface CtTypeParameter extends spoon.reflect.declaration.CtType<java.lang.Object> {
+    spoon.reflect.declaration.CtTypeParameter clone();
+
+    @spoon.support.DerivedProperty
+    spoon.reflect.reference.CtTypeParameterReference getReference();
+
+    @spoon.support.UnsettableProperty
+    <M, C extends spoon.reflect.declaration.CtType<java.lang.Object>> C addMethod(spoon.reflect.declaration.CtMethod<M> arg0);
+
+    @spoon.support.UnsettableProperty
+    <C extends spoon.reflect.declaration.CtType<java.lang.Object>> C setFields(java.util.List<spoon.reflect.declaration.CtField<?>> arg0);
+
+    @spoon.support.UnsettableProperty
+    <N, C extends spoon.reflect.declaration.CtType<java.lang.Object>> C addNestedType(spoon.reflect.declaration.CtType<N> arg0);
+
+    @spoon.support.UnsettableProperty
+    <S, C extends spoon.reflect.declaration.CtType<java.lang.Object>> C addSuperInterface(spoon.reflect.reference.CtTypeReference<S> arg0);
+
+    @spoon.support.UnsettableProperty
+    <T extends spoon.reflect.declaration.CtModifiable> T setModifiers(java.util.Set<spoon.reflect.declaration.ModifierKind> arg0);
+
+    @spoon.support.UnsettableProperty
+    <T extends spoon.reflect.declaration.CtFormalTypeDeclarer> T setFormalCtTypeParameters(java.util.List<spoon.reflect.declaration.CtTypeParameter> arg0);
+
+    @spoon.support.UnsettableProperty
+    <C extends spoon.reflect.declaration.CtType<java.lang.Object>> C setSuperInterfaces(java.util.Set<spoon.reflect.reference.CtTypeReference<?>> arg0);
+
+    @spoon.support.UnsettableProperty
+    <F, C extends spoon.reflect.declaration.CtType<java.lang.Object>> C addFieldAtTop(spoon.reflect.declaration.CtField<F> arg0);
+
+    @spoon.support.UnsettableProperty
+    <C extends spoon.reflect.declaration.CtType<java.lang.Object>> C setNestedTypes(java.util.Set<spoon.reflect.declaration.CtType<?>> arg0);
+
+    @spoon.support.UnsettableProperty
+    <C extends spoon.reflect.declaration.CtType<java.lang.Object>> C setMethods(java.util.Set<spoon.reflect.declaration.CtMethod<?>> arg0);
+
+    @spoon.support.UnsettableProperty
+    <C extends spoon.reflect.declaration.CtType<java.lang.Object>> C setTypeMembers(java.util.List<spoon.reflect.declaration.CtTypeMember> arg0);
+
+    @spoon.support.DerivedProperty
+    spoon.reflect.declaration.CtFormalTypeDeclarer getTypeParameterDeclarer();
+}](spoon.test.parent.ContractOnSettersParametrizedTest) (207 ms)</li><li>spoon.test.path.PathTest.testBuilderMethod(spoon.test.path.PathTest) (139 ms)</li><li>spoon.test.parent.ContractOnSettersParametrizedTest.testContract[public interface CtConstructor<T> extends spoon.reflect.declaration.CtTypeMember , spoon.reflect.declaration.CtShadowable , spoon.reflect.declaration.CtFormalTypeDeclarer , spoon.reflect.declaration.CtExecutable<T> {
+    spoon.reflect.declaration.CtConstructor<T> clone();
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.NAME)
+    java.lang.String getSimpleName();
+
+    @spoon.support.UnsettableProperty
+    <C extends spoon.reflect.declaration.CtNamedElement> C setSimpleName(java.lang.String arg0);
+
+    @spoon.support.UnsettableProperty
+    <C extends spoon.reflect.declaration.CtTypedElement> C setType(spoon.reflect.reference.CtTypeReference<T> arg0);
+}](spoon.test.parent.ContractOnSettersParametrizedTest) (178 ms)</li><li>spoon.test.eval.EvalTest.testVisitorPartialEvaluator_if(spoon.test.eval.EvalTest) (108 ms)</li><li>spoon.test.parent.ContractOnSettersParametrizedTest.testContract[public interface CtVariableRead<T> extends spoon.reflect.code.CtVariableAccess<T> {
+    spoon.reflect.code.CtVariableRead<T> clone();
+}](spoon.test.parent.ContractOnSettersParametrizedTest) (113 ms)</li><li>spoon.test.reference.ExecutableReferenceTest.testGetAllExecutablesMethodForInterface(spoon.test.reference.ExecutableReferenceTest) (270 ms)</li><li>spoon.test.parent.ContractOnSettersParametrizedTest.testContract[public interface CtTextBlock extends spoon.reflect.code.CtLiteral<java.lang.String> {
+    spoon.reflect.code.CtTextBlock clone();
+}](spoon.test.parent.ContractOnSettersParametrizedTest) (187 ms)</li><li>spoon.test.parent.ContractOnSettersParametrizedTest.testContract[public interface CtUsedService extends spoon.reflect.declaration.CtModuleDirective {
+    spoon.reflect.declaration.CtUsedService clone();
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.SERVICE_TYPE)
+    <T extends spoon.reflect.declaration.CtUsedService> T setServiceType(spoon.reflect.reference.CtTypeReference arg0);
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.SERVICE_TYPE)
+    spoon.reflect.reference.CtTypeReference getServiceType();
+}](spoon.test.parent.ContractOnSettersParametrizedTest) (118 ms)</li><li>spoon.test.parent.ContractOnSettersParametrizedTest.testContract[public interface CtThrow extends spoon.reflect.code.CtCFlowBreak , spoon.template.TemplateParameter<java.lang.Void> {
+    spoon.reflect.code.CtThrow clone();
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.EXPRESSION)
+    <T extends spoon.reflect.code.CtThrow> T setThrownExpression(spoon.reflect.code.CtExpression<? extends java.lang.Throwable> arg0);
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.EXPRESSION)
+    spoon.reflect.code.CtExpression<? extends java.lang.Throwable> getThrownExpression();
+}](spoon.test.parent.ContractOnSettersParametrizedTest) (156 ms)</li><li>spoon.test.parent.ContractOnSettersParametrizedTest.testContract[public interface CtLiteral<T> extends spoon.reflect.code.CtExpression<T> {
+    spoon.reflect.code.CtLiteral<T> clone();
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.VALUE)
+    T getValue();
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.VALUE)
+    <C extends spoon.reflect.code.CtLiteral<T>> C setValue(T arg0);
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.LITERAL_BASE)
+    spoon.reflect.code.LiteralBase getBase();
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.LITERAL_BASE)
+    <C extends spoon.reflect.code.CtLiteral<T>> C setBase(spoon.reflect.code.LiteralBase arg0);
+}](spoon.test.parent.ContractOnSettersParametrizedTest) (88 ms)</li><li>spoon.test.parent.ContractOnSettersParametrizedTest.testContract[public interface CtPackage extends spoon.reflect.declaration.CtShadowable , spoon.reflect.declaration.CtNamedElement {
+    spoon.reflect.declaration.CtPackage clone();
+
+    @spoon.support.DerivedProperty
+    spoon.reflect.reference.CtPackageReference getReference();
+
+    boolean isEmpty();
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.SUB_PACKAGE)
+    spoon.reflect.declaration.CtPackage getPackage(java.lang.String arg0);
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.SUB_PACKAGE)
+    java.util.Set<spoon.reflect.declaration.CtPackage> getPackages();
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.CONTAINED_TYPE)
+    <T extends spoon.reflect.declaration.CtType<?>> T getType(java.lang.String arg0);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.CONTAINED_TYPE)
+    <T extends spoon.reflect.declaration.CtPackage> T addType(spoon.reflect.declaration.CtType<?> arg0);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.CONTAINED_TYPE)
+    void removeType(spoon.reflect.declaration.CtType<?> arg0);
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.CONTAINED_TYPE)
+    java.util.Set<spoon.reflect.declaration.CtType<?>> getTypes();
+
+    java.lang.String getQualifiedName();
+
+    boolean isUnnamedPackage();
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.SUB_PACKAGE)
+    <T extends spoon.reflect.declaration.CtPackage> T addPackage(spoon.reflect.declaration.CtPackage arg0);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.SUB_PACKAGE)
+    boolean removePackage(spoon.reflect.declaration.CtPackage arg0);
+
+    @spoon.support.DerivedProperty
+    spoon.reflect.declaration.CtModule getDeclaringModule();
+
+    @spoon.support.DerivedProperty
+    spoon.reflect.declaration.CtPackage getDeclaringPackage();
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.SUB_PACKAGE)
+    <T extends spoon.reflect.declaration.CtPackage> T setPackages(java.util.Set<spoon.reflect.declaration.CtPackage> arg0);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.CONTAINED_TYPE)
+    <T extends spoon.reflect.declaration.CtPackage> T setTypes(java.util.Set<spoon.reflect.declaration.CtType<?>> arg0);
+
+    boolean hasPackageInfo();
+
+    static final java.lang.String PACKAGE_SEPARATOR = ".";
+
+    static final char PACKAGE_SEPARATOR_CHAR = '.';
+
+    static final java.lang.String TOP_LEVEL_PACKAGE_NAME = "unnamed package";
+}](spoon.test.parent.ContractOnSettersParametrizedTest) (144 ms)</li><li>spoon.test.type.TypeTest.testTypeMemberOrder(spoon.test.type.TypeTest) (33 ms)</li><li>spoon.test.comparison.EqualTest.testEqualsMultitype(spoon.test.comparison.EqualTest) (43 ms)</li><li>spoon.test.parent.ContractOnSettersParametrizedTest.testContract[public interface CtJavaDoc extends spoon.reflect.code.CtComment {
+    spoon.reflect.code.CtJavaDoc clone();
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.COMMENT_TAG)
+    <E extends spoon.reflect.code.CtJavaDoc> E setTags(java.util.List<spoon.reflect.code.CtJavaDocTag> arg0);
+
+    @spoon.support.DerivedProperty
+    java.util.List<spoon.javadoc.internal.JavadocDescriptionElement> getJavadocElements();
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.COMMENT_TAG)
+    java.util.List<spoon.reflect.code.CtJavaDocTag> getTags();
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.COMMENT_TAG)
+    <E extends spoon.reflect.code.CtJavaDoc> E addTag(int arg0, spoon.reflect.code.CtJavaDocTag arg1);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.COMMENT_TAG)
+    <E extends spoon.reflect.code.CtJavaDoc> E addTag(spoon.reflect.code.CtJavaDocTag arg0);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.COMMENT_TAG)
+    <E extends spoon.reflect.code.CtJavaDoc> E removeTag(int arg0);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.COMMENT_TAG)
+    <E extends spoon.reflect.code.CtJavaDoc> E removeTag(spoon.reflect.code.CtJavaDocTag arg0);
+
+    @spoon.support.DerivedProperty
+    java.lang.String getShortDescription();
+
+    @spoon.support.DerivedProperty
+    java.lang.String getLongDescription();
+}](spoon.test.parent.ContractOnSettersParametrizedTest) (111 ms)</li><li>spoon.processing.ProcessingTest.testRuntimeProcessorManager(spoon.processing.ProcessingTest) (690 ms)</li><li>spoon.test.intercession.IntercessionTest.testInsertBegin(spoon.test.intercession.IntercessionTest) (45 ms)</li><li>spoon.test.signature.SignatureTest.testMethodInvocationSignatureStaticFieldsVariables(spoon.test.signature.SignatureTest) (186 ms)</li><li>spoon.test.ctType.CtTypeTest.testHasMethodInDefaultMethod(spoon.test.ctType.CtTypeTest) (113 ms)</li><li>spoon.test.parent.ContractOnSettersParametrizedTest.testContract[public interface CtAnnotation<A extends java.lang.annotation.Annotation> extends spoon.reflect.code.CtExpression<A> , spoon.reflect.declaration.CtShadowable {
+    spoon.reflect.declaration.CtAnnotation<A> clone();
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.VALUE)
+    <T extends spoon.reflect.code.CtExpression> T getValue(java.lang.String arg0);
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.ANNOTATION_TYPE)
+    spoon.reflect.reference.CtTypeReference<A> getAnnotationType();
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.VALUE)
+    <T extends spoon.reflect.declaration.CtAnnotation<A>> T setValues(java.util.Map<java.lang.String, spoon.reflect.code.CtExpression> arg0);
+
+    static spoon.reflect.declaration.CtAnnotatedElementType getAnnotatedElementTypeForCtElement(spoon.reflect.declaration.CtElement arg0) {
+    }
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.VALUE)
+    <T extends spoon.reflect.declaration.CtAnnotation<A>> T addValue(java.lang.String arg0, spoon.reflect.code.CtNewArray<? extends spoon.reflect.code.CtExpression> arg1);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.VALUE)
+    <T extends spoon.reflect.declaration.CtAnnotation<A>> T addValue(java.lang.String arg0, spoon.reflect.code.CtFieldAccess<?> arg1);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.VALUE)
+    <T extends spoon.reflect.declaration.CtAnnotation<A>> T addValue(java.lang.String arg0, java.lang.Object arg1);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.VALUE)
+    <T extends spoon.reflect.declaration.CtAnnotation<A>> T addValue(java.lang.String arg0, spoon.reflect.code.CtLiteral<?> arg1);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.VALUE)
+    <T extends spoon.reflect.declaration.CtAnnotation<A>> T addValue(java.lang.String arg0, spoon.reflect.declaration.CtAnnotation<?> arg1);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.ANNOTATION_TYPE)
+    <T extends spoon.reflect.declaration.CtAnnotation<A>> T setAnnotationType(spoon.reflect.reference.CtTypeReference<? extends java.lang.annotation.Annotation> arg0);
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.VALUE)
+    java.util.Map<java.lang.String, spoon.reflect.code.CtExpression> getValues();
+
+    @spoon.support.DerivedProperty
+    A getActualAnnotation();
+
+    @spoon.support.UnsettableProperty
+    <C extends spoon.reflect.code.CtExpression<A>> C setTypeCasts(java.util.List<spoon.reflect.reference.CtTypeReference<?>> arg0);
+
+    @spoon.support.DerivedProperty
+    int getValueAsInt(java.lang.String arg0);
+
+    @spoon.support.DerivedProperty
+    java.lang.Object getValueAsObject(java.lang.String arg0);
+
+    @spoon.support.DerivedProperty
+    java.lang.String getValueAsString(java.lang.String arg0);
+
+    @spoon.support.DerivedProperty
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.VALUE)
+    <T extends spoon.reflect.code.CtExpression> T getWrappedValue(java.lang.String arg0);
+
+    @spoon.support.DerivedProperty
+    java.util.Map<java.lang.String, spoon.reflect.code.CtExpression> getAllValues();
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.VALUE)
+    <T extends spoon.reflect.declaration.CtAnnotation<A>> T setElementValues(java.util.Map<java.lang.String, java.lang.Object> arg0);
+
+    @spoon.support.DerivedProperty
+    spoon.reflect.declaration.CtElement getAnnotatedElement();
+
+    @spoon.support.DerivedProperty
+    spoon.reflect.declaration.CtAnnotatedElementType getAnnotatedElementType();
+}](spoon.test.parent.ContractOnSettersParametrizedTest) (273 ms)</li><li>spoon.test.parent.ContractOnSettersParametrizedTest.testContract[public interface CtTry extends spoon.reflect.code.CtStatement , spoon.reflect.code.CtBodyHolder , spoon.template.TemplateParameter<java.lang.Void> {
+    spoon.reflect.code.CtTry clone();
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.CATCH)
+    boolean removeCatcher(spoon.reflect.code.CtCatch arg0);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.CATCH)
+    <T extends spoon.reflect.code.CtTry> T addCatcher(spoon.reflect.code.CtCatch arg0);
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.BODY)
+    spoon.reflect.code.CtBlock<?> getBody();
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.CATCH)
+    java.util.List<spoon.reflect.code.CtCatch> getCatchers();
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.FINALIZER)
+    spoon.reflect.code.CtBlock<?> getFinalizer();
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.CATCH)
+    <T extends spoon.reflect.code.CtTry> T setCatchers(java.util.List<spoon.reflect.code.CtCatch> arg0);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.FINALIZER)
+    <T extends spoon.reflect.code.CtTry> T setFinalizer(spoon.reflect.code.CtBlock<?> arg0);
+}](spoon.test.parent.ContractOnSettersParametrizedTest) (147 ms)</li><li>spoon.test.ctBodyHolder.CtBodyHolderTest.testMethod(spoon.test.ctBodyHolder.CtBodyHolderTest) (90 ms)</li><li>spoon.test.lambda.LambdaTest.testGetOverriddenMethodWithFunction(spoon.test.lambda.LambdaTest) (206 ms)</li><li>spoon.test.path.PathTest.testFieldOfArrayType(spoon.test.path.PathTest) (93 ms)</li><li>spoon.test.template.TemplateTest.testSubstitutionInsertAllNtoN(spoon.test.template.TemplateTest) (339 ms)</li><li>spoon.test.parent.ContractOnSettersParametrizedTest.testContract[public interface CtConditional<T> extends spoon.reflect.code.CtExpression<T> {
+    spoon.reflect.code.CtConditional<T> clone();
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.CONDITION)
+    <C extends spoon.reflect.code.CtConditional<T>> C setCondition(spoon.reflect.code.CtExpression<java.lang.Boolean> arg0);
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.CONDITION)
+    spoon.reflect.code.CtExpression<java.lang.Boolean> getCondition();
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.THEN)
+    spoon.reflect.code.CtExpression<T> getThenExpression();
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.ELSE)
+    spoon.reflect.code.CtExpression<T> getElseExpression();
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.ELSE)
+    <C extends spoon.reflect.code.CtConditional<T>> C setElseExpression(spoon.reflect.code.CtExpression<T> arg0);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.THEN)
+    <C extends spoon.reflect.code.CtConditional<T>> C setThenExpression(spoon.reflect.code.CtExpression<T> arg0);
+}](spoon.test.parent.ContractOnSettersParametrizedTest) (311 ms)</li><li>spoon.test.parent.ContractOnSettersParametrizedTest.testContract[public interface CtModule extends spoon.reflect.declaration.CtNamedElement {
+    spoon.reflect.declaration.CtModule clone();
+
+    @spoon.support.DerivedProperty
+    spoon.reflect.reference.CtModuleReference getReference();
+
+    @spoon.support.DerivedProperty
+    boolean isUnnamedModule();
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.MODIFIER)
+    boolean isOpenModule();
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.MODULE_DIRECTIVE)
+    <T extends spoon.reflect.declaration.CtModule> T setModuleDirectives(java.util.List<spoon.reflect.declaration.CtModuleDirective> arg0);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.MODULE_DIRECTIVE)
+    <T extends spoon.reflect.declaration.CtModule> T addModuleDirective(spoon.reflect.declaration.CtModuleDirective arg0);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.MODULE_DIRECTIVE)
+    <T extends spoon.reflect.declaration.CtModule> T addModuleDirectiveAt(int arg0, spoon.reflect.declaration.CtModuleDirective arg1);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.MODULE_DIRECTIVE)
+    <T extends spoon.reflect.declaration.CtModule> T removeModuleDirective(spoon.reflect.declaration.CtModuleDirective arg0);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.MODIFIER)
+    <T extends spoon.reflect.declaration.CtModule> T setIsOpenModule(boolean arg0);
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.SERVICE_TYPE)
+    @spoon.support.DerivedProperty
+    java.util.List<spoon.reflect.declaration.CtUsedService> getUsedServices();
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.SERVICE_TYPE)
+    @spoon.support.DerivedProperty
+    <T extends spoon.reflect.declaration.CtModule> T setUsedServices(java.util.List<spoon.reflect.declaration.CtUsedService> arg0);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.SERVICE_TYPE)
+    @spoon.support.DerivedProperty
+    <T extends spoon.reflect.declaration.CtModule> T addUsedService(spoon.reflect.declaration.CtUsedService arg0);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.SERVICE_TYPE)
+    @spoon.support.DerivedProperty
+    <T extends spoon.reflect.declaration.CtModule> T removeUsedService(spoon.reflect.declaration.CtUsedService arg0);
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.EXPORTED_PACKAGE)
+    @spoon.support.DerivedProperty
+    java.util.List<spoon.reflect.declaration.CtPackageExport> getExportedPackages();
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.EXPORTED_PACKAGE)
+    @spoon.support.DerivedProperty
+    <T extends spoon.reflect.declaration.CtModule> T setExportedPackages(java.util.List<spoon.reflect.declaration.CtPackageExport> arg0);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.EXPORTED_PACKAGE)
+    @spoon.support.DerivedProperty
+    <T extends spoon.reflect.declaration.CtModule> T addExportedPackage(spoon.reflect.declaration.CtPackageExport arg0);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.EXPORTED_PACKAGE)
+    @spoon.support.DerivedProperty
+    <T extends spoon.reflect.declaration.CtModule> T removeExportedPackage(spoon.reflect.declaration.CtPackageExport arg0);
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.OPENED_PACKAGE)
+    @spoon.support.DerivedProperty
+    java.util.List<spoon.reflect.declaration.CtPackageExport> getOpenedPackages();
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.OPENED_PACKAGE)
+    @spoon.support.DerivedProperty
+    <T extends spoon.reflect.declaration.CtModule> T setOpenedPackages(java.util.List<spoon.reflect.declaration.CtPackageExport> arg0);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.OPENED_PACKAGE)
+    @spoon.support.DerivedProperty
+    <T extends spoon.reflect.declaration.CtModule> T addOpenedPackage(spoon.reflect.declaration.CtPackageExport arg0);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.OPENED_PACKAGE)
+    @spoon.support.DerivedProperty
+    <T extends spoon.reflect.declaration.CtModule> T removeOpenedPackage(spoon.reflect.declaration.CtPackageExport arg0);
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.REQUIRED_MODULE)
+    @spoon.support.DerivedProperty
+    java.util.List<spoon.reflect.declaration.CtModuleRequirement> getRequiredModules();
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.REQUIRED_MODULE)
+    @spoon.support.DerivedProperty
+    <T extends spoon.reflect.declaration.CtModule> T setRequiredModules(java.util.List<spoon.reflect.declaration.CtModuleRequirement> arg0);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.REQUIRED_MODULE)
+    @spoon.support.DerivedProperty
+    <T extends spoon.reflect.declaration.CtModule> T addRequiredModule(spoon.reflect.declaration.CtModuleRequirement arg0);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.REQUIRED_MODULE)
+    @spoon.support.DerivedProperty
+    <T extends spoon.reflect.declaration.CtModule> T removeRequiredModule(spoon.reflect.declaration.CtModuleRequirement arg0);
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.PROVIDED_SERVICE)
+    @spoon.support.DerivedProperty
+    java.util.List<spoon.reflect.declaration.CtProvidedService> getProvidedServices();
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.PROVIDED_SERVICE)
+    @spoon.support.DerivedProperty
+    <T extends spoon.reflect.declaration.CtModule> T setProvidedServices(java.util.List<spoon.reflect.declaration.CtProvidedService> arg0);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.PROVIDED_SERVICE)
+    @spoon.support.DerivedProperty
+    <T extends spoon.reflect.declaration.CtModule> T addProvidedService(spoon.reflect.declaration.CtProvidedService arg0);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.PROVIDED_SERVICE)
+    @spoon.support.DerivedProperty
+    <T extends spoon.reflect.declaration.CtModule> T removeProvidedService(spoon.reflect.declaration.CtProvidedService arg0);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.SUB_PACKAGE)
+    <T extends spoon.reflect.declaration.CtModule> T setRootPackage(spoon.reflect.declaration.CtPackage arg0);
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.MODULE_DIRECTIVE)
+    java.util.List<spoon.reflect.declaration.CtModuleDirective> getModuleDirectives();
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.SUB_PACKAGE)
+    spoon.reflect.declaration.CtPackage getRootPackage();
+
+    static final java.lang.String TOP_LEVEL_MODULE_NAME = "unnamed module";
+}](spoon.test.parent.ContractOnSettersParametrizedTest) (189 ms)</li><li>spoon.test.main.MainTest.testGenericContract(spoon.test.main.MainTest) (14918 ms)</li><li>spoon.test.serializable.SerializableTest.testSerialCtStatement(spoon.test.serializable.SerializableTest) (50 ms)</li><li>spoon.test.compilation.CompilationTest.testNewInstance(spoon.test.compilation.CompilationTest) (9641 ms)</li><li>spoon.test.parent.ContractOnSettersParametrizedTest.testContract[public interface CtField<T> extends spoon.reflect.declaration.CtTypeMember , spoon.reflect.declaration.CtShadowable , spoon.reflect.declaration.CtVariable<T> , spoon.reflect.code.CtRHSReceiver<T> {
+    spoon.reflect.declaration.CtField<T> clone();
+
+    @spoon.support.DerivedProperty
+    spoon.reflect.reference.CtFieldReference<T> getReference();
+
+    @spoon.support.UnsettableProperty
+    <U extends spoon.reflect.code.CtRHSReceiver<T>> U setAssignment(spoon.reflect.code.CtExpression<T> arg0);
+
+    @spoon.support.DerivedProperty
+    spoon.reflect.code.CtExpression<T> getAssignment();
+
+    static final java.lang.String FIELD_SEPARATOR = "#";
+}](spoon.test.parent.ContractOnSettersParametrizedTest) (111 ms)</li><li>spoon.test.annotation.AnnotationTest.testRepeatSameAnnotationOnConstructor(spoon.test.annotation.AnnotationTest) (38 ms)</li><li>spoon.test.template.TemplateTest.testTemplateC1(spoon.test.template.TemplateTest) (146 ms)</li><li>spoon.test.snippets.SnippetTest.testCompileStatementWithReturn(spoon.test.snippets.SnippetTest) (30 ms)</li><li>spoon.test.api.APITest.testAddProcessorMethodInSpoonAPI(spoon.test.api.APITest) (67 ms)</li><li>spoon.test.path.PathTest.testRoles(spoon.test.path.PathTest) (113 ms)</li><li>spoon.test.lambda.LambdaTest.testLambdaMethod(spoon.test.lambda.LambdaTest) (144 ms)</li><li>spoon.test.reference.ExecutableReferenceTest.testGetAllExecutablesMethodForClasses(spoon.test.reference.ExecutableReferenceTest) (169 ms)</li><li>spoon.test.snippets.SnippetTest.testSnippetFullClass(spoon.test.snippets.SnippetTest) (32 ms)</li><li>spoon.support.visitor.java.JavaReflectionTreeBuilderTest.testDeclaredMethods(spoon.support.visitor.java.JavaReflectionTreeBuilderTest) (5 ms)</li><li>spoon.test.lambda.LambdaTest.testInterfaceWithObjectMethods(spoon.test.lambda.LambdaTest) (211 ms)</li><li>spoon.test.parent.ContractOnSettersParametrizedTest.testContract[public interface CtAnnotationFieldAccess<T> extends spoon.reflect.code.CtTargetedExpression<T, spoon.reflect.code.CtExpression<?>> , spoon.reflect.code.CtVariableRead<T> {
+    spoon.reflect.code.CtAnnotationFieldAccess<T> clone();
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.VARIABLE)
+    spoon.reflect.reference.CtFieldReference<T> getVariable();
+}](spoon.test.parent.ContractOnSettersParametrizedTest) (356 ms)</li><li>spoon.test.signature.SignatureTest.testLiteralSignature(spoon.test.signature.SignatureTest) (82 ms)</li><li>spoon.test.path.PathTest.testAmbiguousTypeMembers(spoon.test.path.PathTest) (242 ms)</li><li>spoon.test.snippets.SnippetTest.testCompileSnippetWithContext(spoon.test.snippets.SnippetTest) (29 ms)</li><li>spoon.test.parent.ContractOnSettersParametrizedTest.testContract[public interface CtStatementList extends spoon.reflect.code.CtCodeElement , java.lang.Iterable<spoon.reflect.code.CtStatement> {
+    spoon.reflect.code.CtStatementList clone();
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.STATEMENT)
+    <T extends spoon.reflect.code.CtStatementList> T insertEnd(spoon.reflect.code.CtStatement arg0);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.STATEMENT)
+    <T extends spoon.reflect.code.CtStatementList> T insertEnd(spoon.reflect.code.CtStatementList arg0);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.STATEMENT)
+    <T extends spoon.reflect.code.CtStatementList> T setStatements(java.util.List<spoon.reflect.code.CtStatement> arg0);
+
+    @spoon.support.DerivedProperty
+    <T extends spoon.reflect.code.CtStatement> T getLastStatement();
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.STATEMENT)
+    void removeStatement(spoon.reflect.code.CtStatement arg0);
+
+    @spoon.support.DerivedProperty
+    <T extends spoon.reflect.code.CtStatementList> T insertBefore(spoon.reflect.visitor.Filter<? extends spoon.reflect.code.CtStatement> arg0, spoon.reflect.code.CtStatementList arg1);
+
+    @spoon.support.DerivedProperty
+    <T extends spoon.reflect.code.CtStatementList> T insertBefore(spoon.reflect.visitor.Filter<? extends spoon.reflect.code.CtStatement> arg0, spoon.reflect.code.CtStatement arg1);
+
+    @spoon.support.DerivedProperty
+    <T extends spoon.reflect.code.CtStatementList> T insertAfter(spoon.reflect.visitor.Filter<? extends spoon.reflect.code.CtStatement> arg0, spoon.reflect.code.CtStatementList arg1);
+
+    @spoon.support.DerivedProperty
+    <T extends spoon.reflect.code.CtStatementList> T insertAfter(spoon.reflect.visitor.Filter<? extends spoon.reflect.code.CtStatement> arg0, spoon.reflect.code.CtStatement arg1);
+
+    @spoon.support.DerivedProperty
+    <T extends spoon.reflect.code.CtStatement> T getStatement(int arg0);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.STATEMENT)
+    <T extends spoon.reflect.code.CtStatementList> T insertBegin(spoon.reflect.code.CtStatement arg0);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.STATEMENT)
+    <T extends spoon.reflect.code.CtStatementList> T insertBegin(spoon.reflect.code.CtStatementList arg0);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.STATEMENT)
+    <T extends spoon.reflect.code.CtStatementList> T addStatement(spoon.reflect.code.CtStatement arg0);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.STATEMENT)
+    <T extends spoon.reflect.code.CtStatementList> T addStatement(int arg0, spoon.reflect.code.CtStatement arg1);
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.STATEMENT)
+    java.util.List<spoon.reflect.code.CtStatement> getStatements();
+}](spoon.test.parent.ContractOnSettersParametrizedTest) (173 ms)</li><li>spoon.test.prettyprinter.TestSniperPrinter.testOptimizesParenthesesForAddedNestedOperators(spoon.test.prettyprinter.TestSniperPrinter) (176 ms)</li><li>spoon.processing.CtGenerationTest.testGenerateReplacementVisitor(spoon.processing.CtGenerationTest) (23898 ms)</li><li>spoon.test.architecture.SpoonArchitectureEnforcerTest.testSrcMainJava(spoon.test.architecture.SpoonArchitectureEnforcerTest) (31028 ms)</li><li>spoon.test.model.BlockTest.testAddEmptyBlock(spoon.test.model.BlockTest) (32 ms)</li><li>spoon.test.comparison.EqualTest.testEqualsDetails(spoon.test.comparison.EqualTest) (36 ms)</li><li>spoon.test.annotation.AnnotationTest.testAnnotatedElementTypes(spoon.test.annotation.AnnotationTest) (280 ms)</li><li>spoon.test.intercession.insertBefore.InsertMethodsTest.testInsertBeforeWithBrace(spoon.test.intercession.insertBefore.InsertMethodsTest) (44 ms)</li><li>spoon.test.method.MethodTest.testAddSameMethodsTwoTimes(spoon.test.method.MethodTest) (5 ms)</li><li>spoon.test.prettyprinter.DefaultPrettyPrinterTest.testTernaryParenthesesOnLocalVariable(spoon.test.prettyprinter.DefaultPrettyPrinterTest) (302 ms)</li><li>spoon.test.ctType.CtTypeTest.testHasMethodOnNull(spoon.test.ctType.CtTypeTest) (119 ms)</li><li>spoon.test.intercession.insertBefore.InsertMethodsTest.insertBeforeAndUpdateParent(spoon.test.intercession.insertBefore.InsertMethodsTest) (67 ms)</li><li>spoon.test.parent.ContractOnSettersParametrizedTest.testContract[public interface CtAnonymousExecutable extends spoon.reflect.declaration.CtTypeMember , spoon.reflect.declaration.CtExecutable<java.lang.Void> {
+    spoon.reflect.declaration.CtAnonymousExecutable clone();
+
+    @spoon.support.UnsettableProperty
+    <T extends spoon.reflect.declaration.CtExecutable<java.lang.Void>> T setParameters(java.util.List<spoon.reflect.declaration.CtParameter<?>> arg0);
+
+    @spoon.support.UnsettableProperty
+    <C extends spoon.reflect.declaration.CtNamedElement> C setSimpleName(java.lang.String arg0);
+
+    @spoon.support.UnsettableProperty
+    <T extends spoon.reflect.declaration.CtExecutable<java.lang.Void>> T addThrownType(spoon.reflect.reference.CtTypeReference<? extends java.lang.Throwable> arg0);
+
+    @spoon.support.UnsettableProperty
+    <T extends spoon.reflect.declaration.CtExecutable<java.lang.Void>> T setThrownTypes(java.util.Set<spoon.reflect.reference.CtTypeReference<? extends java.lang.Throwable>> arg0);
+
+    @spoon.support.UnsettableProperty
+    <T extends spoon.reflect.declaration.CtExecutable<java.lang.Void>> T addParameter(spoon.reflect.declaration.CtParameter<?> arg0);
+
+    @spoon.support.UnsettableProperty
+    <C extends spoon.reflect.declaration.CtTypedElement> C setType(spoon.reflect.reference.CtTypeReference<java.lang.Void> arg0);
+}](spoon.test.parent.ContractOnSettersParametrizedTest) (205 ms)</li><li>spoon.test.parent.ParentTest.testGetParentOverloadsWithNoMatchingElements(spoon.test.parent.ParentTest) (88 ms)</li><li>spoon.test.ctType.CtTypeTest.testHasMethodInDirectMethod(spoon.test.ctType.CtTypeTest) (89 ms)</li><li>spoon.test.executable.ExecutableTest.testShadowValueOf(spoon.test.executable.ExecutableTest) (99 ms)</li><li>spoon.test.ctType.CtTypeTest.testHasMethodInSuperClass(spoon.test.ctType.CtTypeTest) (310 ms)</li><li>spoon.test.type.TypeTest.testShadowType(spoon.test.type.TypeTest) (6 ms)</li><li>spoon.test.strings.StringLiteralTest.testSnippetFullClass(spoon.test.strings.StringLiteralTest) (32 ms)</li><li>spoon.test.architecture.SpoonArchitectureEnforcerTest.testFactorySubFactory(spoon.test.architecture.SpoonArchitectureEnforcerTest) (3055 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtEnum](spoon.test.replace.ReplaceParametrizedTest) (12 ms)</li><li>spoon.test.signature.SignatureTest.testNullSignatureInUnboundVariable(spoon.test.signature.SignatureTest) (27 ms)</li><li>spoon.test.interfaces.InterfaceTest.testExtendsDefaultMethodInSubInterface(spoon.test.interfaces.InterfaceTest) (65 ms)</li><li>spoon.test.ctBodyHolder.CtBodyHolderTest.testTryCatch(spoon.test.ctBodyHolder.CtBodyHolderTest) (312 ms)</li><li>spoon.support.visitor.java.JavaReflectionTreeBuilderTest.testDeclaredConstructor(spoon.support.visitor.java.JavaReflectionTreeBuilderTest) (2 ms)</li><li>spoon.test.parent.ContractOnSettersParametrizedTest.testContract[public interface CtArrayRead<T> extends spoon.reflect.code.CtArrayAccess<T, spoon.reflect.code.CtExpression<?>> {
+    spoon.reflect.code.CtArrayRead<T> clone();
+}](spoon.test.parent.ContractOnSettersParametrizedTest) (209 ms)</li><li>spoon.test.parent.ContractOnSettersParametrizedTest.testContract[public interface CtLocalVariable<T> extends spoon.reflect.code.CtStatement , spoon.reflect.declaration.CtVariable<T> , spoon.reflect.code.CtRHSReceiver<T> {
+    spoon.reflect.code.CtLocalVariable<T> clone();
+
+    @spoon.support.DerivedProperty
+    spoon.reflect.reference.CtLocalVariableReference<T> getReference();
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.IS_INFERRED)
+    boolean isInferred();
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.IS_INFERRED)
+    <U extends spoon.reflect.code.CtLocalVariable<T>> U setInferred(boolean arg0);
+
+    @spoon.support.UnsettableProperty
+    <U extends spoon.reflect.code.CtRHSReceiver<T>> U setAssignment(spoon.reflect.code.CtExpression<T> arg0);
+
+    @spoon.support.DerivedProperty
+    spoon.reflect.code.CtExpression<T> getAssignment();
+}](spoon.test.parent.ContractOnSettersParametrizedTest) (85 ms)</li><li>spoon.test.trycatch.TryCatchTest.testFullyQualifiedException(spoon.test.trycatch.TryCatchTest) (30 ms)</li><li>spoon.test.model.TypeTest.testGetDifferentElements(spoon.test.model.TypeTest) (68 ms)</li><li>spoon.test.compilation.CompilationTest.testBuildAstWithSyntheticMethodsSwapOrder(spoon.test.compilation.CompilationTest) (114 ms)</li><li>spoon.test.model.IncrementalLauncherTest.testIncremental1(spoon.test.model.IncrementalLauncherTest) (1174 ms)</li><li>spoon.test.annotation.AnnotationTest.testFieldAndMethodInAnnotation(spoon.test.annotation.AnnotationTest) (59 ms)</li><li>spoon.test.annotation.AnnotationTest.testDefaultValueInAnnotationsForAnnotationFields(spoon.test.annotation.AnnotationTest) (76 ms)</li><li>spoon.test.comment.CommentTest.testSnippedWithComments(spoon.test.comment.CommentTest) (33 ms)</li><li>spoon.test.reference.TypeReferenceTest.testTypeDeclarationWildcard(spoon.test.reference.TypeReferenceTest) (86 ms)</li><li>spoon.test.eval.EvalTest.testVisitorPartialEvaluator_binary(spoon.test.eval.EvalTest) (243 ms)</li><li>spoon.test.parent.ContractOnSettersParametrizedTest.testContract[public interface CtAnnotationType<T extends java.lang.annotation.Annotation> extends spoon.reflect.declaration.CtType<T> {
+    spoon.reflect.declaration.CtAnnotationType<T> clone();
+
+    <M, C extends spoon.reflect.declaration.CtType<T>> C addMethod(spoon.reflect.declaration.CtMethod<M> arg0);
+
+    @spoon.support.UnsettableProperty
+    <C extends spoon.reflect.declaration.CtType<T>> C setSuperclass(spoon.reflect.reference.CtTypeReference<?> arg0);
+
+    @spoon.support.UnsettableProperty
+    <T extends spoon.reflect.declaration.CtFormalTypeDeclarer> T setFormalCtTypeParameters(java.util.List<spoon.reflect.declaration.CtTypeParameter> arg0);
+
+    @spoon.support.UnsettableProperty
+    <C extends spoon.reflect.declaration.CtType<T>> C setSuperInterfaces(java.util.Set<spoon.reflect.reference.CtTypeReference<?>> arg0);
+
+    <C extends spoon.reflect.declaration.CtType<T>> C setMethods(java.util.Set<spoon.reflect.declaration.CtMethod<?>> arg0);
+
+    @spoon.support.DerivedProperty
+    java.util.Set<spoon.reflect.declaration.CtAnnotationMethod<?>> getAnnotationMethods();
+}](spoon.test.parent.ContractOnSettersParametrizedTest) (303 ms)</li><li>spoon.test.parent.ContractOnSettersParametrizedTest.testContract[public interface CtContinue extends spoon.reflect.code.CtLabelledFlowBreak {
+    spoon.reflect.code.CtContinue clone();
+}](spoon.test.parent.ContractOnSettersParametrizedTest) (127 ms)</li><li>spoon.test.processing.ProcessingTest.testInsertBegin(spoon.test.processing.ProcessingTest) (38 ms)</li><li>spoon.test.parent.ContractOnSettersParametrizedTest.testContract[public interface CtComment extends spoon.reflect.code.CtStatement {
+    spoon.reflect.code.CtComment clone();
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.COMMENT_CONTENT)
+    java.lang.String getContent();
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.COMMENT_TYPE)
+    <E extends spoon.reflect.code.CtComment> E setCommentType(spoon.reflect.code.CtComment.CommentType arg0);
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.COMMENT_TYPE)
+    spoon.reflect.code.CtComment.CommentType getCommentType();
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.COMMENT_CONTENT)
+    <E extends spoon.reflect.code.CtComment> E setContent(java.lang.String arg0);
+
+    @spoon.support.DerivedProperty
+    java.lang.String getRawContent();
+
+    spoon.reflect.code.CtJavaDoc asJavaDoc();
+
+    static final java.lang.String LINE_SEPARATOR = "\n";
+
+    final enum CommentType {
+
+        FILE,
+        JAVADOC,
+        INLINE,
+        BLOCK;}
+}](spoon.test.parent.ContractOnSettersParametrizedTest) (137 ms)</li><li>spoon.test.parent.ContractOnSettersParametrizedTest.testContract[public interface CtEnum<T extends java.lang.Enum<?>> extends spoon.reflect.declaration.CtClass<T> {
+    spoon.reflect.declaration.CtEnum<T> clone();
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.VALUE)
+    <C extends spoon.reflect.declaration.CtEnum<T>> C addEnumValue(spoon.reflect.declaration.CtEnumValue<?> arg0);
+
+    @spoon.support.UnsettableProperty
+    <C extends spoon.reflect.declaration.CtType<T>> C setSuperclass(spoon.reflect.reference.CtTypeReference<?> arg0);
+
+    @spoon.support.UnsettableProperty
+    <T extends spoon.reflect.declaration.CtFormalTypeDeclarer> T setFormalCtTypeParameters(java.util.List<spoon.reflect.declaration.CtTypeParameter> arg0);
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.VALUE)
+    java.util.List<spoon.reflect.declaration.CtEnumValue<?>> getEnumValues();
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.VALUE)
+    <C extends spoon.reflect.declaration.CtEnum<T>> C setEnumValues(java.util.List<spoon.reflect.declaration.CtEnumValue<?>> arg0);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.VALUE)
+    boolean removeEnumValue(spoon.reflect.declaration.CtEnumValue<?> arg0);
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.VALUE)
+    spoon.reflect.declaration.CtEnumValue<?> getEnumValue(java.lang.String arg0);
+}](spoon.test.parent.ContractOnSettersParametrizedTest) (124 ms)</li><li>spoon.CompilationUnitPrintTest.test(spoon.CompilationUnitPrintTest) (1464 ms)</li><li>spoon.test.parent.ContractOnSettersParametrizedTest.testContract[public interface CtExecutableReferenceExpression<T, E extends spoon.reflect.code.CtExpression<?>> extends spoon.reflect.code.CtTargetedExpression<T, E> {
+    spoon.reflect.code.CtExecutableReferenceExpression<T, E> clone();
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.EXECUTABLE_REF)
+    <C extends spoon.reflect.code.CtExecutableReferenceExpression<T, E>> C setExecutable(spoon.reflect.reference.CtExecutableReference<T> arg0);
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.EXECUTABLE_REF)
+    spoon.reflect.reference.CtExecutableReference<T> getExecutable();
+}](spoon.test.parent.ContractOnSettersParametrizedTest) (106 ms)</li><li>spoon.test.parent.ContractOnSettersParametrizedTest.testContract[public interface CtSwitch<S> extends spoon.reflect.code.CtStatement , spoon.reflect.code.CtAbstractSwitch<S> {
+    spoon.reflect.code.CtSwitch<S> clone();
+}](spoon.test.parent.ContractOnSettersParametrizedTest) (185 ms)</li><li>spoon.test.ctBodyHolder.CtBodyHolderTest.testForWithStatement(spoon.test.ctBodyHolder.CtBodyHolderTest) (172 ms)</li><li>spoon.test.parent.ContractOnSettersParametrizedTest.testContract[public interface CtForEach extends spoon.reflect.code.CtLoop {
+    spoon.reflect.code.CtForEach clone();
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.FOREACH_VARIABLE)
+    <T extends spoon.reflect.code.CtForEach> T setVariable(spoon.reflect.code.CtLocalVariable<?> arg0);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.EXPRESSION)
+    <T extends spoon.reflect.code.CtForEach> T setExpression(spoon.reflect.code.CtExpression<?> arg0);
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.EXPRESSION)
+    spoon.reflect.code.CtExpression<?> getExpression();
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.FOREACH_VARIABLE)
+    spoon.reflect.code.CtLocalVariable<?> getVariable();
+}](spoon.test.parent.ContractOnSettersParametrizedTest) (141 ms)</li><li>spoon.test.parent.ContractOnSettersParametrizedTest.testContract[public interface CtFieldWrite<T> extends spoon.reflect.code.CtFieldAccess<T> , spoon.reflect.code.CtVariableWrite<T> {
+    spoon.reflect.code.CtFieldWrite<T> clone();
+}](spoon.test.parent.ContractOnSettersParametrizedTest) (169 ms)</li><li>spoon.test.intercession.IntercessionTest.testInsertEnd(spoon.test.intercession.IntercessionTest) (51 ms)</li><li>spoon.test.intercession.insertBefore.InsertMethodsTest.testInsertAfterWithBrace(spoon.test.intercession.insertBefore.InsertMethodsTest) (50 ms)</li><li>spoon.test.architecture.SpoonArchitectureEnforcerTest.testStaticClasses(spoon.test.architecture.SpoonArchitectureEnforcerTest) (13788 ms)</li><li>spoon.test.parent.ContractOnSettersParametrizedTest.testContract[public interface CtFor extends spoon.reflect.code.CtLoop {
+    spoon.reflect.code.CtFor clone();
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.EXPRESSION)
+    <T extends spoon.reflect.code.CtFor> T setExpression(spoon.reflect.code.CtExpression<java.lang.Boolean> arg0);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.FOR_INIT)
+    <T extends spoon.reflect.code.CtFor> T addForInit(spoon.reflect.code.CtStatement arg0);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.FOR_UPDATE)
+    <T extends spoon.reflect.code.CtFor> T addForUpdate(spoon.reflect.code.CtStatement arg0);
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.EXPRESSION)
+    spoon.reflect.code.CtExpression<java.lang.Boolean> getExpression();
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.FOR_INIT)
+    java.util.List<spoon.reflect.code.CtStatement> getForInit();
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.FOR_UPDATE)
+    java.util.List<spoon.reflect.code.CtStatement> getForUpdate();
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.FOR_UPDATE)
+    <T extends spoon.reflect.code.CtFor> T setForUpdate(java.util.List<spoon.reflect.code.CtStatement> arg0);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.FOR_INIT)
+    <T extends spoon.reflect.code.CtFor> T setForInit(java.util.List<spoon.reflect.code.CtStatement> arg0);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.FOR_INIT)
+    boolean removeForInit(spoon.reflect.code.CtStatement arg0);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.FOR_UPDATE)
+    boolean removeForUpdate(spoon.reflect.code.CtStatement arg0);
+}](spoon.test.parent.ContractOnSettersParametrizedTest) (148 ms)</li><li>spoon.test.reference.ExecutableReferenceTest.testInvokeEnumMethod(spoon.test.reference.ExecutableReferenceTest) (30 ms)</li><li>spoon.test.parent.ContractOnSettersParametrizedTest.testContract[public interface CtParameter<T> extends spoon.reflect.declaration.CtShadowable , spoon.reflect.declaration.CtVariable<T> {
+    spoon.reflect.declaration.CtParameter<T> clone();
+
+    @spoon.support.DerivedProperty
+    spoon.reflect.reference.CtParameterReference<T> getReference();
+
+    @spoon.support.DerivedProperty
+    spoon.reflect.declaration.CtExecutable<?> getParent();
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.IS_VARARGS)
+    boolean isVarArgs();
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.IS_INFERRED)
+    boolean isInferred();
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.IS_INFERRED)
+    <U extends spoon.reflect.declaration.CtParameter<T>> U setInferred(boolean arg0);
+
+    @spoon.support.UnsettableProperty
+    <C extends spoon.reflect.declaration.CtVariable<T>> C setDefaultExpression(spoon.reflect.code.CtExpression<T> arg0);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.IS_VARARGS)
+    <C extends spoon.reflect.declaration.CtParameter<T>> C setVarArgs(boolean arg0);
+}](spoon.test.parent.ContractOnSettersParametrizedTest) (168 ms)</li><li>spoon.test.refactoring.CtRenameLocalVariableRefactoringTest.testRenameAllLocalVariablesOfRenameTestSubject(spoon.test.refactoring.CtRenameLocalVariableRefactoringTest) (22685 ms)</li><li>spoon.test.refactoring.MethodsRefactoringTest.testAllMethodsSameSignatureFunction(spoon.test.refactoring.MethodsRefactoringTest) (288 ms)</li><li>spoon.test.comparison.EqualTest.testEqualsEmptyException(spoon.test.comparison.EqualTest) (24 ms)</li><li>spoon.support.visitor.java.JavaReflectionTreeBuilderTest.testScannerEnum(spoon.support.visitor.java.JavaReflectionTreeBuilderTest) (6 ms)</li><li>spoon.test.snippets.SnippetTest.testSnippetWihErrors(spoon.test.snippets.SnippetTest) (30 ms)</li><li>spoon.test.intercession.insertBefore.InsertMethodsTest.testInsertAfterSwitchCase(spoon.test.intercession.insertBefore.InsertMethodsTest) (56 ms)</li><li>spoon.test.variable.AccessTest.testAccessToStringOnPostIncrement(spoon.test.variable.AccessTest) (29 ms)</li><li>spoon.test.interfaces.InterfaceTest.testRedefinesStaticMethodInSubInterface(spoon.test.interfaces.InterfaceTest) (107 ms)</li><li>spoon.test.processing.ProcessingTest.testInsertEnd(spoon.test.processing.ProcessingTest) (32 ms)</li><li>spoon.test.parent.ContractOnSettersParametrizedTest.testContract[public interface CtLambda<T> extends spoon.reflect.code.CtExpression<T> , spoon.reflect.declaration.CtExecutable<T> {
+    spoon.reflect.code.CtLambda<T> clone();
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.EXPRESSION)
+    <C extends spoon.reflect.code.CtLambda<T>> C setExpression(spoon.reflect.code.CtExpression<T> arg0);
+
+    @spoon.support.UnsettableProperty
+    <T1 extends spoon.reflect.declaration.CtExecutable<T>> T1 setThrownTypes(java.util.Set<spoon.reflect.reference.CtTypeReference<? extends java.lang.Throwable>> arg0);
+
+    @spoon.support.DerivedProperty
+    <R> spoon.reflect.declaration.CtMethod<R> getOverriddenMethod();
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.EXPRESSION)
+    spoon.reflect.code.CtExpression<T> getExpression();
+}](spoon.test.parent.ContractOnSettersParametrizedTest) (98 ms)</li><li>spoon.test.replace.ReplaceParametrizedTest.testContract[CtClass](spoon.test.replace.ReplaceParametrizedTest) (27 ms)</li><li>spoon.test.parent.ContractOnSettersParametrizedTest.testContract[public interface CtUnaryOperator<T> extends spoon.reflect.code.CtExpression<T> , spoon.reflect.code.CtStatement {
+    spoon.reflect.code.CtUnaryOperator<T> clone();
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.OPERATOR_KIND)
+    spoon.reflect.code.UnaryOperatorKind getKind();
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.EXPRESSION)
+    <C extends spoon.reflect.code.CtUnaryOperator> C setOperand(spoon.reflect.code.CtExpression<T> arg0);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.OPERATOR_KIND)
+    <C extends spoon.reflect.code.CtUnaryOperator> C setKind(spoon.reflect.code.UnaryOperatorKind arg0);
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.EXPRESSION)
+    spoon.reflect.code.CtExpression<T> getOperand();
+}](spoon.test.parent.ContractOnSettersParametrizedTest) (168 ms)</li><li>spoon.test.replace.ReplaceTest.testReplaceBlockTry(spoon.test.replace.ReplaceTest) (205 ms)</li><li>spoon.test.parent.ContractOnSettersParametrizedTest.testContract[public interface CtDo extends spoon.reflect.code.CtLoop {
+    spoon.reflect.code.CtDo clone();
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.EXPRESSION)
+    spoon.reflect.code.CtExpression<java.lang.Boolean> getLoopingExpression();
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.EXPRESSION)
+    <T extends spoon.reflect.code.CtDo> T setLoopingExpression(spoon.reflect.code.CtExpression<java.lang.Boolean> arg0);
+}](spoon.test.parent.ContractOnSettersParametrizedTest) (113 ms)</li><li>spoon.support.visitor.java.JavaReflectionTreeBuilderTest.testAnonymousClass(spoon.support.visitor.java.JavaReflectionTreeBuilderTest) (916 ms)</li><li>spoon.test.parent.ContractOnSettersParametrizedTest.testContract[public interface CtModuleRequirement extends spoon.reflect.declaration.CtModuleDirective {
+    spoon.reflect.declaration.CtModuleRequirement clone();
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.MODULE_REF)
+    <T extends spoon.reflect.declaration.CtModuleRequirement> T setModuleReference(spoon.reflect.reference.CtModuleReference arg0);
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.MODULE_REF)
+    spoon.reflect.reference.CtModuleReference getModuleReference();
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.MODIFIER)
+    java.util.Set<spoon.reflect.declaration.CtModuleRequirement.RequiresModifier> getRequiresModifiers();
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.MODIFIER)
+    <T extends spoon.reflect.declaration.CtModuleRequirement> T setRequiresModifiers(java.util.Set<spoon.reflect.declaration.CtModuleRequirement.RequiresModifier> arg0);
+
+    final enum RequiresModifier {
+
+        STATIC,
+        TRANSITIVE;}
+}](spoon.test.parent.ContractOnSettersParametrizedTest) (109 ms)</li><li>spoon.test.parent.ContractOnSettersParametrizedTest.testContract[public interface CtImport extends spoon.reflect.declaration.CtElement {
+    spoon.reflect.declaration.CtImport clone();
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.IMPORT_REFERENCE)
+    spoon.reflect.reference.CtReference getReference();
+
+    void accept(spoon.reflect.visitor.CtImportVisitor arg0);
+
+    @spoon.support.DerivedProperty
+    spoon.reflect.declaration.CtImportKind getImportKind();
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.IMPORT_REFERENCE)
+    <T extends spoon.reflect.declaration.CtImport> T setReference(spoon.reflect.reference.CtReference arg0);
+}](spoon.test.parent.ContractOnSettersParametrizedTest) (146 ms)</li><li>spoon.test.refactoring.CtRenameGenericVariableRefactoringTest.testRenameAllVariablesRandom(spoon.test.refactoring.CtRenameGenericVariableRefactoringTest) (65 ms)</li><li>spoon.test.parent.ContractOnSettersParametrizedTest.testContract[public interface CtIf extends spoon.reflect.code.CtStatement , spoon.template.TemplateParameter<java.lang.Void> {
+    spoon.reflect.code.CtIf clone();
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.ELSE)
+    <T extends spoon.reflect.code.CtIf> T setElseStatement(spoon.reflect.code.CtStatement arg0);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.CONDITION)
+    <T extends spoon.reflect.code.CtIf> T setCondition(spoon.reflect.code.CtExpression<java.lang.Boolean> arg0);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.THEN)
+    <T extends spoon.reflect.code.CtIf> T setThenStatement(spoon.reflect.code.CtStatement arg0);
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.CONDITION)
+    spoon.reflect.code.CtExpression<java.lang.Boolean> getCondition();
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.THEN)
+    <S extends spoon.reflect.code.CtStatement> S getThenStatement();
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.ELSE)
+    <S extends spoon.reflect.code.CtStatement> S getElseStatement();
+}](spoon.test.parent.ContractOnSettersParametrizedTest) (136 ms)</li><li>spoon.test.parent.ContractOnSettersParametrizedTest.testContract[public interface CtNewArray<T> extends spoon.reflect.code.CtExpression<T> {
+    spoon.reflect.code.CtNewArray<T> clone();
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.EXPRESSION)
+    java.util.List<spoon.reflect.code.CtExpression<?>> getElements();
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.DIMENSION)
+    <C extends spoon.reflect.code.CtNewArray<T>> C addDimensionExpression(spoon.reflect.code.CtExpression<java.lang.Integer> arg0);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.EXPRESSION)
+    <C extends spoon.reflect.code.CtNewArray<T>> C setElements(java.util.List<spoon.reflect.code.CtExpression<?>> arg0);
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.DIMENSION)
+    java.util.List<spoon.reflect.code.CtExpression<java.lang.Integer>> getDimensionExpressions();
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.DIMENSION)
+    <C extends spoon.reflect.code.CtNewArray<T>> C setDimensionExpressions(java.util.List<spoon.reflect.code.CtExpression<java.lang.Integer>> arg0);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.EXPRESSION)
+    boolean removeElement(spoon.reflect.code.CtExpression<?> arg0);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.EXPRESSION)
+    <C extends spoon.reflect.code.CtNewArray<T>> C addElement(spoon.reflect.code.CtExpression<?> arg0);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.DIMENSION)
+    boolean removeDimensionExpression(spoon.reflect.code.CtExpression<java.lang.Integer> arg0);
+}](spoon.test.parent.ContractOnSettersParametrizedTest) (141 ms)</li><li>spoon.test.interfaces.InterfaceTest.testRedefinesDefaultMethodInSubInterface(spoon.test.interfaces.InterfaceTest) (129 ms)</li><li>spoon.test.parent.ContractOnSettersParametrizedTest.testContract[public interface CtSynchronized extends spoon.reflect.code.CtStatement {
+    spoon.reflect.code.CtSynchronized clone();
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.EXPRESSION)
+    <T extends spoon.reflect.code.CtSynchronized> T setExpression(spoon.reflect.code.CtExpression<?> arg0);
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.EXPRESSION)
+    spoon.reflect.code.CtExpression<?> getExpression();
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.BODY)
+    spoon.reflect.code.CtBlock<?> getBlock();
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.BODY)
+    <T extends spoon.reflect.code.CtSynchronized> T setBlock(spoon.reflect.code.CtBlock<?> arg0);
+}](spoon.test.parent.ContractOnSettersParametrizedTest) (210 ms)</li><li>spoon.test.parent.ContractOnSettersParametrizedTest.testContract[public interface CtAssert<T> extends spoon.reflect.code.CtStatement {
+    spoon.reflect.code.CtAssert<T> clone();
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.EXPRESSION)
+    <A extends spoon.reflect.code.CtAssert<T>> A setExpression(spoon.reflect.code.CtExpression<T> arg0);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.CONDITION)
+    <A extends spoon.reflect.code.CtAssert<T>> A setAssertExpression(spoon.reflect.code.CtExpression<java.lang.Boolean> arg0);
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.CONDITION)
+    spoon.reflect.code.CtExpression<java.lang.Boolean> getAssertExpression();
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.EXPRESSION)
+    spoon.reflect.code.CtExpression<T> getExpression();
+}](spoon.test.parent.ContractOnSettersParametrizedTest) (162 ms)</li><li>spoon.test.constructor.ConstructorTest.callParamConstructor(spoon.test.constructor.ConstructorTest) (78 ms)</li><li>spoon.test.parent.ParentTest.testGetParentOverloadsInNoParentElements(spoon.test.parent.ParentTest) (92 ms)</li><li>spoon.test.snippets.SnippetTest.testCompileAndReplaceSnippetsIn(spoon.test.snippets.SnippetTest) (56 ms)</li><li>spoon.test.intercession.IntercessionTest.testInsertIfIntercession(spoon.test.intercession.IntercessionTest) (35 ms)</li><li>spoon.test.path.PathTest.testAmbiguousName(spoon.test.path.PathTest) (81 ms)</li><li>spoon.test.parent.ContractOnSettersParametrizedTest.testContract[public interface CtCatch extends spoon.reflect.code.CtCodeElement , spoon.reflect.code.CtBodyHolder {
+    spoon.reflect.code.CtCatch clone();
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.PARAMETER)
+    <T extends spoon.reflect.code.CtCatch> T setParameter(spoon.reflect.code.CtCatchVariable<? extends java.lang.Throwable> arg0);
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.BODY)
+    spoon.reflect.code.CtBlock<?> getBody();
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.PARAMETER)
+    spoon.reflect.code.CtCatchVariable<? extends java.lang.Throwable> getParameter();
+}](spoon.test.parent.ContractOnSettersParametrizedTest) (335 ms)</li><li>spoon.test.targeted.TargetedExpressionTest.testTargetOfFieldAccess(spoon.test.targeted.TargetedExpressionTest) (53 ms)</li><li>spoon.test.parent.ContractOnSettersParametrizedTest.testContract[public interface CtMethod<T> extends spoon.reflect.declaration.CtTypeMember , spoon.reflect.declaration.CtShadowable , spoon.reflect.declaration.CtFormalTypeDeclarer , spoon.reflect.declaration.CtExecutable<T> {
+    spoon.reflect.declaration.CtMethod<T> clone();
+
+    spoon.reflect.declaration.CtMethod<?> copyMethod();
+
+    boolean isOverriding(spoon.reflect.declaration.CtMethod<?> arg0);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.IS_DEFAULT)
+    <C extends spoon.reflect.declaration.CtMethod<T>> C setDefaultMethod(boolean arg0);
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.IS_DEFAULT)
+    boolean isDefaultMethod();
+
+    java.util.Collection<spoon.reflect.declaration.CtMethod<?>> getTopDefinitions();
+}](spoon.test.parent.ContractOnSettersParametrizedTest) (282 ms)</li><li>spoon.test.imports.ImportTest.testMethodChainAutoImports(spoon.test.imports.ImportTest) (56 ms)</li><li>spoon.test.parent.ContractOnSettersParametrizedTest.testContract[public interface CtProvidedService extends spoon.reflect.declaration.CtModuleDirective {
+    spoon.reflect.declaration.CtProvidedService clone();
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.SERVICE_TYPE)
+    <T extends spoon.reflect.declaration.CtProvidedService> T setServiceType(spoon.reflect.reference.CtTypeReference arg0);
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.SERVICE_TYPE)
+    spoon.reflect.reference.CtTypeReference getServiceType();
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.IMPLEMENTATION_TYPE)
+    java.util.List<spoon.reflect.reference.CtTypeReference> getImplementationTypes();
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.IMPLEMENTATION_TYPE)
+    <T extends spoon.reflect.declaration.CtProvidedService> T setImplementationTypes(java.util.List<spoon.reflect.reference.CtTypeReference> arg0);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.IMPLEMENTATION_TYPE)
+    <T extends spoon.reflect.declaration.CtProvidedService> T addImplementationType(spoon.reflect.reference.CtTypeReference arg0);
+}](spoon.test.parent.ContractOnSettersParametrizedTest) (154 ms)</li><li>spoon.test.intercession.RemoveTest.testRemoveAllStatements(spoon.test.intercession.RemoveTest) (25 ms)</li><li>spoon.test.intercession.insertBefore.InsertMethodsTest.testInsertBefore(spoon.test.intercession.insertBefore.InsertMethodsTest) (50 ms)</li><li>spoon.test.intercession.insertBefore.InsertMethodsTest.testInsertBeforeSwitchCase(spoon.test.intercession.insertBefore.InsertMethodsTest) (51 ms)</li><li>spoon.test.casts.CastTest.testCast2(spoon.test.casts.CastTest) (192 ms)</li><li>spoon.test.parent.ContractOnSettersParametrizedTest.testContract[public interface CtCatchVariable<T> extends spoon.reflect.code.CtCodeElement , spoon.reflect.declaration.CtVariable<T> , spoon.reflect.declaration.CtMultiTypedElement {
+    spoon.reflect.code.CtCatchVariable<T> clone();
+
+    @spoon.support.DerivedProperty
+    spoon.reflect.reference.CtCatchVariableReference<T> getReference();
+
+    @spoon.support.DerivedProperty
+    spoon.reflect.reference.CtTypeReference<T> getType();
+
+    @spoon.support.UnsettableProperty
+    <C extends spoon.reflect.declaration.CtVariable<T>> C setDefaultExpression(spoon.reflect.code.CtExpression<T> arg0);
+
+    @spoon.support.UnsettableProperty
+    <C extends spoon.reflect.declaration.CtTypedElement> C setType(spoon.reflect.reference.CtTypeReference<T> arg0);
+}](spoon.test.parent.ContractOnSettersParametrizedTest) (227 ms)</li><li>spoon.test.parent.ContractOnSettersParametrizedTest.testContract[public interface CtCodeSnippetExpression<T> extends spoon.reflect.code.CtExpression<T> , spoon.reflect.declaration.CtCodeSnippet {
+    spoon.reflect.code.CtCodeSnippetExpression<T> clone();
+
+    <E extends spoon.reflect.code.CtExpression<T>> E compile() throws spoon.support.compiler.SnippetCompilationError;
+}](spoon.test.parent.ContractOnSettersParametrizedTest) (146 ms)</li><li>spoon.test.trycatch.TryCatchTest.testCatchOrder(spoon.test.trycatch.TryCatchTest) (33 ms)</li><li>spoon.test.model.BlockTest.testIterationStatements(spoon.test.model.BlockTest) (30 ms)</li><li>spoon.test.api.APITest.testOneLinerIntro(spoon.test.api.APITest) (33 ms)</li><li>spoon.test.parent.ContractOnSettersParametrizedTest.testContract[public interface CtInterface<T> extends spoon.reflect.declaration.CtType<T> {
+    spoon.reflect.declaration.CtInterface<T> clone();
+
+    @spoon.support.UnsettableProperty
+    <C extends spoon.reflect.declaration.CtType<T>> C setSuperclass(spoon.reflect.reference.CtTypeReference<?> arg0);
+}](spoon.test.parent.ContractOnSettersParametrizedTest) (137 ms)</li><li>spoon.test.intercession.insertBefore.InsertMethodsTest.testInsertAfterWithoutBrace(spoon.test.intercession.insertBefore.InsertMethodsTest) (49 ms)</li><li>spoon.test.exceptions.ExceptionTest.testExceptionInSnippet(spoon.test.exceptions.ExceptionTest) (47 ms)</li><li>spoon.test.ctClass.CtClassTest.testAllTypeReferencesToALocalTypeShouldNotStartWithNumber(spoon.test.ctClass.CtClassTest) (209 ms)</li><li>spoon.test.trycatch.TryCatchTest.testTryCatchVariableGetType(spoon.test.trycatch.TryCatchTest) (32 ms)</li><li>spoon.test.position.PositionTest.testPositionBuilderFailureIsCaugth(spoon.test.position.PositionTest) (43 ms)</li><li>spoon.test.reference.TypeReferenceTest.testGetAllExecutablesForInterfaces(spoon.test.reference.TypeReferenceTest) (31 ms)</li><li>spoon.test.ctType.CtTypeTest.testHasMethodNotHasMethod(spoon.test.ctType.CtTypeTest) (173 ms)</li><li>spoon.processing.CtGenerationTest.testGenerateCloneVisitor(spoon.processing.CtGenerationTest) (54297 ms)</li><li>spoon.test.intercession.insertBefore.InsertMethodsTest.testInsertAfter(spoon.test.intercession.insertBefore.InsertMethodsTest) (63 ms)</li><li>spoon.test.prettyprinter.DefaultPrettyPrinterTest.testThisConstructorCall2(spoon.test.prettyprinter.DefaultPrettyPrinterTest) (1160 ms)</li><li>spoon.test.parent.ContractOnSettersParametrizedTest.testContract[public interface CtTypeAccess<A> extends spoon.reflect.code.CtExpression<java.lang.Void> {
+    spoon.reflect.code.CtTypeAccess<A> clone();
+
+    @spoon.support.DerivedProperty
+    spoon.reflect.reference.CtTypeReference<java.lang.Void> getType();
+
+    @spoon.support.DerivedProperty
+    boolean isImplicit();
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.ACCESSED_TYPE)
+    <C extends spoon.reflect.code.CtTypeAccess<A>> C setAccessedType(spoon.reflect.reference.CtTypeReference<A> arg0);
+
+    @spoon.support.DerivedProperty
+    <E extends spoon.reflect.declaration.CtElement> E setImplicit(boolean arg0);
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.ACCESSED_TYPE)
+    spoon.reflect.reference.CtTypeReference<A> getAccessedType();
+
+    @spoon.support.UnsettableProperty
+    <C extends spoon.reflect.declaration.CtTypedElement> C setType(spoon.reflect.reference.CtTypeReference<java.lang.Void> arg0);
+}](spoon.test.parent.ContractOnSettersParametrizedTest) (152 ms)</li><li>spoon.test.parent.ContractOnSettersParametrizedTest.testContract[public interface CtVariableWrite<T> extends spoon.reflect.code.CtVariableAccess<T> {
+    spoon.reflect.code.CtVariableWrite<T> clone();
+}](spoon.test.parent.ContractOnSettersParametrizedTest) (147 ms)</li><li>spoon.test.parent.ContractOnSettersParametrizedTest.testContract[public interface CtClass<T> extends spoon.reflect.code.CtStatement , spoon.reflect.declaration.CtType<T> {
+    spoon.reflect.declaration.CtClass<T> clone();
+
+    T newInstance();
+
+    @spoon.support.DerivedProperty
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.CONSTRUCTOR)
+    java.util.Set<spoon.reflect.declaration.CtConstructor<T>> getConstructors();
+
+    @spoon.support.DerivedProperty
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.CONSTRUCTOR)
+    spoon.reflect.declaration.CtConstructor<T> getConstructor(spoon.reflect.reference.CtTypeReference<?>... arg0);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.CONSTRUCTOR)
+    <C extends spoon.reflect.declaration.CtClass<T>> C addConstructor(spoon.reflect.declaration.CtConstructor<T> arg0);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.ANNONYMOUS_EXECUTABLE)
+    <C extends spoon.reflect.declaration.CtClass<T>> C addAnonymousExecutable(spoon.reflect.declaration.CtAnonymousExecutable arg0);
+
+    boolean isAnonymous();
+
+    @spoon.support.DerivedProperty
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.ANNONYMOUS_EXECUTABLE)
+    java.util.List<spoon.reflect.declaration.CtAnonymousExecutable> getAnonymousExecutables();
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.ANNONYMOUS_EXECUTABLE)
+    <C extends spoon.reflect.declaration.CtClass<T>> C setAnonymousExecutables(java.util.List<spoon.reflect.declaration.CtAnonymousExecutable> arg0);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.CONSTRUCTOR)
+    <C extends spoon.reflect.declaration.CtClass<T>> C setConstructors(java.util.Set<spoon.reflect.declaration.CtConstructor<T>> arg0);
+
+    @spoon.support.UnsettableProperty
+    <C extends spoon.reflect.code.CtStatement> C setLabel(java.lang.String arg0);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.ANNONYMOUS_EXECUTABLE)
+    boolean removeAnonymousExecutable(spoon.reflect.declaration.CtAnonymousExecutable arg0);
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.CONSTRUCTOR)
+    void removeConstructor(spoon.reflect.declaration.CtConstructor<T> arg0);
+}](spoon.test.parent.ContractOnSettersParametrizedTest) (202 ms)</li><li>spoon.test.parent.ContractOnSettersParametrizedTest.testContract[public interface CtOperatorAssignment<T, A extends T> extends spoon.reflect.code.CtAssignment<T, A> {
+    spoon.reflect.code.CtOperatorAssignment<T, A> clone();
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.OPERATOR_KIND)
+    spoon.reflect.code.BinaryOperatorKind getKind();
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.OPERATOR_KIND)
+    <C extends spoon.reflect.code.CtOperatorAssignment<T, A>> C setKind(spoon.reflect.code.BinaryOperatorKind arg0);
+}](spoon.test.parent.ContractOnSettersParametrizedTest) (183 ms)</li><li>spoon.test.casts.CastTest.testCast1(spoon.test.casts.CastTest) (56 ms)</li><li>spoon.test.ctBodyHolder.CtBodyHolderTest.testConstructor(spoon.test.ctBodyHolder.CtBodyHolderTest) (144 ms)</li><li>spoon.test.parent.ContractOnSettersParametrizedTest.testContract[public interface CtPackageDeclaration extends spoon.reflect.declaration.CtElement {
+    spoon.reflect.declaration.CtPackageDeclaration clone();
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.PACKAGE_REF)
+    spoon.reflect.reference.CtPackageReference getReference();
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.PACKAGE_REF)
+    spoon.reflect.declaration.CtPackageDeclaration setReference(spoon.reflect.reference.CtPackageReference arg0);
+}](spoon.test.parent.ContractOnSettersParametrizedTest) (135 ms)</li><li>spoon.test.ctBodyHolder.CtBodyHolderTest.testWhileWithBlock(spoon.test.ctBodyHolder.CtBodyHolderTest) (76 ms)</li><li>spoon.test.signature.SignatureTest.testMethodInvocationSignatureWithVariableAccess(spoon.test.signature.SignatureTest) (32 ms)</li><li>spoon.test.fieldaccesses.FieldAccessTest.testFieldAccessAutoExplicit(spoon.test.fieldaccesses.FieldAccessTest) (112 ms)</li><li>spoon.test.signature.SignatureTest.testUnboundFieldSignature(spoon.test.signature.SignatureTest) (28 ms)</li><li>spoon.test.intercession.IntercessionTest.testEqualConstructor(spoon.test.intercession.IntercessionTest) (38 ms)</li><li>spoon.test.factory.FactoryTest.factoryTest(spoon.test.factory.FactoryTest) (705 ms)</li><li>spoon.test.modifiers.ModifiersTest.testGetModifiersHelpers(spoon.test.modifiers.ModifiersTest) (240 ms)</li><li>spoon.test.signature.SignatureTest.testNullSignature(spoon.test.signature.SignatureTest) (30 ms)</li><li>spoon.test.interfaces.TestInterfaceWithoutSetup.testModifierFromInterfaceFieldAndMethod(spoon.test.interfaces.TestInterfaceWithoutSetup) (32 ms)</li><li>spoon.test.comparison.EqualTest.testEqualsComment(spoon.test.comparison.EqualTest) (38 ms)</li><li>spoon.test.parent.ContractOnSettersParametrizedTest.testContract[public interface CtWhile extends spoon.reflect.code.CtLoop {
+    spoon.reflect.code.CtWhile clone();
+
+    @spoon.reflect.annotations.PropertyGetter(role = spoon.reflect.path.CtRole.EXPRESSION)
+    spoon.reflect.code.CtExpression<java.lang.Boolean> getLoopingExpression();
+
+    @spoon.reflect.annotations.PropertySetter(role = spoon.reflect.path.CtRole.EXPRESSION)
+    <T extends spoon.reflect.code.CtWhile> T setLoopingExpression(spoon.reflect.code.CtExpression<java.lang.Boolean> arg0);
+}](spoon.test.parent.ContractOnSettersParametrizedTest) (129 ms)</li><li>spoon.test.intercession.IntercessionTest.testInsertAfter(spoon.test.intercession.IntercessionTest) (35 ms)</li><li>spoon.test.type.TypeTest.testTypeAccessOnPrimitive(spoon.test.type.TypeTest) (31 ms)</li><li>spoon.test.parent.ContractOnSettersParametrizedTest.testContract[public interface CtFieldRead<T> extends spoon.reflect.code.CtVariableRead<T> , spoon.reflect.code.CtFieldAccess<T> {
+    spoon.reflect.code.CtFieldRead<T> clone();
+}](spoon.test.parent.ContractOnSettersParametrizedTest) (189 ms)</li><li>spoon.test.enums.EnumsTest.testGetAllMethods(spoon.test.enums.EnumsTest) (152 ms)</li><li>spoon.test.intercession.insertBefore.InsertMethodsTest.testInsertBeforeWithoutBrace(spoon.test.intercession.insertBefore.InsertMethodsTest) (39 ms)</li><li>spoon.test.methodreference.MethodReferenceTest.testNoClasspathSuperExecutable(spoon.test.methodreference.MethodReferenceTest) (388 ms)</li><li>spoon.test.ctClass.CtClassTest.getConstructor(spoon.test.ctClass.CtClassTest) (38 ms)</li>
+</ul>
+
+<br/>
+
+Report generated by <a href='http://pitest.org'>PIT</a> 1.6.4
+
+</body>
+</html>
