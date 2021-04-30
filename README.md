@@ -8,6 +8,11 @@ To view the pit-report download this repo and then open [index.html](https://git
 
 ![Screen Shot 2021-04-30 at 12 50 03-fullpage](https://user-images.githubusercontent.com/62026125/116661843-ab692680-a9b2-11eb-946f-439d6e1dd7aa.png)
 
+## How many methods and tests does this report covers?
+This report is generated using all the methods and tests in Spoon.
+
+If you are looking for reports generated after running on subsets of methods and tests, check [this](https://github.com/Rohitesh-Kumar-Jain/Descartes_Pit_Reports).
+
 ## How can this report generated?
 
 <img width="664" alt="Screenshot 2021-04-30 at 12 51 52 PM" src="https://user-images.githubusercontent.com/62026125/116662002-d94e6b00-a9b2-11eb-9919-c0766948e1b9.png">
