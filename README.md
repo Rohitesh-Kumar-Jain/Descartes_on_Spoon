@@ -54,3 +54,9 @@ To generate this report add this plugin in Spoon.
             </dependencies>
         </plugin>
 ```
+And then run these commands 
+```
+cd my-project-under-test
+mvn clean package # ensures clean state
+mvn org.pitest:pitest-maven:mutationCoverage
+```
